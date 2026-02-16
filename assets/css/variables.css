@@ -1,0 +1,110 @@
+/**
+ * Radical Prosperité — Design tokens
+ * Single source of truth for colors, spacing, typography, motion.
+ * @see Design.md
+ */
+
+:root {
+  /* ─── Layout & spacing (harmonization) ─── */
+  --page-content-top-padding: 6rem;
+  --heading-h2-margin-left: 1.5rem;
+  --heading-h3-margin-y: 0.35rem;
+  --heading-h3-margin-x: 0.75rem;
+  --text-in-container-margin-left: 0.75rem;
+
+  /* ─── Surfaces ─── */
+  --surface-deepest: #02050b;
+  --surface-deep: #010712;
+  --surface-elevated: #0f172a;
+  --surface-input: rgba(15, 23, 42, 0.86);
+  --surface-glass: rgba(2, 10, 22, 0.9);
+  --surface-card: rgba(10, 18, 34, 0.88);
+
+  /* ─── Text ─── */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-inverse: #1a1a2e;
+  --text-link: #38bdf8;
+
+  /* ─── Accent & status ─── */
+  --accent-cyan: #38bdf8;
+  --accent-cyan-glow: rgba(56, 189, 248, 0.22);
+  --accent-cyan-strong: rgba(56, 189, 248, 0.45);
+  --accent-green: #22c55e;
+  --accent-green-glow: rgba(74, 222, 128, 0.65);
+  --success: #10b981;
+  --success-bg: rgba(6, 58, 39, 0.35);
+  --success-border: rgba(74, 222, 128, 0.35);
+  --error: #fb7185;
+  --error-bg: rgba(127, 29, 29, 0.25);
+  --error-border: rgba(251, 113, 133, 0.35);
+  --warning: #fbbf24;
+
+  /* ─── French tricolor (light) ─── */
+  --tricolor-blue: #003399;
+  --tricolor-white: #ffffff;
+  --tricolor-red: #c8102e;
+  /* Dark mode tricolor ─── */
+  --tricolor-blue-dark: #4d7fbf;
+  --tricolor-white-dark: rgba(30, 30, 40, 0.95);
+  --tricolor-red-dark: #ff4d6d;
+
+  /* ─── Circuit / background ─── */
+  --circuit-trace: rgba(56, 189, 248, 0.12);
+  --circuit-trace-sub: rgba(99, 102, 241, 0.08);
+  --circuit-pad: rgba(56, 189, 248, 0.18);
+  --circuit-via: rgba(74, 222, 128, 0.15);
+  --signal-blue: rgba(56, 189, 248, 0.45);
+  --signal-red: rgba(200, 16, 46, 0.35);
+  --signal-green: rgba(16, 185, 129, 0.55);
+  --signal-cyan: rgba(125, 211, 252, 0.35);
+
+  /* ─── Legacy compatibility (map to design system) ─── */
+  --bg-dark: var(--surface-deepest);
+  --bg-light: #f8f9fa;
+  --text-dark: var(--text-primary);
+  --text-light: var(--text-inverse);
+  --french-blue: var(--tricolor-blue);
+  --french-blue-light: var(--tricolor-blue-dark);
+  --french-red: var(--tricolor-red);
+  --french-red-light: var(--tricolor-red-dark);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --accent-blue-dark: rgba(0, 51, 153, 0.3);
+  --accent-blue-light: rgba(0, 51, 153, 0.15);
+  --accent-red-dark: rgba(200, 16, 46, 0.3);
+  --accent-red-light: rgba(200, 16, 46, 0.15);
+}
+
+/* ─── Spacing scale ─── */
+:root {
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+/* ─── Border radius ─── */
+:root {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* ─── Shadows ─── */
+:root {
+  --shadow-low: 0 2px 6px rgba(0, 0, 0, 0.15);
+  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.25);
+  --shadow-high: 0 22px 40px rgba(2, 6, 23, 0.65);
+  --shadow-glow-success: 0 0 18px rgba(74, 222, 128, 0.7);
+  --shadow-inset-btn: inset 0 1px 2px rgba(255, 255, 255, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Breakpoints (reference; use Tailwind in markup) ─── */
+/* xs: <480px | sm: 480–639px | md: 640–767px | lg: 768–1023px | xl: 1024–1279px | 2xl: 1280–1535px | 3xl: ≥1536px */

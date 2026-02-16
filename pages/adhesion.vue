@@ -1,11 +1,14 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+
+const { connected, user, login, register, logout, startGoogleAuth } = useAuthState()
 
 // Form state
 const formData = ref({
   firstName: '',
   lastName: '',
   email: '',
+  password: '',
   phone: '',
   birthDate: '',
   address: '',
@@ -25,12 +28,37 @@ const loginData = ref({
 // Toggle between register and login
 const isRegistering = ref(true)
 
+// UI state
+const errorMessage = ref('')
+const successMessage = ref('')
+const submitting = ref(false)
+
+// Check for OAuth redirect messages
+onMounted(() => {
+  const route = useRoute()
+  if (route.query.connected === 'true') {
+    successMessage.value = 'Connexion réussie !'
+  } else if (route.query.error) {
+    const errors: Record<string, string> = {
+      google_denied: 'Connexion Google annulée',
+      google_invalid: 'Erreur de connexion Google',
+      google_csrf: 'Erreur de sécurité. Veuillez réessayer.',
+      google_no_email: 'Impossible de récupérer votre email Google',
+      google_failed: 'Erreur lors de la connexion Google',
+      account_banned: 'Ce compte a été suspendu'
+    }
+    errorMessage.value = errors[route.query.error as string] || 'Une erreur est survenue'
+  }
+})
+
 // Form validation
 const isFormValid = computed(() => {
   if (isRegistering.value) {
-    return formData.value.firstName && 
-           formData.value.lastName && 
-           formData.value.email && 
+    return formData.value.firstName &&
+           formData.value.lastName &&
+           formData.value.email &&
+           formData.value.password &&
+           formData.value.password.length >= 8 &&
            formData.value.acceptTerms
   }
   return loginData.value.email && loginData.value.password
@@ -83,9 +111,42 @@ const membershipTypes = ref([
 
 const selectedMembership = ref('premium')
 
-const handleSubmit = () => {
-  console.log('Form submitted:', isRegistering.value ? formData.value : loginData.value)
-  // Handle form submission
+const handleSubmit = async () => {
+  errorMessage.value = ''
+  successMessage.value = ''
+  submitting.value = true
+
+  try {
+    if (isRegistering.value) {
+      await register({
+        firstName: formData.value.firstName,
+        lastName: formData.value.lastName,
+        email: formData.value.email,
+        password: formData.value.password,
+        phone: formData.value.phone,
+        birthDate: formData.value.birthDate,
+        address: formData.value.address,
+        city: formData.value.city,
+        postalCode: formData.value.postalCode,
+        region: formData.value.region,
+        newsletter: formData.value.newsletter,
+        membership: selectedMembership.value
+      })
+      successMessage.value = 'Inscription réussie ! Bienvenue chez Radical Prospérité.'
+    } else {
+      await login(loginData.value.email, loginData.value.password)
+      successMessage.value = 'Connexion réussie !'
+    }
+  } catch (err: any) {
+    errorMessage.value = err?.data?.message || err?.message || 'Une erreur est survenue'
+  } finally {
+    submitting.value = false
+  }
+}
+
+const handleLogout = async () => {
+  await logout()
+  successMessage.value = ''
 }
 
 // French regions
@@ -109,6 +170,40 @@ const regions = [
 <template>
   <main class="main-content min-h-screen pb-24">
     <div class="content-container">
+      <!-- Connected: Member Dashboard -->
+      <div v-if="connected">
+        <section class="page-header mb-12 text-center">
+          <div class="header-badge inline-block px-4 py-2 rounded-full mb-4 text-sm font-medium">
+            <FontAwesomeIcon icon="fa-solid fa-circle-check" class="mr-2" />
+            Espace Membre
+          </div>
+          <h1 class="page-title text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+            Bienvenue, {{ user?.firstName }} !
+          </h1>
+          <p class="text-lg md:text-xl max-w-2xl mx-auto opacity-80">
+            Vous êtes connecté en tant que membre {{ user?.plan }}
+          </p>
+        </section>
+
+        <section class="form-container p-6 md:p-8 rounded-2xl max-w-md mx-auto text-center mb-12">
+          <div class="mb-4">
+            <p class="text-sm opacity-70 mb-1">Email</p>
+            <p class="font-semibold">{{ user?.email }}</p>
+          </div>
+          <div class="mb-6">
+            <p class="text-sm opacity-70 mb-1">Abonnement</p>
+            <p class="font-semibold capitalize">{{ user?.plan }}</p>
+          </div>
+          <button @click="handleLogout" class="submit-btn w-full py-3 rounded-lg font-bold">
+            <FontAwesomeIcon icon="fa-solid fa-sign-out-alt" class="mr-2" />
+            Se déconnecter
+          </button>
+        </section>
+      </div>
+
+      <!-- Not connected -->
+      <div v-else>
+
       <!-- Page Header -->
       <section class="page-header mb-12 text-center">
         <div class="header-badge inline-block px-4 py-2 rounded-full mb-4 text-sm font-medium">
@@ -123,18 +218,34 @@ const regions = [
         </p>
       </section>
 
+      <!-- Error / Success Messages -->
+      <div v-if="errorMessage" class="error-banner max-w-3xl mx-auto mb-6 p-4 rounded-xl flex items-center gap-3">
+        <FontAwesomeIcon icon="fa-solid fa-circle-exclamation" />
+        <span class="text-sm">{{ errorMessage }}</span>
+        <button @click="errorMessage = ''" class="ml-auto opacity-60 hover:opacity-100">
+          <FontAwesomeIcon icon="fa-solid fa-xmark" />
+        </button>
+      </div>
+      <div v-if="successMessage" class="success-banner max-w-3xl mx-auto mb-6 p-4 rounded-xl flex items-center gap-3">
+        <FontAwesomeIcon icon="fa-solid fa-circle-check" />
+        <span class="text-sm">{{ successMessage }}</span>
+        <button @click="successMessage = ''" class="ml-auto opacity-60 hover:opacity-100">
+          <FontAwesomeIcon icon="fa-solid fa-xmark" />
+        </button>
+      </div>
+
       <!-- Toggle Register/Login -->
       <section class="toggle-section mb-8 flex justify-center">
         <div class="toggle-wrapper p-1 rounded-full">
-          <button 
-            @click="isRegistering = true"
+          <button
+            @click="isRegistering = true; errorMessage = ''"
             class="toggle-btn px-6 py-2 rounded-full font-semibold"
             :class="{ 'active': isRegistering }"
           >
             S'inscrire
           </button>
-          <button 
-            @click="isRegistering = false"
+          <button
+            @click="isRegistering = false; errorMessage = ''"
             class="toggle-btn px-6 py-2 rounded-full font-semibold"
             :class="{ 'active': !isRegistering }"
           >
@@ -233,6 +344,21 @@ const regions = [
             </div>
 
             <div class="form-group mb-6">
+              <label class="block text-sm font-medium mb-2">Mot de passe *</label>
+              <input
+                v-model="formData.password"
+                type="password"
+                class="form-input w-full px-4 py-3 rounded-lg"
+                placeholder="Minimum 8 caractères"
+                minlength="8"
+                required
+              />
+              <p v-if="formData.password && formData.password.length < 8" class="text-xs mt-1" style="color: var(--error)">
+                Le mot de passe doit contenir au moins 8 caractères
+              </p>
+            </div>
+
+            <div class="form-group mb-6">
               <label class="block text-sm font-medium mb-2">Date de naissance</label>
               <input 
                 v-model="formData.birthDate"
@@ -299,13 +425,13 @@ const regions = [
               </label>
             </div>
 
-            <button 
+            <button
               type="submit"
               class="submit-btn w-full py-4 rounded-lg font-bold text-lg"
-              :disabled="!isFormValid"
+              :disabled="!isFormValid || submitting"
             >
-              <FontAwesomeIcon icon="fa-solid fa-arrow-right" class="mr-2" />
-              Procéder au paiement ({{ membershipTypes.find(m => m.id === selectedMembership)?.price }}€)
+              <FontAwesomeIcon :icon="submitting ? 'fa-solid fa-spinner' : 'fa-solid fa-arrow-right'" class="mr-2" :class="{ 'animate-spin': submitting }" />
+              {{ submitting ? 'Inscription en cours...' : `S'inscrire (${membershipTypes.find(m => m.id === selectedMembership)?.price}€/an)` }}
             </button>
           </form>
         </section>
@@ -345,13 +471,13 @@ const regions = [
               <a href="#" class="text-sm forgot-link">Mot de passe oublié ?</a>
             </div>
 
-            <button 
+            <button
               type="submit"
               class="submit-btn w-full py-4 rounded-lg font-bold text-lg"
-              :disabled="!isFormValid"
+              :disabled="!isFormValid || submitting"
             >
-              <FontAwesomeIcon icon="fa-solid fa-sign-in-alt" class="mr-2" />
-              Se connecter
+              <FontAwesomeIcon :icon="submitting ? 'fa-solid fa-spinner' : 'fa-solid fa-sign-in-alt'" class="mr-2" :class="{ 'animate-spin': submitting }" />
+              {{ submitting ? 'Connexion...' : 'Se connecter' }}
             </button>
 
             <div class="divider my-6">
@@ -359,7 +485,7 @@ const regions = [
             </div>
 
             <div class="social-login space-y-3">
-              <button type="button" class="social-btn w-full py-3 rounded-lg font-medium">
+              <button type="button" @click="startGoogleAuth" class="social-btn w-full py-3 rounded-lg font-medium">
                 <FontAwesomeIcon icon="fa-brands fa-google" class="mr-2" />
                 Continuer avec Google
               </button>
@@ -367,6 +493,8 @@ const regions = [
           </form>
         </section>
       </div>
+
+      </div> <!-- /v-else (not connected) -->
 
       <!-- Benefits Section -->
       <section class="benefits-section mt-12 p-8 rounded-2xl">
@@ -403,6 +531,28 @@ const regions = [
 </template>
 
 <style scoped>
+/* Error & Success banners */
+.error-banner {
+  background: var(--error-bg, rgba(127, 29, 29, 0.25));
+  border: 1px solid var(--error-border, rgba(251, 113, 133, 0.35));
+  color: var(--error, #fb7185);
+}
+
+.success-banner {
+  background: var(--success-bg, rgba(6, 58, 39, 0.35));
+  border: 1px solid var(--success-border, rgba(74, 222, 128, 0.35));
+  color: var(--success, #10b981);
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .main-content {
   color: var(--text-light);
 }

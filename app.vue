@@ -7,11 +7,12 @@
     <div class="fixed inset-0 z-0 pointer-events-none" id="bands"></div>
 
     <Navbar />
-    <!-- Content -->
-    <div class="relative z-10 pt-32 md:pt-36">
+    <!-- Content: top padding from Design system (--page-content-top-padding) -->
+    <div class="page-content relative">
       <NuxtPage />
     </div>
     <Footer />
+    <CookieBanner />
   </div>
 </template>
 
@@ -20,9 +21,16 @@ import { useScroll } from '@vueuse/core'
 
 const { y } = useScroll(window)
 const atTop = computed(() => y.value === 0)
+
+// Check auth session on app mount
+const { refreshSession } = useAuthState()
+onMounted(() => {
+  refreshSession()
+})
 </script>
 
 <style>
+/* Fonts: Google + local Ethnocentric (Design 3.1). Global base/typography in assets/css/main.css */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
@@ -40,44 +48,6 @@ const atTop = computed(() => y.value === 0)
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
-
-:root {
-  --bg-dark: #0a0a14;
-  --bg-light: #f8f9fa;
-  --text-dark: #ffffff;
-  --text-light: #1a1a2e;
-  --french-blue: #003399;
-  --french-blue-light: #4d7fbf;
-  --french-red: #c8102e;
-  --french-red-light: #ff4d6d;
-  --accent-blue-dark: rgba(0, 51, 153, 0.3);
-  --accent-blue-light: rgba(0, 51, 153, 0.15);
-  --accent-red-dark: rgba(200, 16, 46, 0.3);
-  --accent-red-light: rgba(200, 16, 46, 0.15);
-  --shadow-color: rgba(0, 0, 0, 0.5);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-.dark body {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
 }
 
 /* Main background with slow pulsing gradient */
@@ -361,30 +331,4 @@ body {
   }
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Orbitron', 'Ethnocentric', sans-serif;
-}
-
-/* Responsive padding utility */
-@media (max-width: 640px) {
-  .responsive-padding {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .responsive-padding {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1025px) {
-  .responsive-padding {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-}
 </style>

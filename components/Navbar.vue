@@ -15,6 +15,16 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
+// Auth state
+const { connected, user, logout } = useAuthState()
+const showUserMenu = ref(false)
+
+const handleLogout = async () => {
+  showUserMenu.value = false
+  await logout()
+  navigateTo('/')
+}
+
 // Navigation links for sub-bar
 const navLinks = [
   { name: 'Informations', path: '/informations', icon: 'fa-solid fa-circle-info' },
@@ -40,14 +50,40 @@ const navLinks = [
         </h1>
       </NuxtLink>
       
-      <!-- Right side: Adhesion button + Settings -->
+      <!-- Right side: Auth button + Settings -->
       <div class="flex-1 flex items-center justify-end gap-3 md:gap-4">
-        <!-- Adhesion Button -->
-        <NuxtLink to="/adhesion" class="adhesion-btn px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center">
+        <!-- Connected: User avatar with menu -->
+        <div v-if="connected" class="relative">
+          <button
+            @click="showUserMenu = !showUserMenu"
+            class="user-avatar-btn flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm font-semibold transition-all duration-300"
+          >
+            <div class="avatar-circle w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              {{ user?.firstName?.[0] || 'U' }}
+            </div>
+            <span class="hidden sm:inline text-white">{{ user?.firstName }}</span>
+          </button>
+          <!-- Dropdown menu -->
+          <Transition name="fade">
+            <div v-if="showUserMenu" class="user-menu absolute right-0 top-full mt-2 w-48 rounded-xl overflow-hidden z-50">
+              <NuxtLink to="/adhesion" class="menu-item block px-4 py-3 text-sm" @click="showUserMenu = false">
+                <FontAwesomeIcon icon="fa-solid fa-id-card" class="mr-2" />
+                Mon compte
+              </NuxtLink>
+              <button @click="handleLogout" class="menu-item block w-full text-left px-4 py-3 text-sm">
+                <FontAwesomeIcon icon="fa-solid fa-sign-out-alt" class="mr-2" />
+                Déconnexion
+              </button>
+            </div>
+          </Transition>
+        </div>
+
+        <!-- Not connected: Adhesion Button -->
+        <NuxtLink v-else to="/adhesion" class="adhesion-btn px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center">
           <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-1.5 md:mr-2" />
           <span class="hidden sm:inline">Adhésion</span>
         </NuxtLink>
-        
+
         <!-- Settings -->
         <div class="settings-wrapper">
           <Settings />
@@ -244,6 +280,65 @@ const navLinks = [
   50% {
     background-position: 100% 50%;
   }
+}
+
+/* User avatar button (connected state) */
+.user-avatar-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(74, 222, 128, 0.5);
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.3);
+}
+
+.user-avatar-btn:hover {
+  border-color: rgba(74, 222, 128, 0.8);
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+}
+
+.avatar-circle {
+  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+}
+
+.dark .avatar-circle {
+  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+}
+
+.user-menu {
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid rgba(0, 51, 153, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.dark .user-menu {
+  background: rgba(15, 23, 42, 0.97);
+  border-color: rgba(77, 127, 191, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.menu-item {
+  color: var(--text-light);
+  transition: background 0.2s ease;
+}
+
+.dark .menu-item {
+  color: var(--text-dark);
+}
+
+.menu-item:hover {
+  background: rgba(0, 51, 153, 0.08);
+}
+
+.dark .menu-item:hover {
+  background: rgba(77, 127, 191, 0.1);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 
 /* Settings wrapper styling */

@@ -1,53 +1,127 @@
-# Extrospection Website Development
+# Radical Prosperité — Development
 
-This is the website for our political party &quot;Extrospection&quot;.
-
-It serves to share our ideas, meetings, social media, and policies.
+Site du mouvement politique **Radical Prosperité**. Idées, rencontres, réseaux sociaux et politiques.
 
 ## Features
 
-- Home page with title, quote, and key messages.
-- Pages for ideas, policies, team, contact, history, values, and principles.
-- Responsive design with dark theme.
-- Navbar that disappears on scroll.
-- Footer with social links that appears on scroll.
-- Animated background with futuristic effects.
+- **Home** (`/`) — Titre, citation, messages clés, meet-up, mission, valeurs, CTA et dons crypto.
+- **Pages** : Adhésion, Informations, Communauté, Forum, Magasin, Aides.
+- **Authentification** : Inscription/connexion par email + mot de passe, Google OAuth 2.0.
+- **Cookie Banner** : Bandeau RGPD conforme aux lois européennes.
+- Design responsive, thème sombre par défaut.
+- Navbar fixe qui disparaît au scroll et réapparaît en haut (affiche avatar connecté ou bouton adhésion).
+- Footer fixe visible en haut et en bas de page.
+- Arrière-plan animé (bandes tricolores, effets discrets).
 
-## Design Principles
+## Design & architecture
 
-- Dark theme with futuristic aesthetics.
-- Clean, modern layout easy to navigate and read.
-- Use RGBA colors, rounded corners, gradients, shadows, animations.
-- Responsive for all devices.
-- Easy sharing via social media.
-- Use icons for social links (Font Awesome).
-- CSS variables for consistent theming (e.g., --bg-dark, --text-light).
+- **Design system** : [`Design.md`](./Design.md) — couleurs, typo, espacements, composants, motion, accessibilité.
+- **Styles** :
+  - **Tokens** : `assets/css/variables.css` (couleurs, espacements, radius, ombres).
+  - **Base** : `assets/css/main.css` (body, `.page-content`, typo globale h2/h3/p, `.section-spacing`, reduced motion).
+  - **App shell** : `app.vue` (fonts, `#background`, `#bands`).
+- **Variables d'espacement** : `--page-content-top-padding`, `--heading-h2-margin-left`, `--heading-h3-margin-y/x`, `--text-in-container-margin-left`.
+- **Boutons** : ombre intérieure claire + ombre extérieure foncée.
+- **Cartes** : `padding-left: 1.25rem` pour le contenu texte.
+- **Sections** : `mx-6 md:mx-10 lg:mx-16` et `mb-8` sur toutes les pages.
 
 ## Technologies
 
-- Nuxt 3 (updated from 4, but using 3.8.2)
-- Tailwind CSS (via @nuxt/ui)
-- Vue 3
-- Vite
-- TypeScript
-- Vercel for deployment
-- Cloudflare
-- Google Fonts
-- Font Awesome for icons
-- Google Analytics
-- Google Tag Manager
-- Google Search Console
-- @vueuse/nuxt for utilities
-- @nuxt/fonts for font management
-- @nuxt/ui for UI components
+- **Nuxt 3** (3.8.x) — Vue 3, Vite, TypeScript
+- **@nuxt/ui** — Tailwind, color mode (dark par défaut)
+- **@nuxt/fonts** — Gestion des polices
+- **@vueuse/nuxt** — Utilitaires (e.g. `useScroll`)
+- **Font Awesome** — Icônes (plugin client)
+- **PostgreSQL 16** — Base de données (via `pg`)
+- **node-postgres** (`pg`) — Client PostgreSQL
+- Déploiement : Vercel, Cloudflare. Analytics / GTM / Search Console selon besoin.
 
-## Installation and Setup
+## Backend
 
-- Install dependencies with pnpm install
-- Run dev server: pnpm dev
+### Base de données
+
+PostgreSQL 16 avec l'extension `pgcrypto`. Schéma dans `server/db/schema.sql`.
+
+**Tables** : `members`, `sessions`, `login_attempts`, `password_resets`, `audit_log`, `rate_limits`, `donations`, `notifications`.
+
+**Enums** : `membership_plan`, `member_role`, `signup_method`, `account_status`, `audit_action`.
+
+### Authentification
+
+| Méthode | Description |
+|---------|-------------|
+| Email + mot de passe | Hachage scrypt, protection brute force (5 tentatives = 30 min de verrouillage) |
+| Google OAuth 2.0 | Flux authorization code, paramètre state CSRF |
+
+### Sessions
+
+Cookie `rp_session` signé HMAC-SHA256, httpOnly, sameSite lax, 30 jours.
+
+### API Endpoints
+
+| Méthode | Chemin | Description |
+|---------|--------|-------------|
+| `POST` | `/api/auth/login` | Connexion email/mot de passe |
+| `POST` | `/api/auth/logout` | Déconnexion |
+| `GET` | `/api/auth/session` | Vérifier la session |
+| `GET` | `/api/auth/google/start` | Démarrer OAuth Google |
+| `GET` | `/api/auth/google/callback` | Callback OAuth Google |
+| `POST` | `/api/memberships/register` | Inscription |
+
+### Utilitaires serveur
+
+| Fichier | Exports |
+|---------|---------|
+| `server/utils/db.ts` | `getDb()`, `logAudit()`, `recordLoginAttempt()`, `isAccountLocked()`, `getRecentFailedAttempts()`, `lockAccount()`, `getClientIp()` |
+| `server/utils/session.ts` | `createSessionToken()`, `verifySessionToken()`, `setSessionCookie()`, `clearSessionCookie()`, `getSessionMemberId()` |
+| `server/utils/password.ts` | `hashPassword()`, `verifyPassword()` |
+
+### Sécurité
+
+- Protection brute force : 5 tentatives échouées = verrouillage 30 minutes
+- Journal d'audit immutable pour toutes les actions sécuritaires
+- Vérification du statut de compte (banni/suspendu) à chaque connexion
+- Tracking IP : `signup_ip`, `last_login_ip`
+- Horodatage du consentement RGPD : `terms_accepted_at`, `privacy_accepted_at`
+
+## Cookie Banner (RGPD)
+
+Composant `CookieBanner.vue` dans `app.vue`. Conforme aux lois européennes :
+- Affichage au premier accès (stockage localStorage `rp_cookie_choice`)
+- Boutons Accepter/Refuser
+- Texte clair : uniquement cookies essentiels (session, préférences)
+- Aucun cookie publicitaire ou de suivi
+
+## Composables
+
+| Fichier | Description |
+|---------|-------------|
+| `composables/useAuthState.ts` | État d'authentification global (connected, user, login, register, logout, startGoogleAuth) |
+
+## Installation
+
+```bash
+pnpm install   # ou npm install
+cp .env.example .env   # configurer les variables d'environnement
+pnpm dev
+```
+
+## Variables d'environnement
+
+Voir `.env` pour les valeurs locales. Pour Vercel, configurer dans le dashboard :
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | URL PostgreSQL |
+| `DATABASE_SSL` | `true` pour Vercel, `false` en local |
+| `SESSION_SECRET` | Secret HMAC pour les sessions |
+| `GOOGLE_CLIENT_ID` | ID client OAuth Google |
+| `GOOGLE_CLIENT_SECRET` | Secret client OAuth Google |
+| `GOOGLE_REDIRECT_URI` | URI de callback OAuth |
 
 ## TODO
 
-- Add more pages as listed in features.
-- Implement authentication if needed.
-- Optimize performance and SEO.
+- Performance et SEO.
+- Système de paiement pour les adhésions.
+- Réinitialisation de mot de passe par email.
+- Panel d'administration.
