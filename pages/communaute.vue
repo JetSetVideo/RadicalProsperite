@@ -79,14 +79,14 @@ const socialLinks = [
           L'Équipe Dirigeante
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div v-for="member in teamMembers" :key="member.id" class="team-card p-6 rounded-xl text-center">
+          <div v-for="member in teamMembers" :key="member.id" class="team-card rp-card p-6 rounded-xl text-center">
             <div class="avatar-wrapper mb-4 mx-auto">
               <div class="avatar-placeholder">
                 <FontAwesomeIcon icon="fa-solid fa-user" class="text-3xl" />
               </div>
             </div>
             <h3 class="font-bold text-lg mb-1">{{ member.name }}</h3>
-            <p class="role-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2">
+            <p class="role-badge rp-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2">
               {{ member.role }}
             </p>
             <p class="text-sm opacity-70">{{ member.bio }}</p>
@@ -101,10 +101,10 @@ const socialLinks = [
           Groupes Régionaux
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div v-for="group in regionalGroups" :key="group.name" class="regional-card p-5 rounded-xl">
+          <div v-for="group in regionalGroups" :key="group.name" class="regional-card rp-card p-5 rounded-xl">
             <div class="flex items-start justify-between mb-3">
               <h3 class="font-bold text-lg">{{ group.name }}</h3>
-              <span class="member-count px-2 py-1 rounded-full text-xs font-bold">
+              <span class="member-count rp-badge px-2 py-1 rounded-full text-xs font-bold">
                 {{ group.members }} membres
               </span>
             </div>
@@ -112,7 +112,7 @@ const socialLinks = [
               <FontAwesomeIcon icon="fa-solid fa-user-shield" />
               <span>Responsable: {{ group.leader }}</span>
             </div>
-            <button class="join-btn mt-4 w-full py-2 rounded-lg text-sm font-semibold">
+            <button class="join-btn rp-btn-outline mt-4 w-full py-2 rounded-lg text-sm font-semibold">
               Rejoindre le groupe
             </button>
           </div>
@@ -126,8 +126,8 @@ const socialLinks = [
           Nos Valeurs Communautaires
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="value-card p-6 rounded-xl text-center">
-            <div class="value-icon mb-4">
+          <div class="value-card rp-card p-6 rounded-xl text-center">
+            <div class="value-icon icon-gradient mb-4">
               <FontAwesomeIcon icon="fa-solid fa-handshake" class="text-4xl" />
             </div>
             <h3 class="font-bold text-xl mb-2">Solidarité</h3>
@@ -136,8 +136,8 @@ const socialLinks = [
             </p>
           </div>
           
-          <div class="value-card p-6 rounded-xl text-center">
-            <div class="value-icon mb-4">
+          <div class="value-card rp-card p-6 rounded-xl text-center">
+            <div class="value-icon icon-gradient mb-4">
               <FontAwesomeIcon icon="fa-solid fa-comments" class="text-4xl" />
             </div>
             <h3 class="font-bold text-xl mb-2">Dialogue</h3>
@@ -146,8 +146,8 @@ const socialLinks = [
             </p>
           </div>
           
-          <div class="value-card p-6 rounded-xl text-center">
-            <div class="value-icon mb-4">
+          <div class="value-card rp-card p-6 rounded-xl text-center">
+            <div class="value-icon icon-gradient mb-4">
               <FontAwesomeIcon icon="fa-solid fa-rocket" class="text-4xl" />
             </div>
             <h3 class="font-bold text-xl mb-2">Action</h3>
@@ -169,7 +169,7 @@ const socialLinks = [
             v-for="social in socialLinks" 
             :key="social.name"
             :href="social.url"
-            class="social-btn p-4 rounded-xl flex flex-col items-center gap-2"
+            class="social-btn rp-card p-4 rounded-xl flex flex-col items-center gap-2"
             target="_blank"
           >
             <FontAwesomeIcon :icon="social.icon" class="text-2xl" />
@@ -179,7 +179,7 @@ const socialLinks = [
       </section>
 
       <!-- Join CTA -->
-      <section class="join-cta-section p-8 rounded-2xl text-center">
+      <section class="join-cta-section rp-section p-8 rounded-2xl text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-4">
           <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-3" />
           Rejoignez la Communauté
@@ -187,7 +187,7 @@ const socialLinks = [
         <p class="text-lg mb-6 opacity-80 max-w-2xl mx-auto">
           Faites partie du mouvement. Adhérez dès aujourd'hui et participez activement à la construction d'une nouvelle France.
         </p>
-        <NuxtLink to="/adhesion" class="cta-btn inline-block px-8 py-4 rounded-lg font-bold text-lg">
+        <NuxtLink to="/adhesion" class="cta-btn rp-btn-primary inline-block px-8 py-4 rounded-lg font-bold text-lg">
           Devenir Membre
           <FontAwesomeIcon icon="fa-solid fa-arrow-right" class="ml-2" />
         </NuxtLink>
@@ -197,92 +197,7 @@ const socialLinks = [
 </template>
 
 <style scoped>
-.main-content {
-  color: var(--text-light);
-}
-
-.dark .main-content {
-  color: var(--text-dark);
-}
-
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .content-container {
-    padding: 0 2rem;
-  }
-}
-
-.page-header {
-  padding-top: 2rem;
-}
-
-.header-badge {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.3);
-}
-
-.dark .header-badge {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
-  border-color: rgba(77, 127, 191, 0.4);
-}
-
-.page-title {
-  font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .page-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .section-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Team Cards */
-.team-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.dark .team-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.team-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 51, 153, 0.15);
-}
-
-.dark .team-card:hover {
-  box-shadow: 0 15px 30px rgba(77, 127, 191, 0.2);
-}
-
+/* ─── Page-specific: Avatar styling ─── */
 .avatar-wrapper {
   width: 80px;
   height: 80px;
@@ -304,151 +219,8 @@ const socialLinks = [
   border-color: #4d7fbf;
 }
 
-.role-badge {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-}
-
-.dark .role-badge {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-/* Regional Cards */
-.regional-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.dark .regional-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.regional-card:hover {
-  border-color: rgba(200, 16, 46, 0.4);
-}
-
-.dark .regional-card:hover {
-  border-color: rgba(255, 77, 109, 0.4);
-}
-
-.member-count {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-}
-
-.dark .member-count {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-.join-btn {
-  background: transparent;
-  border: 2px solid #003399;
-  color: #003399;
-  transition: all 0.3s ease;
-}
-
-.dark .join-btn {
-  border-color: #4d7fbf;
-  color: #4d7fbf;
-}
-
-.join-btn:hover {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  border-color: transparent;
-}
-
-.dark .join-btn:hover {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-/* Value Cards */
-.value-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.dark .value-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.value-card:hover {
-  transform: translateY(-3px);
-}
-
-.value-icon {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .value-icon {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Social Buttons */
+/* ─── Page-specific: Social button min-width ─── */
 .social-btn {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  color: var(--text-light);
   min-width: 100px;
-  transition: all 0.3s ease;
-}
-
-.dark .social-btn {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-  color: var(--text-dark);
-}
-
-.social-btn:hover {
-  transform: translateY(-3px);
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(200, 16, 46, 0.1) 100%);
-  border-color: rgba(200, 16, 46, 0.4);
-}
-
-.dark .social-btn:hover {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(255, 77, 109, 0.1) 100%);
-  border-color: rgba(255, 77, 109, 0.4);
-}
-
-/* Join CTA */
-.join-cta-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(200, 16, 46, 0.1) 100%);
-  border: 2px solid rgba(0, 51, 153, 0.2);
-}
-
-.dark .join-cta-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(30, 30, 45, 0.95) 50%, rgba(255, 77, 109, 0.15) 100%);
-  border-color: rgba(77, 127, 191, 0.3);
-}
-
-.cta-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.dark .cta-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-.cta-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 51, 153, 0.3);
-}
-
-.dark .cta-btn:hover {
-  box-shadow: 0 10px 30px rgba(77, 127, 191, 0.3);
 }
 </style>

@@ -553,14 +553,6 @@ const regions = [
   to { transform: rotate(360deg); }
 }
 
-.main-content {
-  color: var(--text-light);
-}
-
-.dark .main-content {
-  color: var(--text-dark);
-}
-
 .content-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -573,100 +565,53 @@ const regions = [
   }
 }
 
-.page-header {
-  padding-top: 2rem;
-}
-
-.header-badge {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.3);
-}
-
-.dark .header-badge {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
-  border-color: rgba(77, 127, 191, 0.4);
-}
-
-.page-title {
-  font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .page-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .section-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 /* Toggle */
 .toggle-wrapper {
-  background: rgba(0, 51, 153, 0.1);
-  border: 1px solid rgba(0, 51, 153, 0.2);
+  background: rgba(0, 51, 153, 0.08);
+  border: 1px solid rgba(0, 51, 153, 0.18);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .toggle-wrapper {
-  background: rgba(77, 127, 191, 0.1);
-  border-color: rgba(77, 127, 191, 0.2);
+  background: rgba(77, 127, 191, 0.08);
+  border-color: rgba(77, 127, 191, 0.18);
 }
 
 .toggle-btn {
-  color: var(--text-light);
-  transition: all 0.3s ease;
-}
-
-.dark .toggle-btn {
-  color: var(--text-dark);
+  transition: all var(--transition-normal);
 }
 
 .toggle-btn.active {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   color: white;
+  box-shadow: var(--shadow-btn-outer-bottom), var(--shadow-btn-inner-top);
 }
 
 .dark .toggle-btn.active {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
 }
 
 /* Membership Cards */
 .membership-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 2px solid rgba(0, 51, 153, 0.15);
-  transition: all 0.3s ease;
+  background: var(--bg-card-light);
+  border: 2px solid rgba(0, 51, 153, 0.12);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
   position: relative;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .membership-card {
-  background: rgba(30, 30, 45, 0.95);
-  border-color: rgba(77, 127, 191, 0.2);
+  background: var(--bg-card-dark);
+  border-color: rgba(77, 127, 191, 0.18);
 }
 
 .membership-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 51, 153, 0.15);
+  box-shadow: var(--shadow-card-hover);
 }
 
-.dark .membership-card:hover {
-  box-shadow: 0 15px 30px rgba(77, 127, 191, 0.2);
-}
 
 .membership-card.selected {
   border-color: #003399;
@@ -689,17 +634,18 @@ const regions = [
 .recommended-badge {
   background: linear-gradient(135deg, #c8102e 0%, #ff4d6d 100%);
   color: white;
+  box-shadow: 0 2px 8px rgba(200, 16, 46, 0.3);
 }
 
 .price {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .price {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -718,37 +664,39 @@ const regions = [
 
 /* Form */
 .form-container {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 51, 153, 0.15);
+  background: var(--bg-card-light);
+  border: var(--border-card-light);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .form-container {
-  background: rgba(30, 30, 45, 0.95);
-  border-color: rgba(77, 127, 191, 0.2);
+  background: var(--bg-card-dark);
+  border: var(--border-card-dark);
 }
 
 .form-input {
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 51, 153, 0.2);
-  color: var(--text-light);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 51, 153, 0.15);
+  transition: all var(--transition-normal);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .dark .form-input {
-  background: rgba(30, 30, 45, 0.8);
-  border-color: rgba(77, 127, 191, 0.2);
-  color: var(--text-dark);
+  background: rgba(25, 25, 40, 0.8);
+  border-color: rgba(77, 127, 191, 0.18);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .form-input:focus {
   outline: none;
   border-color: #003399;
-  box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .dark .form-input:focus {
   border-color: #4d7fbf;
-  box-shadow: 0 0 0 3px rgba(77, 127, 191, 0.1);
+  box-shadow: 0 0 0 3px rgba(77, 127, 191, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .form-checkbox {
@@ -762,18 +710,19 @@ const regions = [
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   color: white;
-  transition: all 0.3s ease;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: var(--shadow-btn-outer-bottom), var(--shadow-btn-inner-top);
 }
 
 .dark .submit-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 51, 153, 0.3);
+  box-shadow: var(--shadow-btn-outer-bottom), 0 10px 30px rgba(0, 51, 153, 0.3), var(--shadow-btn-inner-top);
 }
 
 .submit-btn:disabled {
@@ -816,46 +765,50 @@ const regions = [
 }
 
 .social-btn {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 51, 153, 0.2);
-  color: var(--text-light);
-  transition: all 0.3s ease;
+  background: var(--bg-glass-light);
+  border: var(--border-card-light);
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .social-btn {
-  background: rgba(30, 30, 45, 0.8);
-  border-color: rgba(77, 127, 191, 0.2);
-  color: var(--text-dark);
+  background: var(--bg-glass-dark);
+  border: var(--border-card-dark);
 }
 
 .social-btn:hover {
-  background: rgba(0, 51, 153, 0.1);
+  background: rgba(0, 51, 153, 0.08);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .dark .social-btn:hover {
-  background: rgba(77, 127, 191, 0.1);
+  background: rgba(77, 127, 191, 0.08);
 }
 
 /* Benefits */
 .benefits-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.08) 0%, rgba(200, 16, 46, 0.08) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.15);
+  background: var(--bg-section-light);
+  border: var(--border-card-light);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-section);
 }
 
 .dark .benefits-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(255, 77, 109, 0.1) 100%);
-  border-color: rgba(77, 127, 191, 0.2);
+  background: var(--bg-section-dark);
+  border: var(--border-card-dark);
 }
 
 .benefit-icon {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .benefit-icon {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

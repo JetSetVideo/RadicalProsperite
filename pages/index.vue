@@ -193,31 +193,27 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 </template>
 
 <style scoped>
-.main-content {
-  color: var(--text-light);
-}
-
-.dark .main-content {
-  color: var(--text-dark);
-}
-
 /* Page Background - Grey transparent */
 .page-background {
-  background: rgba(128, 128, 128, 0.08);
-  backdrop-filter: blur(2px);
-  border-radius: 24px;
+  background: rgba(128, 128, 128, 0.06);
+  backdrop-filter: blur(4px) saturate(1.2);
+  border-radius: var(--radius-2xl);
   margin: 0.5rem;
   padding: 1rem 0.5rem;
-  box-shadow: 
+  box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 51, 153, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .dark .page-background {
-  background: rgba(0, 0, 0, 0.15);
-  box-shadow: 
+  background: rgba(0, 0, 0, 0.12);
+  box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 1px 3px rgba(77, 127, 191, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 @media (min-width: 640px) {
@@ -265,29 +261,21 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .hero-badge {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.3);
-  color: var(--text-light);
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.12) 0%, rgba(200, 16, 46, 0.12) 100%);
+  border: 1px solid rgba(0, 51, 153, 0.25);
   padding: 0.75rem 1.5rem;
-  box-shadow: 
-    0 4px 12px rgba(0, 51, 153, 0.12),
-    inset 0 1px 2px rgba(255, 255, 255, 0.5),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .hero-badge {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
-  border: 1px solid rgba(77, 127, 191, 0.4);
-  color: var(--text-dark);
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.25),
-    inset 0 1px 2px rgba(255, 255, 255, 0.12),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.18) 0%, rgba(255, 77, 109, 0.18) 100%);
+  border-color: rgba(77, 127, 191, 0.35);
 }
 
 .hero-title {
   font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
+  background: var(--gradient-tricolor-text-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -295,67 +283,68 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .dark .hero-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-text-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .hero-subtitle {
-  color: var(--text-light);
   letter-spacing: 0.3em;
-}
-
-.dark .hero-subtitle {
-  color: var(--text-dark);
 }
 
 /* Quote Section */
 .quote-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.08) 0%, rgba(200, 16, 46, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.06) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(200, 16, 46, 0.06) 100%);
   border-left: 4px solid #003399;
   border-right: 4px solid #c8102e;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .quote-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(255, 77, 109, 0.15) 100%);
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.12) 0%, rgba(25, 25, 40, 0.85) 50%, rgba(255, 77, 109, 0.12) 100%);
   border-left: 4px solid #4d7fbf;
   border-right: 4px solid #ff4d6d;
 }
 
 /* Meet-up Section */
 .meetup-card {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(200, 16, 46, 0.1) 100%);
-  border: 2px solid rgba(0, 51, 153, 0.3);
+  background: var(--bg-section-light);
+  border: 2px solid rgba(0, 51, 153, 0.2);
   backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .meetup-card {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(30, 30, 45, 0.95) 50%, rgba(255, 77, 109, 0.15) 100%);
-  border: 2px solid rgba(77, 127, 191, 0.4);
+  background: var(--bg-section-dark);
+  border-color: rgba(77, 127, 191, 0.3);
 }
 
 .meetup-date-badge {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   color: white;
+  box-shadow: var(--shadow-btn-outer-bottom);
 }
 
 .dark .meetup-date-badge {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
 }
 
 .meetup-empty {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.05) 0%, rgba(200, 16, 46, 0.05) 100%);
-  border: 2px dashed rgba(0, 51, 153, 0.3);
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.04) 0%, rgba(200, 16, 46, 0.04) 100%);
+  border: 2px dashed rgba(0, 51, 153, 0.2);
+  backdrop-filter: blur(4px);
+  box-shadow: var(--shadow-section);
 }
 
 .dark .meetup-empty {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(255, 77, 109, 0.1) 100%);
-  border: 2px dashed rgba(77, 127, 191, 0.4);
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.08) 0%, rgba(255, 77, 109, 0.08) 100%);
+  border-color: rgba(77, 127, 191, 0.3);
 }
 
 .meetup-empty-icon {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -363,23 +352,17 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .dark .meetup-empty-icon {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Section Titles */
+/* Section Titles - index-specific underline decoration */
 .section-title {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--text-light);
   position: relative;
   display: block;
   width: 100%;
-}
-
-.dark .section-title {
-  color: var(--text-dark);
 }
 
 .section-title::after {
@@ -389,78 +372,54 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   left: 0;
   right: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    #003399 15%, 
-    #c8102e 85%, 
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #003399 15%,
+    #c8102e 85%,
     transparent 100%
   );
   border-radius: 2px;
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgba(0, 51, 153, 0.3),
     0 2px 8px rgba(200, 16, 46, 0.3);
 }
 
 .dark .section-title::after {
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    #4d7fbf 15%, 
-    #ff4d6d 85%, 
+  background: linear-gradient(90deg,
+    transparent 0%,
+    #4d7fbf 15%,
+    #ff4d6d 85%,
     transparent 100%
   );
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgba(77, 127, 191, 0.4),
     0 2px 8px rgba(255, 77, 109, 0.4);
 }
 
-/* Value Cards - Icons and titles horizontally aligned */
+/* Value Cards - enhanced with design tokens */
 .value-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.9) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  border-radius: 20px;
+  background: var(--bg-card-light);
+  border: var(--border-card-light);
+  border-radius: var(--radius-xl);
   backdrop-filter: blur(12px);
-  transition: all 0.3s ease;
-  color: var(--text-light);
-  box-shadow: 
-    0 8px 24px rgba(0, 51, 153, 0.08),
-    0 4px 12px rgba(200, 16, 46, 0.06),
-    0 2px 6px rgba(0, 0, 0, 0.05),
-    inset 0 1px 2px rgba(255, 255, 255, 0.9),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.03);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .value-card {
-  background: linear-gradient(180deg, rgba(40, 40, 55, 0.95) 0%, rgba(25, 25, 38, 0.9) 100%);
-  border: 1px solid rgba(77, 127, 191, 0.25);
-  color: var(--text-dark);
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.25),
-    0 4px 12px rgba(77, 127, 191, 0.1),
-    0 2px 6px rgba(255, 77, 109, 0.08),
-    inset 0 1px 2px rgba(255, 255, 255, 0.08),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+  background: var(--bg-card-dark);
+  border: var(--border-card-dark);
 }
 
 .value-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 
-    0 24px 48px rgba(0, 51, 153, 0.15),
-    0 12px 24px rgba(200, 16, 46, 0.1),
-    0 6px 12px rgba(0, 0, 0, 0.08),
-    inset 0 1px 3px rgba(255, 255, 255, 1),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
-  border-color: rgba(200, 16, 46, 0.35);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(200, 16, 46, 0.3);
 }
 
 .dark .value-card:hover {
-  box-shadow: 
-    0 24px 48px rgba(0, 0, 0, 0.35),
-    0 12px 24px rgba(77, 127, 191, 0.2),
-    0 6px 12px rgba(255, 77, 109, 0.15),
-    inset 0 1px 3px rgba(255, 255, 255, 0.12),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 77, 109, 0.45);
+  border-color: rgba(255, 77, 109, 0.4);
 }
 
 .card-header {
@@ -512,14 +471,14 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .card-icon-wrapper svg {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .card-icon-wrapper svg {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -527,10 +486,11 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 /* CTA Section */
 .cta-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(200, 16, 46, 0.1) 100%);
+  background: var(--bg-section-light);
   border: 2px solid transparent;
   background-clip: padding-box;
   position: relative;
+  box-shadow: var(--shadow-medium);
 }
 
 .cta-section::before {
@@ -541,10 +501,11 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   background: linear-gradient(135deg, #003399 0%, #ffffff 50%, #c8102e 100%);
   z-index: -1;
   border-radius: 1rem;
+  opacity: 0.8;
 }
 
 .dark .cta-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(30, 30, 45, 0.95) 50%, rgba(255, 77, 109, 0.15) 100%);
+  background: var(--bg-section-dark);
 }
 
 .dark .cta-section::before {
@@ -597,40 +558,24 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .crypto-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 249, 250, 0.85) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.2);
-  border-radius: 14px;
-  transition: all 0.3s ease;
+  background: var(--bg-card-light);
+  border: var(--border-card-light);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
   min-width: 180px;
-  box-shadow: 
-    0 4px 12px rgba(0, 51, 153, 0.08),
-    inset 0 1px 2px rgba(255, 255, 255, 0.8),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow-card);
 }
 
 .dark .crypto-card {
-  background: linear-gradient(135deg, rgba(40, 40, 55, 0.9) 0%, rgba(25, 25, 38, 0.85) 100%);
-  border: 1px solid rgba(77, 127, 191, 0.25);
-  box-shadow: 
-    0 4px 12px rgba(0, 0, 0, 0.2),
-    inset 0 1px 2px rgba(255, 255, 255, 0.08),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  background: var(--bg-card-dark);
+  border: var(--border-card-dark);
 }
 
 .crypto-card:hover {
   transform: translateY(-3px);
-  box-shadow: 
-    0 8px 20px rgba(0, 51, 153, 0.15),
-    inset 0 1px 3px rgba(255, 255, 255, 0.9),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-card-hover);
 }
 
-.dark .crypto-card:hover {
-  box-shadow: 
-    0 8px 20px rgba(77, 127, 191, 0.2),
-    inset 0 1px 3px rgba(255, 255, 255, 0.12),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
-}
 
 .crypto-icon {
   display: flex;
@@ -650,25 +595,17 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .crypto-icon svg {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .dark .crypto-icon svg {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  background: var(--gradient-tricolor-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.crypto-name {
-  color: var(--text-light);
-}
-
-.dark .crypto-name {
-  color: var(--text-dark);
 }
 
 /* Responsive adjustments */

@@ -131,7 +131,7 @@ const cartCount = computed(() => {
 
       <!-- Cart Summary -->
       <section class="cart-summary mb-8">
-        <div class="cart-bar p-4 rounded-xl flex items-center justify-between">
+        <div class="cart-bar rp-card p-4 rounded-xl flex items-center justify-between">
           <div class="flex items-center gap-3">
             <div class="cart-icon-wrapper p-3 rounded-full">
               <FontAwesomeIcon icon="fa-solid fa-shopping-cart" class="text-xl" />
@@ -142,7 +142,7 @@ const cartCount = computed(() => {
           </div>
           <div class="flex items-center gap-4">
             <span class="text-lg font-bold">{{ cartTotal.toFixed(2) }} €</span>
-            <button class="checkout-btn px-6 py-2 rounded-lg font-semibold" :disabled="cartCount === 0">
+            <button class="checkout-btn rp-btn-primary px-6 py-2 rounded-lg font-semibold" :disabled="cartCount === 0">
               Commander
               <FontAwesomeIcon icon="fa-solid fa-arrow-right" class="ml-2" />
             </button>
@@ -158,7 +158,7 @@ const cartCount = computed(() => {
             :key="cat"
             @click="selectedCategory = cat"
             class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-all"
-            :class="{ 'active': selectedCategory === cat }"
+            :class="{ 'active rp-btn-primary': selectedCategory === cat }"
           >
             {{ cat }}
           </button>
@@ -168,7 +168,7 @@ const cartCount = computed(() => {
       <!-- Products Grid -->
       <section class="products-section mb-12">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          <div v-for="product in filteredProducts" :key="product.id" class="product-card rounded-xl overflow-hidden">
+          <div v-for="product in filteredProducts" :key="product.id" class="product-card rp-card rounded-xl overflow-hidden">
             <!-- Product Image Placeholder -->
             <div class="product-image aspect-square flex items-center justify-center">
               <FontAwesomeIcon 
@@ -204,7 +204,7 @@ const cartCount = computed(() => {
                 <span class="price text-xl font-bold">{{ product.price.toFixed(2) }} €</span>
                 <button 
                   @click="addToCart(product)"
-                  class="add-btn px-4 py-2 rounded-lg text-sm font-semibold"
+                  class="add-btn rp-btn-primary px-4 py-2 rounded-lg text-sm font-semibold"
                   :disabled="!product.inStock"
                 >
                   <FontAwesomeIcon icon="fa-solid fa-cart-plus" class="mr-1" />
@@ -218,24 +218,24 @@ const cartCount = computed(() => {
 
       <!-- Info Section -->
       <section class="info-section grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div class="info-card p-5 rounded-xl text-center">
-          <div class="info-icon mb-3">
+        <div class="info-card rp-card p-5 rounded-xl text-center">
+          <div class="info-icon icon-gradient mb-3">
             <FontAwesomeIcon icon="fa-solid fa-truck" class="text-3xl" />
           </div>
           <h3 class="font-bold mb-2">Livraison Gratuite</h3>
           <p class="text-sm opacity-70">À partir de 50€ d'achat en France métropolitaine</p>
         </div>
         
-        <div class="info-card p-5 rounded-xl text-center">
-          <div class="info-icon mb-3">
+        <div class="info-card rp-card p-5 rounded-xl text-center">
+          <div class="info-icon icon-gradient mb-3">
             <FontAwesomeIcon icon="fa-solid fa-shield-check" class="text-3xl" />
           </div>
           <h3 class="font-bold mb-2">Paiement Sécurisé</h3>
           <p class="text-sm opacity-70">Vos transactions sont 100% sécurisées</p>
         </div>
         
-        <div class="info-card p-5 rounded-xl text-center">
-          <div class="info-icon mb-3">
+        <div class="info-card rp-card p-5 rounded-xl text-center">
+          <div class="info-icon icon-gradient mb-3">
             <FontAwesomeIcon icon="fa-solid fa-rotate-left" class="text-3xl" />
           </div>
           <h3 class="font-bold mb-2">Retours Faciles</h3>
@@ -244,7 +244,7 @@ const cartCount = computed(() => {
       </section>
 
       <!-- Support Note -->
-      <section class="support-section p-6 rounded-2xl text-center">
+      <section class="support-section rp-section p-6 rounded-2xl text-center">
         <FontAwesomeIcon icon="fa-solid fa-heart" class="text-3xl mb-4" style="color: #c8102e" />
         <h2 class="text-xl font-bold mb-2">Vos achats soutiennent notre cause</h2>
         <p class="text-sm opacity-70 max-w-xl mx-auto">
@@ -257,66 +257,7 @@ const cartCount = computed(() => {
 </template>
 
 <style scoped>
-.main-content {
-  color: var(--text-light);
-}
-
-.dark .main-content {
-  color: var(--text-dark);
-}
-
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .content-container {
-    padding: 0 2rem;
-  }
-}
-
-.page-header {
-  padding-top: 2rem;
-}
-
-.header-badge {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.3);
-}
-
-.dark .header-badge {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
-  border-color: rgba(77, 127, 191, 0.4);
-}
-
-.page-title {
-  font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .page-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Cart Bar */
-.cart-bar {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(200, 16, 46, 0.1) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.2);
-}
-
-.dark .cart-bar {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(255, 77, 109, 0.15) 100%);
-  border-color: rgba(77, 127, 191, 0.3);
-}
-
+/* Cart icon wrapper (page-specific) */
 .cart-icon-wrapper {
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
   color: white;
@@ -326,27 +267,7 @@ const cartCount = computed(() => {
   background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
 }
 
-.checkout-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.dark .checkout-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-.checkout-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 51, 153, 0.3);
-}
-
-.checkout-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Filter Buttons */
+/* Filter buttons: non-active state (page-specific) */
 .filter-btn {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 51, 153, 0.2);
@@ -368,38 +289,10 @@ const cartCount = computed(() => {
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
   border-color: transparent;
 }
 
-.dark .filter-btn.active {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-/* Product Cards */
-.product-card {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  transition: all 0.3s ease;
-}
-
-.dark .product-card {
-  background: rgba(30, 30, 45, 0.95);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 51, 153, 0.15);
-  border-color: rgba(200, 16, 46, 0.3);
-}
-
-.dark .product-card:hover {
-  box-shadow: 0 15px 30px rgba(77, 127, 191, 0.2);
-  border-color: rgba(255, 77, 109, 0.4);
-}
-
+/* Product image placeholder background */
 .product-image {
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.05) 0%, rgba(200, 16, 46, 0.05) 100%);
 }
@@ -408,11 +301,13 @@ const cartCount = computed(() => {
   background: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(255, 77, 109, 0.1) 100%);
 }
 
+/* Out-of-stock badge */
 .out-of-stock-badge {
   background: #c8102e;
   color: white;
 }
 
+/* Size tags */
 .size-tag {
   background: rgba(0, 51, 153, 0.1);
   border: 1px solid rgba(0, 51, 153, 0.2);
@@ -423,6 +318,7 @@ const cartCount = computed(() => {
   border-color: rgba(77, 127, 191, 0.2);
 }
 
+/* Price gradient text */
 .price {
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
   -webkit-background-clip: text;
@@ -437,58 +333,8 @@ const cartCount = computed(() => {
   background-clip: text;
 }
 
-.add-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.dark .add-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
+/* Add-to-cart button: scale on hover (page-specific tweak) */
 .add-btn:hover:not(:disabled) {
   transform: scale(1.05);
-}
-
-.add-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Info Cards */
-.info-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-}
-
-.dark .info-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.info-icon {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .info-icon {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Support Section */
-.support-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.08) 0%, rgba(200, 16, 46, 0.08) 100%);
-  border: 2px solid rgba(200, 16, 46, 0.2);
-}
-
-.dark .support-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(255, 77, 109, 0.1) 100%);
-  border-color: rgba(255, 77, 109, 0.3);
 }
 </style>

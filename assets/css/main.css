@@ -163,6 +163,187 @@ h3 {
   }
 }
 
+/* ─── Shared page styles (deduplicated from pages) ─── */
+
+/* Main content color per theme */
+.main-content {
+  color: var(--text-light);
+}
+
+.dark .main-content {
+  color: var(--text-dark);
+}
+
+/* Page header: hero area with badge + title */
+.page-header {
+  padding-top: 2rem;
+}
+
+.header-badge {
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.12) 0%, rgba(200, 16, 46, 0.12) 100%);
+  border: 1px solid rgba(0, 51, 153, 0.25);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-card);
+}
+
+.dark .header-badge {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.18) 0%, rgba(255, 77, 109, 0.18) 100%);
+  border-color: rgba(77, 127, 191, 0.35);
+}
+
+/* Page title: Ethnocentric tricolor gradient */
+.page-title {
+  font-family: 'Ethnocentric', 'Orbitron', sans-serif;
+  background: var(--gradient-tricolor-text-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.dark .page-title {
+  background: var(--gradient-tricolor-text-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section title: Orbitron gradient */
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  background: var(--gradient-tricolor-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .section-title {
+  background: var(--gradient-tricolor-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shared card styles ─── */
+
+/* Standard card: used across all pages for items, info, team, etc. */
+.rp-card {
+  background: var(--bg-card-light);
+  border: var(--border-card-light);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.dark .rp-card {
+  background: var(--bg-card-dark);
+  border: var(--border-card-dark);
+}
+
+.rp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(200, 16, 46, 0.3);
+}
+
+.dark .rp-card:hover {
+  border-color: rgba(255, 77, 109, 0.35);
+}
+
+/* Glass card: frosted glass effect */
+.rp-glass {
+  background: var(--bg-glass-light);
+  backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .rp-glass {
+  background: var(--bg-glass-dark);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Section container: full-width container with tricolor tints */
+.rp-section {
+  background: var(--bg-section-light);
+  border: 2px solid rgba(0, 51, 153, 0.15);
+  box-shadow: var(--shadow-section);
+}
+
+.dark .rp-section {
+  background: var(--bg-section-dark);
+  border-color: rgba(77, 127, 191, 0.2);
+}
+
+/* ─── Shared icon gradient ─── */
+.icon-gradient {
+  background: var(--gradient-tricolor-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .icon-gradient {
+  background: var(--gradient-tricolor-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Shared button styles ─── */
+.rp-btn-primary {
+  background: var(--gradient-tricolor-light);
+  color: white;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  box-shadow: var(--shadow-btn-outer-bottom), var(--shadow-btn-inner-top);
+}
+
+.dark .rp-btn-primary {
+  background: var(--gradient-tricolor-dark);
+}
+
+.rp-btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-btn-outer-bottom), 0 8px 24px rgba(0, 51, 153, 0.3), var(--shadow-btn-inner-top);
+}
+
+.rp-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rp-btn-outline {
+  background: transparent;
+  border: 2px solid #003399;
+  color: #003399;
+  transition: all var(--transition-normal);
+}
+
+.dark .rp-btn-outline {
+  border-color: #4d7fbf;
+  color: #4d7fbf;
+}
+
+.rp-btn-outline:hover {
+  background: var(--gradient-tricolor-light);
+  color: white;
+  border-color: transparent;
+}
+
+.dark .rp-btn-outline:hover {
+  background: var(--gradient-tricolor-dark);
+}
+
+/* ─── Badge tricolor gradient ─── */
+.rp-badge {
+  background: var(--gradient-tricolor-light);
+  color: white;
+}
+
+.dark .rp-badge {
+  background: var(--gradient-tricolor-dark);
+}
+
 /* ─── Reduced motion (Design 7.2, 9) ─── */
 @media (prefers-reduced-motion: reduce) {
   *,

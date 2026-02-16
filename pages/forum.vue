@@ -127,7 +127,7 @@ const forumStats = ref({
 
       <!-- Forum Stats -->
       <section class="stats-section mb-8">
-        <div class="stats-bar p-4 rounded-xl flex flex-wrap justify-center gap-6 md:gap-12">
+        <div class="stats-bar rp-card p-4 rounded-xl flex flex-wrap justify-center gap-6 md:gap-12">
           <div class="stat-item text-center">
             <span class="stat-value text-2xl font-bold">{{ forumStats.totalTopics }}</span>
             <span class="stat-label text-sm opacity-70 block">Sujets</span>
@@ -149,15 +149,15 @@ const forumStats = ref({
 
       <!-- Action Buttons -->
       <section class="actions-section mb-8 flex flex-wrap justify-center gap-4">
-        <button class="action-btn primary px-6 py-3 rounded-lg font-semibold">
+        <button class="action-btn primary rp-btn-primary px-6 py-3 rounded-lg font-semibold">
           <FontAwesomeIcon icon="fa-solid fa-plus" class="mr-2" />
           Nouveau Sujet
         </button>
-        <button class="action-btn secondary px-6 py-3 rounded-lg font-semibold">
+        <button class="action-btn secondary rp-btn-outline px-6 py-3 rounded-lg font-semibold">
           <FontAwesomeIcon icon="fa-solid fa-search" class="mr-2" />
           Rechercher
         </button>
-        <button class="action-btn secondary px-6 py-3 rounded-lg font-semibold">
+        <button class="action-btn secondary rp-btn-outline px-6 py-3 rounded-lg font-semibold">
           <FontAwesomeIcon icon="fa-solid fa-bell" class="mr-2" />
           Notifications
         </button>
@@ -170,9 +170,9 @@ const forumStats = ref({
           Catégories
         </h2>
         <div class="space-y-4">
-          <div v-for="category in categories" :key="category.id" class="category-card p-5 rounded-xl">
+          <div v-for="category in categories" :key="category.id" class="category-card rp-card p-5 rounded-xl">
             <div class="flex flex-col md:flex-row md:items-center gap-4">
-              <div class="category-icon">
+              <div class="category-icon icon-gradient">
                 <FontAwesomeIcon :icon="category.icon" class="text-2xl" />
               </div>
               <div class="flex-1">
@@ -189,7 +189,7 @@ const forumStats = ref({
                   <span class="text-xs opacity-70">Messages</span>
                 </div>
               </div>
-              <button class="view-btn px-4 py-2 rounded-lg text-sm font-medium">
+              <button class="view-btn rp-btn-primary px-4 py-2 rounded-lg text-sm font-medium">
                 Voir
                 <FontAwesomeIcon icon="fa-solid fa-arrow-right" class="ml-1" />
               </button>
@@ -205,12 +205,12 @@ const forumStats = ref({
           Discussions Récentes
         </h2>
         <div class="space-y-3">
-          <div v-for="topic in recentTopics" :key="topic.id" class="topic-card p-4 rounded-xl">
+          <div v-for="topic in recentTopics" :key="topic.id" class="topic-card rp-card p-4 rounded-xl">
             <div class="flex flex-col md:flex-row md:items-center gap-3">
               <div class="flex-1">
                 <h3 class="font-semibold hover:text-blue-600 cursor-pointer">{{ topic.title }}</h3>
                 <div class="flex flex-wrap items-center gap-3 mt-1 text-sm opacity-70">
-                  <span class="category-tag px-2 py-0.5 rounded text-xs">{{ topic.category }}</span>
+                  <span class="category-tag rp-badge px-2 py-0.5 rounded text-xs">{{ topic.category }}</span>
                   <span>par {{ topic.author }}</span>
                 </div>
               </div>
@@ -231,7 +231,7 @@ const forumStats = ref({
           </div>
         </div>
         <div class="text-center mt-6">
-          <button class="load-more-btn px-6 py-2 rounded-lg font-medium">
+          <button class="load-more-btn rp-btn-outline px-6 py-2 rounded-lg font-medium">
             Voir plus de discussions
             <FontAwesomeIcon icon="fa-solid fa-chevron-down" class="ml-2" />
           </button>
@@ -239,7 +239,7 @@ const forumStats = ref({
       </section>
 
       <!-- Forum Rules -->
-      <section class="rules-section p-6 rounded-2xl">
+      <section class="rules-section rp-card p-6 rounded-2xl">
         <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
           <FontAwesomeIcon icon="fa-solid fa-gavel" />
           Règles du Forum
@@ -269,18 +269,18 @@ const forumStats = ref({
       </section>
 
       <!-- Login Prompt (for non-members) -->
-      <section class="login-prompt-section mt-8 p-6 rounded-2xl text-center">
+      <section class="login-prompt-section rp-section mt-8 p-6 rounded-2xl text-center">
         <FontAwesomeIcon icon="fa-solid fa-lock" class="text-4xl mb-4 opacity-50" />
         <h3 class="text-xl font-bold mb-2">Connectez-vous pour participer</h3>
         <p class="text-sm opacity-70 mb-4">
           Rejoignez la discussion en vous connectant à votre compte membre
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <NuxtLink to="/adhesion" class="login-btn px-6 py-2 rounded-lg font-semibold">
+          <NuxtLink to="/adhesion" class="login-btn rp-btn-primary px-6 py-2 rounded-lg font-semibold">
             <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-2" />
             S'inscrire
           </NuxtLink>
-          <button class="login-btn secondary px-6 py-2 rounded-lg font-semibold">
+          <button class="login-btn secondary rp-btn-outline px-6 py-2 rounded-lg font-semibold">
             <FontAwesomeIcon icon="fa-solid fa-sign-in-alt" class="mr-2" />
             Se connecter
           </button>
@@ -291,81 +291,7 @@ const forumStats = ref({
 </template>
 
 <style scoped>
-.main-content {
-  color: var(--text-light);
-}
-
-.dark .main-content {
-  color: var(--text-dark);
-}
-
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .content-container {
-    padding: 0 2rem;
-  }
-}
-
-.page-header {
-  padding-top: 2rem;
-}
-
-.header-badge {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.3);
-}
-
-.dark .header-badge {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
-  border-color: rgba(77, 127, 191, 0.4);
-}
-
-.page-title {
-  font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .page-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .section-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Stats Bar */
-.stats-bar {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(200, 16, 46, 0.1) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.2);
-}
-
-.dark .stats-bar {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(255, 77, 109, 0.15) 100%);
-  border-color: rgba(77, 127, 191, 0.3);
-}
-
+/* ─── Page-specific: stat-value gradient text ─── */
 .stat-value {
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
   -webkit-background-clip: text;
@@ -380,67 +306,12 @@ const forumStats = ref({
   background-clip: text;
 }
 
-/* Action Buttons */
-.action-btn {
-  transition: all 0.3s ease;
-}
-
-.action-btn.primary {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-}
-
-.dark .action-btn.primary {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-.action-btn.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 51, 153, 0.3);
-}
-
-.action-btn.secondary {
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(0, 51, 153, 0.3);
-  color: var(--text-light);
-}
-
-.dark .action-btn.secondary {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.3);
-  color: var(--text-dark);
-}
-
-.action-btn.secondary:hover {
-  border-color: #c8102e;
-}
-
-.dark .action-btn.secondary:hover {
-  border-color: #ff4d6d;
-}
-
-/* Category Cards */
-.category-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.dark .category-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
+/* ─── Page-specific: category card hover (translateX instead of Y) ─── */
 .category-card:hover {
   transform: translateX(5px);
-  border-color: rgba(200, 16, 46, 0.4);
 }
 
-.dark .category-card:hover {
-  border-color: rgba(255, 77, 109, 0.4);
-}
-
+/* ─── Page-specific: category icon container ─── */
 .category-icon {
   width: 50px;
   height: 50px;
@@ -455,129 +326,22 @@ const forumStats = ref({
   background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
 }
 
-.category-icon svg {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .category-icon svg {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.view-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.dark .view-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
+/* ─── Page-specific: view button scale on hover ─── */
 .view-btn:hover {
   transform: scale(1.05);
 }
 
-/* Topic Cards */
-.topic-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 51, 153, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.dark .topic-card {
-  background: rgba(30, 30, 45, 0.8);
-  border-color: rgba(77, 127, 191, 0.15);
-}
-
+/* ─── Page-specific: topic card hover background change ─── */
 .topic-card:hover {
   background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(0, 51, 153, 0.3);
 }
 
 .dark .topic-card:hover {
   background: rgba(30, 30, 45, 0.95);
-  border-color: rgba(77, 127, 191, 0.3);
 }
 
-.category-tag {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.2) 0%, rgba(200, 16, 46, 0.2) 100%);
-}
-
-.dark .category-tag {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.3) 0%, rgba(255, 77, 109, 0.3) 100%);
-}
-
-.load-more-btn {
-  background: transparent;
-  border: 2px solid rgba(0, 51, 153, 0.3);
-  color: var(--text-light);
-  transition: all 0.3s ease;
-}
-
-.dark .load-more-btn {
-  border-color: rgba(77, 127, 191, 0.3);
-  color: var(--text-dark);
-}
-
-.load-more-btn:hover {
-  background: rgba(0, 51, 153, 0.1);
-}
-
-.dark .load-more-btn:hover {
-  background: rgba(77, 127, 191, 0.1);
-}
-
-/* Rules Section */
-.rules-section {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-}
-
-.dark .rules-section {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-/* Login Prompt */
+/* ─── Page-specific: login prompt dashed border override ─── */
 .login-prompt-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.08) 0%, rgba(200, 16, 46, 0.08) 100%);
-  border: 2px dashed rgba(0, 51, 153, 0.3);
-}
-
-.dark .login-prompt-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(255, 77, 109, 0.1) 100%);
-  border-color: rgba(77, 127, 191, 0.3);
-}
-
-.login-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.dark .login-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-.login-btn:hover {
-  transform: translateY(-2px);
-}
-
-.login-btn.secondary {
-  background: transparent;
-  border: 2px solid #003399;
-  color: #003399;
-}
-
-.dark .login-btn.secondary {
-  border-color: #4d7fbf;
-  color: #4d7fbf;
+  border-style: dashed;
 }
 </style>

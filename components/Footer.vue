@@ -164,25 +164,26 @@ onUnmounted(() => {
 
 .social-link {
   color: #1a1a2e;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   padding: 0.6rem;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+  box-shadow:
     0 2px 6px rgba(0, 0, 0, 0.1),
-    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5),
     inset 0 -1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .dark .social-link {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow:
     0 2px 6px rgba(0, 0, 0, 0.25),
-    inset 0 1px 2px rgba(255, 255, 255, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1),
     inset 0 -1px 2px rgba(0, 0, 0, 0.15);
 }
 

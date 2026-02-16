@@ -75,21 +75,23 @@ const closeDropdown = () => {
 .gear-btn {
   color: #003399;
   background: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-low), inset 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .dark .gear-btn {
   color: #ff6b7a;
   background: rgba(30, 30, 40, 0.8);
+  box-shadow: var(--shadow-low), inset 0 1px 2px rgba(255, 255, 255, 0.08);
 }
 
 .gear-btn:hover {
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 15px rgba(200, 16, 46, 0.5);
+  box-shadow: 0 0 15px rgba(200, 16, 46, 0.4), var(--shadow-low);
 }
 
 .dark .gear-btn:hover {
   background: rgba(50, 50, 60, 1);
-  box-shadow: 0 0 15px rgba(77, 127, 191, 0.5);
+  box-shadow: 0 0 15px rgba(77, 127, 191, 0.4), var(--shadow-low);
 }
 
 .gear-btn.rotate-90 {
@@ -97,14 +99,16 @@ const closeDropdown = () => {
 }
 
 .dropdown-menu {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(200, 16, 46, 0.2);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px) saturate(1.3);
+  border: 1px solid rgba(200, 16, 46, 0.15);
+  box-shadow: var(--shadow-medium), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .dark .dropdown-menu {
-  background: rgba(30, 30, 40, 0.98);
-  border: 1px solid rgba(77, 127, 191, 0.3);
+  background: rgba(25, 25, 38, 0.96);
+  border: 1px solid rgba(77, 127, 191, 0.2);
+  box-shadow: var(--shadow-medium), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .dropdown-header {

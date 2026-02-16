@@ -91,8 +91,8 @@ const newsArticles = ref([
           Actualités
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <article v-for="article in newsArticles" :key="article.id" class="news-card p-6 rounded-xl">
-            <div class="category-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3">
+          <article v-for="article in newsArticles" :key="article.id" class="news-card rp-card p-6 rounded-xl">
+            <div class="category-badge rp-badge inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3">
               {{ article.category }}
             </div>
             <h3 class="text-lg font-bold mb-2">{{ article.title }}</h3>
@@ -130,32 +130,32 @@ const newsArticles = ref([
           En Bref
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div class="info-card p-5 rounded-xl text-center">
-            <div class="info-icon mb-3">
+          <div class="info-card rp-card p-5 rounded-xl text-center">
+            <div class="info-icon icon-gradient mb-3">
               <FontAwesomeIcon icon="fa-solid fa-users" class="text-3xl" />
             </div>
             <h4 class="font-bold text-lg mb-1">500+</h4>
             <p class="text-sm opacity-70">Adhérents actifs</p>
           </div>
           
-          <div class="info-card p-5 rounded-xl text-center">
-            <div class="info-icon mb-3">
+          <div class="info-card rp-card p-5 rounded-xl text-center">
+            <div class="info-icon icon-gradient mb-3">
               <FontAwesomeIcon icon="fa-solid fa-city" class="text-3xl" />
             </div>
             <h4 class="font-bold text-lg mb-1">15</h4>
             <p class="text-sm opacity-70">Villes représentées</p>
           </div>
           
-          <div class="info-card p-5 rounded-xl text-center">
-            <div class="info-icon mb-3">
+          <div class="info-card rp-card p-5 rounded-xl text-center">
+            <div class="info-icon icon-gradient mb-3">
               <FontAwesomeIcon icon="fa-solid fa-calendar-check" class="text-3xl" />
             </div>
             <h4 class="font-bold text-lg mb-1">{{ events.length }}</h4>
             <p class="text-sm opacity-70">Événements à venir</p>
           </div>
           
-          <div class="info-card p-5 rounded-xl text-center">
-            <div class="info-icon mb-3">
+          <div class="info-card rp-card p-5 rounded-xl text-center">
+            <div class="info-icon icon-gradient mb-3">
               <FontAwesomeIcon icon="fa-solid fa-handshake" class="text-3xl" />
             </div>
             <h4 class="font-bold text-lg mb-1">50+</h4>
@@ -165,7 +165,7 @@ const newsArticles = ref([
       </section>
 
       <!-- Contact Section -->
-      <section class="contact-section p-8 rounded-2xl text-center">
+      <section class="contact-section rp-section p-8 rounded-2xl text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-4">
           <FontAwesomeIcon icon="fa-solid fa-envelope" class="mr-3" />
           Contactez-nous
@@ -174,11 +174,11 @@ const newsArticles = ref([
           Une question ? Besoin d'informations supplémentaires ?
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <a href="mailto:contact@radical-prosperite.fr" class="contact-btn px-6 py-3 rounded-lg font-semibold">
+          <a href="mailto:contact@radical-prosperite.fr" class="contact-btn rp-btn-primary px-6 py-3 rounded-lg font-semibold">
             <FontAwesomeIcon icon="fa-solid fa-envelope" class="mr-2" />
             contact@radical-prosperite.fr
           </a>
-          <a href="tel:+33100000000" class="contact-btn secondary px-6 py-3 rounded-lg font-semibold">
+          <a href="tel:+33100000000" class="contact-btn secondary rp-btn-outline px-6 py-3 rounded-lg font-semibold">
             <FontAwesomeIcon icon="fa-solid fa-phone" class="mr-2" />
             01 00 00 00 00
           </a>
@@ -189,106 +189,15 @@ const newsArticles = ref([
 </template>
 
 <style scoped>
-.main-content {
-  color: var(--text-light);
-}
+/* Page-specific styles only — shared classes (.main-content, .page-header,
+   .header-badge, .page-title, .section-title, .rp-card, .rp-section,
+   .icon-gradient, .rp-badge, .rp-btn-primary, .rp-btn-outline,
+   .content-container) are provided by main.css */
 
-.dark .main-content {
-  color: var(--text-dark);
-}
-
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .content-container {
-    padding: 0 2rem;
-  }
-}
-
-.page-header {
-  padding-top: 2rem;
-}
-
-.header-badge {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.3);
-}
-
-.dark .header-badge {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
-  border-color: rgba(77, 127, 191, 0.4);
-}
-
-.page-title {
-  font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .page-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .section-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* News Cards */
-.news-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.dark .news-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.news-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 51, 153, 0.15);
-  border-color: rgba(200, 16, 46, 0.3);
-}
-
-.dark .news-card:hover {
-  box-shadow: 0 15px 30px rgba(77, 127, 191, 0.2);
-  border-color: rgba(255, 77, 109, 0.4);
-}
-
-.category-badge {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-}
-
-.dark .category-badge {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
+/* News: "read more" link colors */
 .read-more-btn {
   color: #003399;
-  transition: all 0.3s ease;
+  transition: color var(--transition-normal);
 }
 
 .dark .read-more-btn {
@@ -301,86 +210,5 @@ const newsArticles = ref([
 
 .dark .read-more-btn:hover {
   color: #ff4d6d;
-}
-
-/* Info Cards */
-.info-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-
-.dark .info-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.info-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 51, 153, 0.1);
-}
-
-.dark .info-card:hover {
-  box-shadow: 0 10px 25px rgba(77, 127, 191, 0.15);
-}
-
-.info-icon {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .info-icon {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Contact Section */
-.contact-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(200, 16, 46, 0.1) 100%);
-  border: 2px solid rgba(0, 51, 153, 0.2);
-}
-
-.dark .contact-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(30, 30, 45, 0.95) 50%, rgba(255, 77, 109, 0.15) 100%);
-  border-color: rgba(77, 127, 191, 0.3);
-}
-
-.contact-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.dark .contact-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-.contact-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 51, 153, 0.3);
-}
-
-.contact-btn.secondary {
-  background: transparent;
-  border: 2px solid #003399;
-  color: #003399;
-}
-
-.dark .contact-btn.secondary {
-  border-color: #4d7fbf;
-  color: #4d7fbf;
-}
-
-.contact-btn.secondary:hover {
-  background: rgba(0, 51, 153, 0.1);
-}
-
-.dark .contact-btn.secondary:hover {
-  background: rgba(77, 127, 191, 0.1);
 }
 </style>

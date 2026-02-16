@@ -124,6 +124,31 @@
   --shadow-high: 0 22px 40px rgba(2, 6, 23, 0.65);
   --shadow-glow-success: 0 0 18px rgba(74, 222, 128, 0.7);
   --shadow-inset-btn: var(--shadow-btn-inner-top), inset 0 -1px 2px rgba(0, 0, 0, 0.12);
+  /* Card elevation shadows ─── */
+  --shadow-card: 0 4px 16px rgba(0, 51, 153, 0.08), 0 2px 6px rgba(0, 0, 0, 0.06), inset 0 1px 2px rgba(255, 255, 255, 0.7), inset 0 -1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 16px 40px rgba(0, 51, 153, 0.14), 0 8px 16px rgba(200, 16, 46, 0.08), inset 0 1px 3px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-section: 0 2px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ─── Card & surface backgrounds ─── */
+:root {
+  --bg-card-light: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 247, 250, 0.92) 100%);
+  --bg-card-dark: linear-gradient(180deg, rgba(35, 35, 52, 0.96) 0%, rgba(22, 22, 36, 0.92) 100%);
+  --bg-section-light: linear-gradient(135deg, rgba(0, 51, 153, 0.06) 0%, rgba(255, 255, 255, 0.92) 50%, rgba(200, 16, 46, 0.06) 100%);
+  --bg-section-dark: linear-gradient(135deg, rgba(77, 127, 191, 0.1) 0%, rgba(28, 28, 42, 0.95) 50%, rgba(255, 77, 109, 0.1) 100%);
+  --bg-glass-light: rgba(255, 255, 255, 0.72);
+  --bg-glass-dark: rgba(20, 20, 35, 0.75);
+  --border-card-light: 1px solid rgba(0, 51, 153, 0.12);
+  --border-card-dark: 1px solid rgba(77, 127, 191, 0.18);
+  /* Tricolor gradient tokens ─── */
+  --gradient-tricolor-light: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  --gradient-tricolor-dark: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
+  --gradient-tricolor-text-light: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
+  --gradient-tricolor-text-dark: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
+  /* Transition tokens ─── */
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
 }
 
 /* Dark theme overrides for h2 and shadows ─── */
@@ -132,6 +157,9 @@
   --heading-h2-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
   --shadow-btn-inner-top: inset 0 2px 4px rgba(255, 255, 255, 0.12);
   --shadow-btn-outer-bottom: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(77, 127, 191, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.06), inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0 16px 40px rgba(0, 0, 0, 0.35), 0 8px 16px rgba(77, 127, 191, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-section: 0 2px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* ─── Breakpoints (reference; use Tailwind in markup) ─── */

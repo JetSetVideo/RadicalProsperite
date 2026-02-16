@@ -53,18 +53,18 @@ const decline = () => {
 
 <style scoped>
 .cookie-container {
-  background: rgba(255, 255, 255, 0.97);
-  border: 1px solid rgba(0, 51, 153, 0.2);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(0, 51, 153, 0.15);
   border-bottom: none;
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.12), 0 -2px 8px rgba(0, 51, 153, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px) saturate(1.3);
   color: var(--text-light);
 }
 
 .dark .cookie-container {
-  background: rgba(15, 23, 42, 0.97);
-  border-color: rgba(77, 127, 191, 0.25);
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+  background: rgba(12, 18, 35, 0.95);
+  border-color: rgba(77, 127, 191, 0.2);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35), 0 -2px 8px rgba(77, 127, 191, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   color: var(--text-dark);
 }
 
@@ -96,19 +96,18 @@ const decline = () => {
 }
 
 .cookie-btn-accept {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
+  background: var(--gradient-tricolor-light);
   color: white;
-  box-shadow: 0 4px 12px rgba(0, 51, 153, 0.3);
+  box-shadow: var(--shadow-btn-outer-bottom), var(--shadow-btn-inner-top);
 }
 
 .dark .cookie-btn-accept {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  box-shadow: 0 4px 12px rgba(77, 127, 191, 0.3);
+  background: var(--gradient-tricolor-dark);
 }
 
 .cookie-btn-accept:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 51, 153, 0.4);
+  box-shadow: var(--shadow-btn-outer-bottom), 0 6px 20px rgba(0, 51, 153, 0.35), var(--shadow-btn-inner-top);
 }
 
 /* Slide-up transition */

@@ -129,8 +129,8 @@ const supportCategories = ref([
           Accès Rapide
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div v-for="category in supportCategories" :key="category.title" class="quick-link-card p-5 rounded-xl text-center cursor-pointer">
-            <div class="quick-link-icon mb-3">
+          <div v-for="category in supportCategories" :key="category.title" class="quick-link-card rp-card p-5 rounded-xl text-center cursor-pointer">
+            <div class="quick-link-icon icon-gradient mb-3">
               <FontAwesomeIcon :icon="category.icon" class="text-3xl" />
             </div>
             <h3 class="font-bold mb-1">{{ category.title }}</h3>
@@ -146,7 +146,7 @@ const supportCategories = ref([
           Questions Fréquentes
         </h2>
         <div class="space-y-3">
-          <div v-for="faq in faqs" :key="faq.id" class="faq-item rounded-xl overflow-hidden">
+          <div v-for="faq in faqs" :key="faq.id" class="faq-item rp-card rounded-xl overflow-hidden">
             <button 
               @click="toggleFaq(faq.id)"
               class="faq-question w-full p-5 flex items-center justify-between text-left"
@@ -173,13 +173,13 @@ const supportCategories = ref([
           Documents & Ressources
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div v-for="resource in resources" :key="resource.id" class="resource-card p-5 rounded-xl">
-            <div class="resource-icon mb-3">
+          <div v-for="resource in resources" :key="resource.id" class="resource-card rp-card p-5 rounded-xl">
+            <div class="resource-icon icon-gradient mb-3">
               <FontAwesomeIcon :icon="resource.icon" class="text-3xl" />
             </div>
             <h3 class="font-bold mb-1">{{ resource.title }}</h3>
             <p class="text-sm opacity-70 mb-3">{{ resource.description }}</p>
-            <button class="download-btn w-full py-2 rounded-lg text-sm font-medium">
+            <button class="download-btn rp-btn-primary w-full py-2 rounded-lg text-sm font-medium">
               <FontAwesomeIcon icon="fa-solid fa-download" class="mr-2" />
               Télécharger {{ resource.type }}
             </button>
@@ -194,8 +194,8 @@ const supportCategories = ref([
           Guides & Tutoriels
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="tutorial-card p-6 rounded-xl">
-            <div class="tutorial-number mb-3">01</div>
+          <div class="tutorial-card rp-card p-6 rounded-xl">
+            <div class="tutorial-number icon-gradient mb-3">01</div>
             <h3 class="font-bold text-lg mb-2">Premiers pas</h3>
             <p class="text-sm opacity-70 mb-4">
               Guide complet pour bien démarrer en tant que nouveau membre.
@@ -216,8 +216,8 @@ const supportCategories = ref([
             </ul>
           </div>
           
-          <div class="tutorial-card p-6 rounded-xl">
-            <div class="tutorial-number mb-3">02</div>
+          <div class="tutorial-card rp-card p-6 rounded-xl">
+            <div class="tutorial-number icon-gradient mb-3">02</div>
             <h3 class="font-bold text-lg mb-2">Participer</h3>
             <p class="text-sm opacity-70 mb-4">
               Comment s'impliquer activement dans la vie du parti.
@@ -238,8 +238,8 @@ const supportCategories = ref([
             </ul>
           </div>
           
-          <div class="tutorial-card p-6 rounded-xl">
-            <div class="tutorial-number mb-3">03</div>
+          <div class="tutorial-card rp-card p-6 rounded-xl">
+            <div class="tutorial-number icon-gradient mb-3">03</div>
             <h3 class="font-bold text-lg mb-2">Communiquer</h3>
             <p class="text-sm opacity-70 mb-4">
               Les outils et canaux de communication du parti.
@@ -263,7 +263,7 @@ const supportCategories = ref([
       </section>
 
       <!-- Contact Section -->
-      <section class="contact-section p-8 rounded-2xl">
+      <section class="contact-section rp-section p-8 rounded-2xl">
         <div class="text-center mb-8">
           <h2 class="text-2xl md:text-3xl font-bold mb-4">
             <FontAwesomeIcon icon="fa-solid fa-headset" class="mr-3" />
@@ -275,7 +275,7 @@ const supportCategories = ref([
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="contact-method p-5 rounded-xl text-center">
+          <div class="contact-method rp-card p-5 rounded-xl text-center">
             <FontAwesomeIcon icon="fa-solid fa-envelope" class="text-3xl mb-3" />
             <h3 class="font-bold mb-2">Email</h3>
             <p class="text-sm opacity-70 mb-3">Réponse sous 24h</p>
@@ -284,7 +284,7 @@ const supportCategories = ref([
             </a>
           </div>
           
-          <div class="contact-method p-5 rounded-xl text-center">
+          <div class="contact-method rp-card p-5 rounded-xl text-center">
             <FontAwesomeIcon icon="fa-solid fa-phone" class="text-3xl mb-3" />
             <h3 class="font-bold mb-2">Téléphone</h3>
             <p class="text-sm opacity-70 mb-3">Lun-Ven 9h-18h</p>
@@ -293,7 +293,7 @@ const supportCategories = ref([
             </a>
           </div>
           
-          <div class="contact-method p-5 rounded-xl text-center">
+          <div class="contact-method rp-card p-5 rounded-xl text-center">
             <FontAwesomeIcon icon="fa-brands fa-discord" class="text-3xl mb-3" />
             <h3 class="font-bold mb-2">Discord</h3>
             <p class="text-sm opacity-70 mb-3">Support en direct</p>
@@ -308,139 +308,7 @@ const supportCategories = ref([
 </template>
 
 <style scoped>
-.main-content {
-  color: var(--text-light);
-}
-
-.dark .main-content {
-  color: var(--text-dark);
-}
-
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 640px) {
-  .content-container {
-    padding: 0 2rem;
-  }
-}
-
-.page-header {
-  padding-top: 2rem;
-}
-
-.header-badge {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
-  border: 1px solid rgba(0, 51, 153, 0.3);
-}
-
-.dark .header-badge {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
-  border-color: rgba(77, 127, 191, 0.4);
-}
-
-.page-title {
-  font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #1a1a2e 50%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .page-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ffffff 50%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .section-title {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Quick Links */
-.quick-link-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  transition: all 0.3s ease;
-}
-
-.dark .quick-link-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.quick-link-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(200, 16, 46, 0.4);
-  box-shadow: 0 10px 25px rgba(0, 51, 153, 0.1);
-}
-
-.dark .quick-link-card:hover {
-  border-color: rgba(255, 77, 109, 0.4);
-  box-shadow: 0 10px 25px rgba(77, 127, 191, 0.15);
-}
-
-.quick-link-icon {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.dark .quick-link-icon {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* FAQ */
-.faq-item {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  transition: all 0.3s ease;
-}
-
-.dark .faq-item {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.faq-question {
-  transition: background 0.3s ease;
-}
-
-.faq-question:hover {
-  background: rgba(0, 51, 153, 0.05);
-}
-
-.dark .faq-question:hover {
-  background: rgba(77, 127, 191, 0.1);
-}
-
-.faq-answer {
-  border-top: 1px solid rgba(0, 51, 153, 0.1);
-}
-
-.dark .faq-answer {
-  border-top-color: rgba(77, 127, 191, 0.1);
-}
-
+/* FAQ accordion transition */
 .accordion-enter-active,
 .accordion-leave-active {
   transition: all 0.3s ease;
@@ -458,105 +326,42 @@ const supportCategories = ref([
   max-height: 200px;
 }
 
-/* Resources */
-.resource-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  transition: all 0.3s ease;
+/* FAQ question hover highlight */
+.faq-question {
+  transition: background 0.3s ease;
 }
 
-.dark .resource-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
+.faq-question:hover {
+  background: rgba(0, 51, 153, 0.05);
 }
 
-.resource-card:hover {
-  transform: translateY(-3px);
+.dark .faq-question:hover {
+  background: rgba(77, 127, 191, 0.1);
 }
 
-.resource-icon {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* FAQ answer divider */
+.faq-answer {
+  border-top: 1px solid rgba(0, 51, 153, 0.1);
 }
 
-.dark .resource-icon {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.dark .faq-answer {
+  border-top-color: rgba(77, 127, 191, 0.1);
 }
 
-.download-btn {
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  color: white;
-  transition: all 0.3s ease;
+/* FAQ card: disable hover lift (accordion items shouldn't float) */
+.faq-item:hover {
+  transform: none;
 }
 
-.dark .download-btn {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-}
-
-.download-btn:hover {
-  transform: scale(1.02);
-}
-
-/* Tutorials */
-.tutorial-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-  transition: all 0.3s ease;
-}
-
-.dark .tutorial-card {
-  background: rgba(30, 30, 45, 0.9);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
-.tutorial-card:hover {
-  transform: translateY(-3px);
-}
-
+/* Tutorial number: Orbitron sizing + muted opacity */
 .tutorial-number {
   font-size: 2.5rem;
   font-weight: bold;
   font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   opacity: 0.3;
 }
 
-.dark .tutorial-number {
-  background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Contact Section */
-.contact-section {
-  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(255, 255, 255, 0.9) 50%, rgba(200, 16, 46, 0.1) 100%);
-  border: 2px solid rgba(0, 51, 153, 0.2);
-}
-
-.dark .contact-section {
-  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(30, 30, 45, 0.95) 50%, rgba(255, 77, 109, 0.15) 100%);
-  border-color: rgba(77, 127, 191, 0.3);
-}
-
-.contact-method {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 51, 153, 0.15);
-}
-
-.dark .contact-method {
-  background: rgba(30, 30, 45, 0.8);
-  border-color: rgba(77, 127, 191, 0.2);
-}
-
+/* Contact method icons: gradient text */
 .contact-method svg {
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);
   -webkit-background-clip: text;
@@ -571,6 +376,7 @@ const supportCategories = ref([
   background-clip: text;
 }
 
+/* Contact link colors */
 .contact-link {
   color: #003399;
   font-weight: 500;
