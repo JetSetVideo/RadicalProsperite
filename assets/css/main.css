@@ -31,7 +31,7 @@ body {
 
 /* ─── Page content wrapper (used in app.vue) ─── */
 .page-content {
-  padding-top: 0;
+  padding-top: var(--page-content-top-padding);
   position: relative;
   z-index: 10;
 }
@@ -41,12 +41,44 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Orbitron', 'Ethnocentric', sans-serif;
 }
 
+/* H2: reduced top padding, background, outer dark shadow (light + dark via variables) ─── */
 h2 {
   margin-left: var(--heading-h2-margin-left);
+  padding-top: var(--heading-h2-padding-top);
+  padding-bottom: var(--heading-h2-padding-bottom);
+  padding-left: var(--heading-h2-padding-x);
+  padding-right: var(--heading-h2-padding-x);
+  background: var(--heading-h2-bg);
+  box-shadow: var(--heading-h2-shadow);
+  border-radius: var(--radius-sm);
 }
 
 h3 {
   margin: var(--heading-h3-margin-y) var(--heading-h3-margin-x);
+}
+
+/* ─── Value card compact (variables, applied globally) ─── */
+.value-card {
+  padding: var(--value-card-padding) !important;
+  gap: var(--value-card-gap);
+  display: flex;
+  flex-direction: column;
+}
+
+.value-card .card-header {
+  padding: var(--value-card-header-padding) !important;
+  gap: var(--value-card-header-gap);
+  margin-bottom: var(--value-card-gap);
+}
+
+.value-card .card-header h3 {
+  margin: 0;
+}
+
+.value-card p,
+.value-card .card-body {
+  padding: var(--value-card-body-padding);
+  margin-left: 0;
 }
 
 /* Paragraphs inside content containers: avoid flush left ─── */

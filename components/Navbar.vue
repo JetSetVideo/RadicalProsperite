@@ -38,15 +38,15 @@ const navLinks = [
 <template>
   <!-- Main Navbar: .navbar__title | spacer | .navbar__actions (Design 0.7, 5.1) -->
   <nav class="navbar fixed top-0 z-50 transition-all duration-300 mt-4 rounded-2xl" :class="{ 'opacity-0 pointer-events-none': !atTop }">
-    <div class="navbar-content flex items-center justify-between h-14 sm:h-16 md:h-20 gap-4">
-      <!-- Title block: parent div for brand -->
+    <div class="navbar-content flex items-center justify-center h-14 sm:h-16 md:h-20 gap-6 md:gap-8">
+      <!-- Title block: parent div for brand (aligned with actions) -->
       <div class="navbar__title">
         <NuxtLink to="/" class="title-link">
           <h1 class="title">Radical Prospérité</h1>
         </NuxtLink>
       </div>
 
-      <!-- Actions block: button + settings -->
+      <!-- Actions block: adhesion/settings (aligned with title, left/right margins) -->
       <div class="navbar__actions">
         <!-- Connected: User avatar with menu -->
         <div v-if="connected" class="relative">
@@ -169,10 +169,10 @@ const navLinks = [
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Title block: margin left/right, background, shadows (Design 0.7) */
+/* Title block: inner left/right margins so not sticking to edges */
 .navbar__title {
-  margin-left: var(--space-md);
-  margin-right: var(--space-md);
+  margin-left: var(--space-sm);
+  margin-right: var(--space-sm);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.12);
@@ -190,10 +190,10 @@ const navLinks = [
     0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
-/* Actions block: margin left/right, background, shadows */
+/* Actions block: inner left/right margins, align-items center with title */
 .navbar__actions {
-  margin-left: var(--space-md);
-  margin-right: var(--space-md);
+  margin-left: var(--space-sm);
+  margin-right: var(--space-sm);
   display: flex;
   align-items: center;
   gap: 0.5rem 1rem;
@@ -215,14 +215,29 @@ const navLinks = [
 }
 
 .navbar-content {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-left: var(--margin-page-mobile);
+  padding-right: var(--margin-page-mobile);
+  width: 100%;
 }
 
 @media (min-width: 768px) {
   .navbar-content {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: var(--margin-page-tablet);
+    padding-right: var(--margin-page-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar-content {
+    padding-left: var(--margin-page-web);
+    padding-right: var(--margin-page-web);
+  }
+}
+
+@media (min-width: 1280px) {
+  .navbar-content {
+    padding-left: var(--margin-page-web-xl);
+    padding-right: var(--margin-page-web-xl);
   }
 }
 
@@ -327,27 +342,25 @@ const navLinks = [
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 
-    0 4px 15px rgba(0, 51, 153, 0.3),
-    0 2px 6px rgba(0, 0, 0, 0.2),
-    inset 0 1px 2px rgba(255, 255, 255, 0.4),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.15);
+    var(--shadow-btn-outer-bottom),
+    var(--shadow-btn-inner-top),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.12);
 }
 
 .dark .adhesion-btn {
   background: linear-gradient(135deg, #4d7fbf 0%, #ff4d6d 100%);
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
-    0 4px 15px rgba(77, 127, 191, 0.3),
-    0 2px 6px rgba(0, 0, 0, 0.3),
-    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    var(--shadow-btn-outer-bottom),
+    var(--shadow-btn-inner-top),
     inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .adhesion-btn:hover {
   box-shadow: 
-    0 6px 25px rgba(200, 16, 46, 0.5),
-    0 4px 12px rgba(0, 0, 0, 0.25),
-    inset 0 1px 3px rgba(255, 255, 255, 0.5),
+    var(--shadow-btn-outer-bottom),
+    0 6px 20px rgba(200, 16, 46, 0.35),
+    var(--shadow-btn-inner-top),
     inset 0 -1px 2px rgba(0, 0, 0, 0.1);
   border-color: rgba(255, 255, 255, 0.6);
 }
@@ -394,11 +407,14 @@ const navLinks = [
   }
 }
 
-/* User avatar button (connected state) */
+/* User avatar button (connected state): same inner top light + outer bottom dark */
 .user-avatar-btn {
   background: rgba(255, 255, 255, 0.15);
   border: 2px solid rgba(74, 222, 128, 0.5);
-  box-shadow: 0 0 12px rgba(74, 222, 128, 0.3);
+  box-shadow: 
+    var(--shadow-btn-outer-bottom),
+    var(--shadow-btn-inner-top),
+    0 0 12px rgba(74, 222, 128, 0.3);
 }
 
 .user-avatar-btn:hover {
@@ -465,8 +481,8 @@ const navLinks = [
   border-radius: 50%;
   padding: 0.5rem;
   box-shadow: 
-    0 3px 8px rgba(0, 0, 0, 0.15),
-    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    var(--shadow-btn-outer-bottom),
+    var(--shadow-btn-inner-top),
     inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 

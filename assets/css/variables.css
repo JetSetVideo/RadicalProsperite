@@ -6,8 +6,11 @@
 
 :root {
   /* ─── Layout & spacing (harmonization) ─── */
-  --page-content-top-padding: 0;
+  --page-content-top-padding: 0.25rem;
   --heading-h2-margin-left: 1.5rem;
+  --heading-h2-padding-top: 0.25rem;
+  --heading-h2-padding-bottom: 0.35rem;
+  --heading-h2-padding-x: 0.5rem;
   --heading-h3-margin-y: 0.35rem;
   --heading-h3-margin-x: 0.75rem;
   --text-in-container-margin-left: 0.75rem;
@@ -16,6 +19,18 @@
   --margin-page-tablet: 1.5rem;
   --margin-page-web: 2.5rem;
   --margin-page-web-xl: 4rem;
+  /* H2: background + outer dark shadow (light theme) ─── */
+  --heading-h2-bg: rgba(255, 255, 255, 0.12);
+  --heading-h2-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  /* Button: inner top light + outer bottom dark ─── */
+  --shadow-btn-inner-top: inset 0 2px 4px rgba(255, 255, 255, 0.35);
+  --shadow-btn-outer-bottom: 0 4px 12px rgba(0, 0, 0, 0.25);
+  /* Value card compact ─── */
+  --value-card-padding: 0.75rem 1rem;
+  --value-card-header-padding: 0.35rem 0.5rem;
+  --value-card-header-gap: 0.5rem;
+  --value-card-body-padding: 0.25rem 0.5rem;
+  --value-card-gap: 0.25rem;
 
   /* ─── Surfaces ─── */
   --surface-deepest: #02050b;
@@ -108,7 +123,15 @@
   --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.25);
   --shadow-high: 0 22px 40px rgba(2, 6, 23, 0.65);
   --shadow-glow-success: 0 0 18px rgba(74, 222, 128, 0.7);
-  --shadow-inset-btn: inset 0 1px 2px rgba(255, 255, 255, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-inset-btn: var(--shadow-btn-inner-top), inset 0 -1px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* Dark theme overrides for h2 and shadows ─── */
+.dark {
+  --heading-h2-bg: rgba(0, 0, 0, 0.25);
+  --heading-h2-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-btn-inner-top: inset 0 2px 4px rgba(255, 255, 255, 0.12);
+  --shadow-btn-outer-bottom: 0 4px 14px rgba(0, 0, 0, 0.45);
 }
 
 /* ─── Breakpoints (reference; use Tailwind in markup) ─── */
