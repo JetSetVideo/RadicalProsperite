@@ -16,14 +16,14 @@ Site du mouvement politique **Radical Prosperité**. Idées, rencontres, réseau
 ## Design & architecture
 
 - **Design system** : [`Design.md`](./Design.md) — couleurs, typo, espacements, composants, motion, accessibilité.
-- **Styles** :
-  - **Tokens** : `assets/css/variables.css` (couleurs, espacements, radius, ombres).
-  - **Base** : `assets/css/main.css` (body, `.page-content`, typo globale h2/h3/p, `.section-spacing`, reduced motion).
-  - **App shell** : `app.vue` (fonts, `#background`, `#bands`).
-- **Variables d'espacement** : `--page-content-top-padding`, `--heading-h2-margin-left`, `--heading-h3-margin-y/x`, `--text-in-container-margin-left`.
-- **Boutons** : ombre intérieure claire + ombre extérieure foncée.
-- **Cartes** : `padding-left: 1.25rem` pour le contenu texte.
-- **Sections** : `mx-6 md:mx-10 lg:mx-16` et `mb-8` sur toutes les pages.
+- **Plan global** (Design §0.5–0.8) :
+  - **Responsive** : 3 tiers (mobile &lt;768px, tablet 768–1023px, web ≥1024px) ; marges gauche/droite par tier (`--margin-page-mobile`, `--margin-page-tablet`, `--margin-page-web`).
+  - **Page content** : pas de padding-top (`--page-content-top-padding: 0`).
+  - **Hiérarchie** : tailles, couleurs et tabulations définies (titres, corps, légendes) pour une lecture claire.
+  - **Navbar** : bloc parent titre (`.navbar__title`) et bloc actions (`.navbar__actions`) côte à côte, avec marges, fonds et ombres intérieures/extérieures (thèmes clair et sombre).
+  - **Arrière-plan** : animations fluides type « smoke », entrelacées, avec effet type lerp et inspiration Mandelbrot (voir Design §0.8).
+- **Styles** : `assets/css/variables.css` (tokens), `assets/css/main.css` (base, `.page-content`, typo, reduced motion), `app.vue` (fonts, `#background`).
+- **Boutons** : ombre intérieure claire + ombre extérieure foncée. **Cartes** : `padding-left: 1.25rem`.
 
 ## Technologies
 

@@ -6,11 +6,16 @@
 
 :root {
   /* ─── Layout & spacing (harmonization) ─── */
-  --page-content-top-padding: 6rem;
+  --page-content-top-padding: 0;
   --heading-h2-margin-left: 1.5rem;
   --heading-h3-margin-y: 0.35rem;
   --heading-h3-margin-x: 0.75rem;
   --text-in-container-margin-left: 0.75rem;
+  /* Responsive page/section margins (left and right) ─── */
+  --margin-page-mobile: 0.75rem;
+  --margin-page-tablet: 1.5rem;
+  --margin-page-web: 2.5rem;
+  --margin-page-web-xl: 4rem;
 
   /* ─── Surfaces ─── */
   --surface-deepest: #02050b;

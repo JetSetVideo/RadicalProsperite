@@ -31,7 +31,7 @@ body {
 
 /* ─── Page content wrapper (used in app.vue) ─── */
 .page-content {
-  padding-top: var(--page-content-top-padding);
+  padding-top: 0;
   position: relative;
   z-index: 10;
 }
@@ -56,24 +56,58 @@ h3 {
   margin-left: var(--text-in-container-margin-left);
 }
 
-/* ─── Section spacing (Design 1.5.2, 6.1) ─── */
+/* ─── Section spacing: margins by tier (Design 0.5) ─── */
 .section-spacing {
   margin-bottom: var(--space-2xl);
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  margin-left: var(--margin-page-mobile);
+  margin-right: var(--margin-page-mobile);
 }
 
 @media (min-width: 768px) {
   .section-spacing {
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
+    margin-left: var(--margin-page-tablet);
+    margin-right: var(--margin-page-tablet);
   }
 }
 
 @media (min-width: 1024px) {
   .section-spacing {
-    margin-left: 4rem;
-    margin-right: 4rem;
+    margin-left: var(--margin-page-web);
+    margin-right: var(--margin-page-web);
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-spacing {
+    margin-left: var(--margin-page-web-xl);
+    margin-right: var(--margin-page-web-xl);
+  }
+}
+
+/* ─── Content container: left/right margins for all pages ─── */
+.content-container {
+  margin-left: var(--margin-page-mobile);
+  margin-right: var(--margin-page-mobile);
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    margin-left: var(--margin-page-tablet);
+    margin-right: var(--margin-page-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    margin-left: var(--margin-page-web);
+    margin-right: var(--margin-page-web);
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-container {
+    margin-left: var(--margin-page-web-xl);
+    margin-right: var(--margin-page-web-xl);
   }
 }
 

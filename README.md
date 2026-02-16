@@ -149,11 +149,13 @@ RadicalProsperite/
 
 Documentation complète dans **[`Design.md`](./Design.md)** (structure projet, tokens, composants, pages, motion, accessibilité). Résumé :
 
-- **Structure** : `assets/css/` (variables + main), composants layout/UI, pages alignées sur les mêmes marges et `.page-content`
-- **Couleurs** : Tokens dans `variables.css` (surfaces, texte, accents, tricolore FR, circuit)
-- **Typographie** : Orbitron / Ethnocentric pour titres, Montserrat pour le corps ; règles globales h2/h3/p dans `main.css`
-- **Espacement** : `--page-content-top-padding`, `--heading-h2-margin-left`, sections `mx-6 md:mx-10 lg:mx-16`, `mb-8`
-- **Animations** : Lentes, faible amplitude ; `prefers-reduced-motion` respecté dans `main.css`
+- **Structure** : `assets/css/` (variables + main), composants layout/UI, pages avec marges par tier (mobile / tablette / web)
+- **Responsive** : 3 tiers (Design §0.5) ; marges gauche/droite `--margin-page-mobile`, `--margin-page-tablet`, `--margin-page-web` ; **pas de padding-top** sur `.page-content`
+- **Navbar** : Bloc titre + bloc actions côte à côte, fonds et ombres intérieures/extérieures (clair/sombre)
+- **Hiérarchie** : Tailles, couleurs et tabulations (Design §0.6) pour titres, corps, légendes
+- **Couleurs** : Tokens dans `variables.css` (surfaces, texte, accents, tricolore FR)
+- **Arrière-plan** : Animations fluides type smoke, entrelacées, inspiration Mandelbrot (Design §0.8)
+- **Animations** : Lentes ; `prefers-reduced-motion` respecté
 
 ## 🔧 Technologies Utilisées
 

@@ -44,6 +44,61 @@ All pages use the same layout: `<main class="main-content …">` + content conta
 - **Scoped**: Per-component and per-page `<style scoped>` in Vue files. Use design tokens (e.g. `var(--surface-card)`, `var(--radius-lg)`) and shared spacing (e.g. `var(--page-content-top-padding)`) for consistency.
 - **Tailwind**: Used for utilities; prefer tokens for colors and radius when they exist in the design system.
 
+### 0.5 Responsive Tiers & Margins (Project-wide)
+
+All elements must have a **mobile**, **tablet**, and **web** version. Margins are applied consistently.
+
+| Tier    | Breakpoint      | Description |
+|---------|-----------------|-------------|
+| **Mobile**  | `< 768px`   | Small: compact layout, reduced font sizes, touch-friendly tap targets, minimal side margins. |
+| **Tablet**  | `768px – 1023px` | Medium: balanced spacing, readable line length, moderate left/right margins. |
+| **Web**     | `≥ 1024px`  | Desktop: generous margins, full typography scale, maximum clarity. |
+
+**Page & section margins (left and right):**
+
+| Tier    | Margin left | Margin right | Token / usage |
+|---------|-------------|--------------|----------------|
+| Mobile  | `0.75rem` – `1rem`  | `0.75rem` – `1rem`  | `--margin-page-mobile: 0.75rem`; use on sections and content containers. |
+| Tablet  | `1.5rem` – `2rem`   | `1.5rem` – `2rem`   | `--margin-page-tablet: 1.5rem`. |
+| Web     | `2.5rem` – `4rem`   | `2.5rem` – `4rem`   | `--margin-page-web: 2.5rem` (up to 4rem on xl). |
+
+**Page content:** No top padding on `.page-content`. Content starts directly under the navbar; spacing is achieved with section margins and the navbar height. Set `--page-content-top-padding: 0` and remove `padding-top` from `.page-content`.
+
+**Elements that need left-only or left+right margins:** All sections, `.content-container`, cards in a row, form groups, and any block that should not touch the viewport edge. Use the tokens above so mobile has smaller margins and web has larger ones.
+
+### 0.6 Element Hierarchy (Size, Color, Indentation)
+
+A clear visual hierarchy is applied across the project:
+
+| Level | Role | Size (mobile → web) | Color role | Indentation (tabulation) |
+|-------|------|---------------------|------------|---------------------------|
+| **1** | Page title / Hero | H1: 1.5rem → 3.2rem | Primary / gradient | 0 (centered) or `margin-left` from container |
+| **2** | Section title | H2: 1.25rem → 2.1rem | Primary | `--heading-h2-margin-left` (e.g. 1.5rem) |
+| **3** | Subsection / card title | H3: 1.1rem → 1.5rem | Primary / secondary | `--heading-h3-margin-x` (e.g. 0.75rem) |
+| **4** | Body text | 0.9rem → 1.05rem | Secondary | `--text-in-container-margin-left` (e.g. 0.75rem) |
+| **5** | Caption / label | 0.8rem → 0.9rem | Muted | Same as body or 1 level deeper |
+| **6** | Badge / tag | 0.7rem | Accent / inverse | Aligned with parent |
+
+**Tabulation rule:** Each nested block (e.g. content inside a card, list under a section) gets one step of indentation via `margin-left` or `padding-left` so the hierarchy is scannable. Use design tokens for consistency.
+
+### 0.7 Navbar Structure (DOM & Styling)
+
+- **Parent wrappers:** One parent div for the **title** (brand), one for **actions** (button + settings). Place them side-by-side with space between (e.g. flex with `justify-between` or grid).
+- **Title block:** Class e.g. `.navbar__title`. Contains the brand link and text (e.g. "Radical Prospérité"). Give this block explicit **margin-left** and **margin-right** so it does not touch the edges.
+- **Actions block:** Class e.g. `.navbar__actions`. Contains adhesion button (or user menu) and settings. Same margin treatment: **margin-left** and **margin-right**.
+- **Backgrounds:** Each block (or the navbar bar as a whole) has a **background color** (or gradient) that works in both **light** and **dark** themes. Use tokens (e.g. tricolor for the bar; slightly elevated surface for inner blocks if needed).
+- **Shadows:** **Inner shadows** for depth (e.g. `inset 0 1px 0 rgba(255,255,255,0.2)` in light, softer in dark). **Outer shadows** for elevation (e.g. `0 8px 32px rgba(0,0,0,0.25)`). Respect light/dark: darker shadows in dark mode.
+
+### 0.8 Background: Fluid Smoking & Fractal-inspired Motion
+
+The app background uses **fluid, smoking, intertwined fading** animations that move slowly and mix in a subtle way. Concept:
+
+- **Fluid / smoke:** Layered blobs or gradients that drift, scale, and fade (opacity) over long durations (e.g. 30s–120s). Use `radial-gradient` or `conic-gradient` with animated `transform` and `opacity` to suggest smoke or fluid.
+- **Intertwined:** Several layers animate with different directions and phases so they overlap and blend (e.g. one layer moves left, another rotates, another pulses).
+- **Lerp-like softening:** Motion uses smooth easing (e.g. `ease-in-out`, or cubic-bezier) so changes feel interpolated rather than linear.
+- **Mandelbrot-inspired:** Optional subtle fractal-like texture or pattern (e.g. repeated fine structure via CSS gradients or a very low-opacity overlay). Pure Mandelbrot rendering is done in canvas if needed; for CSS-only, use layered radial/conic gradients with slow position animation to suggest organic, recursive-feeling shapes.
+- **Respect reduced motion:** All background animations honor `prefers-reduced-motion: reduce` (duration → minimal or paused).
+
 ---
 
 ## 1. Visual Direction
@@ -61,11 +116,12 @@ All pages use the same layout: `<main class="main-content …">` + content conta
 ## 1.5 Harmonization Updates (Feb 2026)
 
 ### 1.5.1 CSS Variable-Driven Layout
-- **`--page-content-top-padding: 6rem`**: Controls page content offset below navbar
-- **`--heading-h2-margin-left: 1.5rem`**: Global h2 left indentation
+- **`--page-content-top-padding: 0`**: No top padding on page content; content starts under navbar (see 0.5).
+- **`--heading-h2-margin-left: 1.5rem`**: Global h2 left indentation (hierarchy level 2).
 - **`--heading-h3-margin-y: 0.35rem`**: h3 vertical spacing
-- **`--heading-h3-margin-x: 0.75rem`**: h3 horizontal spacing
-- **`--text-in-container-margin-left: 0.75rem`**: Inner left margin for p tags in containers
+- **`--heading-h3-margin-x: 0.75rem`**: h3 horizontal spacing (tabulation).
+- **`--text-in-container-margin-left: 0.75rem`**: Inner left margin for p tags in containers.
+- **`--margin-page-mobile` / `--margin-page-tablet` / `--margin-page-web`**: Left and right margins for sections and content (0.5).
 
 ### 1.5.2 Spacing Rules
 - **Section margins**: `mb-8` + `mx-6 md:mx-10 lg:mx-16` across all pages
@@ -229,20 +285,24 @@ background: linear-gradient(135deg, #67e8f9 0%, #86efac 100%);
 
 ### 5.1 Navbar
 
+Structure (see **0.7**): Parent **`.navbar__title`** (brand) and **`.navbar__actions`** (button + settings) side-by-side with margin-left and margin-right between them and the viewport. Both light and dark themes.
+
 | Property              | Value                                          |
 |-----------------------|------------------------------------------------|
-| Position              | `fixed top-0`, full width with enhanced margins |
-| Margins               | External: `mx-6 md:mx-10 lg:mx-16 xl:mx-24`, Internal grid: `margin: 0 4rem`, `padding: 0.5rem 3rem` |
-| Height                | Main: `96px` mobile / `112px` desktop, Sub: `64px` |
+| Position              | `fixed top-0`, full width with tier-based external margins |
+| Structure             | `.navbar__title` \| spacer \| `.navbar__actions` (flex or grid) |
+| Margins (external)    | Mobile: `0.75rem`; Tablet: `1.5rem`; Web: `2.5rem` – `4rem` (xl) |
+| Margins (internal)    | Margin-left and margin-right on title and actions blocks so content does not touch edges |
+| Height                | Main: compact on mobile, ~96px tablet, ~112px desktop; Sub: ~64px |
 | Border radius         | `16px` (rounded-2xl)                           |
-| Background            | Left dark blue (#003399) to right dark red (#c8102e) gradient (90deg, 0.9 opacity) |
+| Background            | Tricolor gradient (light/dark variants); **background color** on bar; inner blocks can have subtle surface. |
+| Shadows               | **Inner:** e.g. `inset 0 1px 0 rgba(255,255,255,0.2)` (light), softer in dark. **Outer:** e.g. `0 8px 32px rgba(0,0,0,0.25)` (light), darker in dark theme. |
 | Backdrop filter       | `blur(8px)`                                    |
-| Border                | `1px solid rgba(255, 255, 255, 0.1)`          |
-| Title font            | Larger size, responsive scaling                 |
+| Border                | `1px solid rgba(255, 255, 255, 0.1)` (light), `0.1` in dark |
+| Title font            | Responsive: mobile smaller, tablet/web larger (0.6 hierarchy) |
 | Hide behavior         | Disappears on scroll, reappears only at top    |
-| Sub-navbar            | Centered links with enhanced padding (`0.5rem 1rem`) and glass-morphism |
+| Sub-navbar            | Centered links; padding and margins per tier  |
 | Scroll behavior       | Opacity fade + scale transform on hide         |
-| Element sizing        | All elements larger with proper margins        |
 
 **Adhesion button states:**
 - Default: `linear-gradient(135deg, #003399 0%, #c8102e 100%)` + white border
@@ -319,8 +379,8 @@ background: linear-gradient(135deg, #67e8f9 0%, #86efac 100%);
 
 | Element Type          | Margins/Padding | Notes |
 |----------------------|-----------------|-------|
-| Page content         | `padding-top: var(--page-content-top-padding)` (6rem) | Applied via `.page-content` in `main.css` |
-| Section containers   | `mb-8` + `mx-6 md:mx-10 lg:mx-16` | Harmonized across all pages |
+| Page content         | No top padding (`--page-content-top-padding: 0`) | Content starts under navbar; `.page-content` in `main.css` |
+| Section containers   | `mb-8` + left/right margins per tier (mobile 0.75–1rem, tablet 1.5–2rem, web 2.5–4rem) | Use `--margin-page-*` tokens; harmonized across all pages |
 | h2 titles            | `margin-left: var(--heading-h2-margin-left)` (1.5rem) | Global rule in `main.css` |
 | h3 titles            | `margin: var(--heading-h3-margin-y) var(--heading-h3-margin-x)` | Global rule in `main.css` |
 | p in containers      | `margin-left: var(--text-in-container-margin-left)` (0.75rem) | Global rule in `main.css` for `.page-content` / `.content-container` / cards |

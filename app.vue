@@ -1,10 +1,9 @@
 <template>
   <div class="relative min-h-screen overflow-x-hidden">
-    <!-- Background animation - Fixed to cover entire viewport -->
-    <div class="fixed inset-0 z-0" id="background"></div>
-    
-    <!-- Diagonal bands overlay - Fixed to always be visible -->
-    <div class="fixed inset-0 z-0 pointer-events-none" id="bands"></div>
+    <!-- Background: fluid smoking + fractal-inspired (Design 0.8) -->
+    <div class="fixed inset-0 z-0 pointer-events-none" id="background" aria-hidden="true">
+      <div class="fractal-layer" aria-hidden="true"></div>
+    </div>
 
     <Navbar />
     <!-- Content: top padding from Design system (--page-content-top-padding) -->
@@ -50,285 +49,159 @@ onMounted(() => {
   font-display: swap;
 }
 
-/* Main background with slow pulsing gradient */
+/* Base: gradient that stays (light/dark) */
 #background {
   background: radial-gradient(
-    ellipse at center,
+    ellipse 120% 100% at 50% 50%,
     var(--bg-light) 0%,
-    rgba(0, 51, 153, 0.08) 30%,
-    rgba(200, 16, 46, 0.08) 60%,
+    rgba(0, 51, 153, 0.06) 40%,
+    rgba(200, 16, 46, 0.06) 70%,
     var(--bg-light) 100%
   );
-  animation: pulse 25s ease-in-out infinite;
 }
 
 .dark #background {
   background: radial-gradient(
-    ellipse at center,
+    ellipse 120% 100% at 50% 50%,
     var(--bg-dark) 0%,
-    rgba(0, 51, 153, 0.15) 30%,
-    rgba(200, 16, 46, 0.15) 60%,
+    rgba(0, 51, 153, 0.12) 40%,
+    rgba(200, 16, 46, 0.12) 70%,
     var(--bg-dark) 100%
   );
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.02);
-  }
-}
-
-/* Diagonal bands with blue and red - wider with gradient fade and pulse */
-#bands {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-}
-
-#bands::before {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 400%;
-  height: 400%;
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 70px,
-    rgba(0, 51, 153, 0) 70px,
-    rgba(0, 51, 153, 0.12) 85px,
-    rgba(77, 127, 191, 0.18) 100px,
-    rgba(0, 51, 153, 0.12) 115px,
-    rgba(0, 51, 153, 0) 130px,
-    transparent 130px,
-    transparent 200px,
-    rgba(200, 16, 46, 0) 200px,
-    rgba(200, 16, 46, 0.12) 215px,
-    rgba(255, 77, 109, 0.18) 230px,
-    rgba(200, 16, 46, 0.12) 245px,
-    rgba(200, 16, 46, 0) 260px,
-    transparent 260px
-  );
-  animation: moveBands 120s linear infinite, pulseBands 8s ease-in-out infinite;
-}
-
-.dark #bands::before {
-  background: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 70px,
-    rgba(0, 51, 153, 0) 70px,
-    rgba(0, 51, 153, 0.2) 85px,
-    rgba(77, 127, 191, 0.35) 100px,
-    rgba(0, 51, 153, 0.2) 115px,
-    rgba(0, 51, 153, 0) 130px,
-    transparent 130px,
-    transparent 200px,
-    rgba(200, 16, 46, 0) 200px,
-    rgba(200, 16, 46, 0.2) 215px,
-    rgba(255, 77, 109, 0.35) 230px,
-    rgba(200, 16, 46, 0.2) 245px,
-    rgba(200, 16, 46, 0) 260px,
-    transparent 260px
-  );
-}
-
-#bands::after {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 400%;
-  height: 400%;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 100px,
-    rgba(0, 51, 153, 0) 100px,
-    rgba(0, 51, 153, 0.06) 112px,
-    rgba(77, 127, 191, 0.1) 124px,
-    rgba(0, 51, 153, 0.06) 136px,
-    rgba(0, 51, 153, 0) 148px,
-    transparent 148px,
-    transparent 220px,
-    rgba(200, 16, 46, 0) 220px,
-    rgba(200, 16, 46, 0.06) 232px,
-    rgba(255, 77, 109, 0.1) 244px,
-    rgba(200, 16, 46, 0.06) 256px,
-    rgba(200, 16, 46, 0) 268px,
-    transparent 268px
-  );
-  animation: moveBandsReverse 180s linear infinite, pulseBandsAlt 10s ease-in-out infinite;
-}
-
-.dark #bands::after {
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 100px,
-    rgba(77, 127, 191, 0) 100px,
-    rgba(77, 127, 191, 0.12) 112px,
-    rgba(100, 150, 220, 0.18) 124px,
-    rgba(77, 127, 191, 0.12) 136px,
-    rgba(77, 127, 191, 0) 148px,
-    transparent 148px,
-    transparent 220px,
-    rgba(255, 77, 109, 0) 220px,
-    rgba(255, 77, 109, 0.12) 232px,
-    rgba(255, 120, 140, 0.18) 244px,
-    rgba(255, 77, 109, 0.12) 256px,
-    rgba(255, 77, 109, 0) 268px,
-    transparent 268px
-  );
-}
-
-@keyframes moveBands {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(260px, 260px);
-  }
-}
-
-@keyframes moveBandsReverse {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-268px, 268px);
-  }
-}
-
-@keyframes pulseBands {
-  0%, 100% {
-    opacity: 0.7;
-    filter: brightness(1);
-  }
-  50% {
-    opacity: 1;
-    filter: brightness(1.15);
-  }
-}
-
-@keyframes pulseBandsAlt {
-  0%, 100% {
-    opacity: 0.6;
-    filter: brightness(1);
-  }
-  50% {
-    opacity: 0.9;
-    filter: brightness(1.2);
-  }
-}
-
-/* Subtle rotating rays effect - MUCH SLOWER */
+/* Layer 1: fluid smoke blob – drift + fade (lerp-like ease-in-out) */
 #background::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200%;
-  height: 200%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    var(--accent-blue-light) 15deg,
-    transparent 30deg,
-    transparent 90deg,
-    var(--accent-red-light) 105deg,
-    transparent 120deg,
-    transparent 180deg,
-    var(--accent-blue-light) 195deg,
-    transparent 210deg,
-    transparent 270deg,
-    var(--accent-red-light) 285deg,
-    transparent 300deg,
-    transparent 360deg
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(
+    ellipse 50% 50% at 30% 30%,
+    var(--accent-blue-light) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    ellipse 40% 40% at 70% 60%,
+    var(--accent-red-light) 0%,
+    transparent 45%
   );
   transform: translate(-50%, -50%);
-  animation: rotateRays 90s linear infinite;
-  opacity: 0.4;
+  opacity: 0.5;
+  animation: fluidSmoke1 45s ease-in-out infinite;
 }
 
 .dark #background::before {
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    var(--accent-blue-dark) 15deg,
-    transparent 30deg,
-    transparent 90deg,
-    var(--accent-red-dark) 105deg,
-    transparent 120deg,
-    transparent 180deg,
-    var(--accent-blue-dark) 195deg,
-    transparent 210deg,
-    transparent 270deg,
-    var(--accent-red-dark) 285deg,
-    transparent 300deg,
-    transparent 360deg
-  );
-  opacity: 0.5;
+  background: radial-gradient(
+      ellipse 50% 50% at 30% 30%,
+      var(--accent-blue-dark) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 40% 40% at 70% 60%,
+      var(--accent-red-dark) 0%,
+      transparent 45%
+    );
+  opacity: 0.55;
 }
 
-@keyframes rotateRays {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
+@keyframes fluidSmoke1 {
+  0%, 100% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+    opacity: 0.5;
   }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
+  25% {
+    transform: translate(-50%, -50%) translate(3%, -2%) scale(1.05);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(-50%, -50%) translate(-2%, 3%) scale(0.98);
+    opacity: 0.45;
+  }
+  75% {
+    transform: translate(-50%, -50%) translate(2%, 2%) scale(1.02);
+    opacity: 0.6;
   }
 }
 
-/* Secondary subtle overlay */
+/* Layer 2: second smoke layer – different phase, intertwining */
 #background::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 150%;
-  height: 150%;
+  width: 140%;
+  height: 140%;
   background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    transparent 30%,
-    rgba(0, 51, 153, 0.03) 50%,
-    rgba(200, 16, 46, 0.03) 70%,
-    transparent 100%
-  );
+      circle 35% at 60% 40%,
+      rgba(77, 127, 191, 0.2) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle 30% at 35% 65%,
+      rgba(255, 77, 109, 0.15) 0%,
+      transparent 50%
+    );
   transform: translate(-50%, -50%);
-  animation: pulseOverlay 30s ease-in-out infinite;
+  animation: fluidSmoke2 60s ease-in-out infinite;
+  opacity: 0.6;
 }
 
 .dark #background::after {
   background: radial-gradient(
-    circle at center,
-    transparent 0%,
-    transparent 30%,
-    rgba(77, 127, 191, 0.08) 50%,
-    rgba(255, 77, 109, 0.08) 70%,
-    transparent 100%
-  );
+      circle 35% at 60% 40%,
+      rgba(56, 189, 248, 0.12) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      circle 30% at 35% 65%,
+      rgba(255, 77, 109, 0.15) 0%,
+      transparent 50%
+    );
+  opacity: 0.65;
 }
 
-@keyframes pulseOverlay {
+@keyframes fluidSmoke2 {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) translate(-2%, 0) rotate(0deg);
+    opacity: 0.6;
+  }
+  33% {
+    transform: translate(-50%, -50%) translate(2%, -3%) rotate(2deg);
+    opacity: 0.75;
+  }
+  66% {
+    transform: translate(-50%, -50%) translate(-1%, 2%) rotate(-1deg);
     opacity: 0.5;
   }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 0.8;
-  }
+}
+
+/* Mandelbrot-inspired: fine layered orbs (fractal-like repetition) – very subtle */
+.fractal-layer {
+  position: absolute;
+  inset: -50%;
+  background: 
+    radial-gradient(circle 8% at 20% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 100%),
+    radial-gradient(circle 6% at 80% 30%, rgba(200, 16, 46, 0.06) 0%, transparent 100%),
+    radial-gradient(circle 5% at 40% 80%, rgba(74, 222, 128, 0.05) 0%, transparent 100%),
+    radial-gradient(circle 7% at 70% 70%, rgba(56, 189, 248, 0.06) 0%, transparent 100%);
+  animation: fractalDrift 100s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.dark .fractal-layer {
+  background: 
+    radial-gradient(circle 8% at 20% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 100%),
+    radial-gradient(circle 6% at 80% 30%, rgba(255, 77, 109, 0.08) 0%, transparent 100%),
+    radial-gradient(circle 5% at 40% 80%, rgba(74, 222, 128, 0.06) 0%, transparent 100%),
+    radial-gradient(circle 7% at 70% 70%, rgba(56, 189, 248, 0.08) 0%, transparent 100%);
+}
+
+@keyframes fractalDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+  50% { transform: translate(1%, -1%) scale(1.02); opacity: 1; }
 }
 
 </style>

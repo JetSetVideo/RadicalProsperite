@@ -36,22 +36,18 @@ const navLinks = [
 </script>
 
 <template>
-  <!-- Main Navbar -->
-  <nav class="navbar fixed top-0 z-50 transition-all duration-300 mx-6 md:mx-10 lg:mx-16 xl:mx-24 mt-4 rounded-2xl" :class="{ 'opacity-0 pointer-events-none': !atTop }">
-    <div class="navbar-content flex items-center justify-between h-16 md:h-20 px-6 md:px-8 lg:px-10">
-      
-      <!-- Empty spacer for balance -->
-      <div class="flex-1"></div>
-      
-      <!-- Centered Title -->
-      <NuxtLink to="/" class="title-link flex-shrink-0">
-        <h1 class="title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center whitespace-nowrap">
-          Radical Prospérité
-        </h1>
-      </NuxtLink>
-      
-      <!-- Right side: Auth button + Settings -->
-      <div class="flex-1 flex items-center justify-end gap-3 md:gap-4">
+  <!-- Main Navbar: .navbar__title | spacer | .navbar__actions (Design 0.7, 5.1) -->
+  <nav class="navbar fixed top-0 z-50 transition-all duration-300 mt-4 rounded-2xl" :class="{ 'opacity-0 pointer-events-none': !atTop }">
+    <div class="navbar-content flex items-center justify-between h-14 sm:h-16 md:h-20 gap-4">
+      <!-- Title block: parent div for brand -->
+      <div class="navbar__title">
+        <NuxtLink to="/" class="title-link">
+          <h1 class="title">Radical Prospérité</h1>
+        </NuxtLink>
+      </div>
+
+      <!-- Actions block: button + settings -->
+      <div class="navbar__actions">
         <!-- Connected: User avatar with menu -->
         <div v-if="connected" class="relative">
           <button
@@ -63,7 +59,6 @@ const navLinks = [
             </div>
             <span class="hidden sm:inline text-white">{{ user?.firstName }}</span>
           </button>
-          <!-- Dropdown menu -->
           <Transition name="fade">
             <div v-if="showUserMenu" class="user-menu absolute right-0 top-full mt-2 w-48 rounded-xl overflow-hidden z-50">
               <NuxtLink to="/adhesion" class="menu-item block px-4 py-3 text-sm" @click="showUserMenu = false">
@@ -77,14 +72,11 @@ const navLinks = [
             </div>
           </Transition>
         </div>
-
         <!-- Not connected: Adhesion Button -->
         <NuxtLink v-else to="/adhesion" class="adhesion-btn px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center">
           <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-1.5 md:mr-2" />
           <span class="hidden sm:inline">Adhésion</span>
         </NuxtLink>
-
-        <!-- Settings -->
         <div class="settings-wrapper">
           <Settings />
         </div>
@@ -92,7 +84,7 @@ const navLinks = [
     </div>
 
     <!-- Sub Navigation Bar -->
-    <div class="sub-navbar border-t border-white/20 mx-4 md:mx-6">
+    <div class="sub-navbar border-t border-white/20 sub-navbar-margins">
       <div class="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 py-2.5 px-4 overflow-x-auto">
         <NuxtLink 
           v-for="link in navLinks" 
@@ -109,9 +101,36 @@ const navLinks = [
 </template>
 
 <style scoped>
+/* Tier margins (Design 0.5, 5.1) */
 .navbar {
   left: 0;
   right: 0;
+  margin-left: var(--margin-page-mobile);
+  margin-right: var(--margin-page-mobile);
+}
+
+@media (min-width: 768px) {
+  .navbar {
+    margin-left: var(--margin-page-tablet);
+    margin-right: var(--margin-page-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar {
+    margin-left: var(--margin-page-web);
+    margin-right: var(--margin-page-web);
+  }
+}
+
+@media (min-width: 1280px) {
+  .navbar {
+    margin-left: var(--margin-page-web-xl);
+    margin-right: var(--margin-page-web-xl);
+  }
+}
+
+.navbar {
   background: linear-gradient(135deg, 
     rgba(0, 51, 153, 0.95) 0%, 
     rgba(0, 51, 153, 0.85) 25%,
@@ -125,7 +144,8 @@ const navLinks = [
     0 8px 32px rgba(0, 0, 0, 0.25),
     0 4px 16px rgba(0, 51, 153, 0.2),
     0 2px 8px rgba(200, 16, 46, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
@@ -144,22 +164,114 @@ const navLinks = [
     0 8px 32px rgba(0, 0, 0, 0.5),
     0 4px 16px rgba(0, 30, 100, 0.3),
     0 2px 8px rgba(140, 10, 30, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Title block: margin left/right, background, shadows (Design 0.7) */
+.navbar__title {
+  margin-left: var(--space-md);
+  margin-right: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dark .navbar__title {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.08),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Actions block: margin left/right, background, shadows */
+.navbar__actions {
+  margin-left: var(--space-md);
+  margin-right: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dark .navbar__actions {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.06),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.navbar-content {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.sub-navbar-margins {
+  margin-left: var(--space-sm);
+  margin-right: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+  .sub-navbar-margins {
+    margin-left: var(--space-md);
+    margin-right: var(--space-md);
+  }
+}
+
+
 .title-link {
   text-decoration: none;
+  display: block;
 }
 
 .title {
   font-family: 'Ethnocentric', 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
+  white-space: nowrap;
   background: linear-gradient(90deg, #003399 0%, #ffffff 50%, #c8102e 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: none;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@media (min-width: 640px) {
+  .title { font-size: 1.25rem; }
+}
+
+@media (min-width: 768px) {
+  .title { font-size: 1.5rem; }
+}
+
+@media (min-width: 1024px) {
+  .title { font-size: 1.75rem; }
+}
+
+@media (min-width: 1280px) {
+  .title { font-size: 2rem; }
 }
 
 .dark .title {
@@ -358,23 +470,21 @@ const navLinks = [
     inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Mobile responsiveness */
+/* Mobile: compact title and actions */
 @media (max-width: 480px) {
   .navbar {
-    margin-left: 0.75rem;
-    margin-right: 0.75rem;
     margin-top: 0.5rem;
   }
-  
-  .title {
-    font-size: 1rem;
+  .navbar__title,
+  .navbar__actions {
+    margin-left: var(--space-sm);
+    margin-right: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
   }
-  
   .nav-link {
     padding: 0.375rem 0.625rem;
     font-size: 0.7rem;
   }
-  
   .adhesion-btn {
     padding: 0.375rem 0.75rem;
     font-size: 0.75rem;
