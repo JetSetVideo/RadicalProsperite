@@ -13,7 +13,7 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
       <div class="content-container">
         <!-- Hero Section -->
         <section class="hero-section mb-10 md:mb-14 text-center mx-4 md:mx-8 lg:mx-12">
-          <h1 class="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+          <h1 class="hero-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
             Système politique décentralisé autonome
           </h1>
           <div class="hero-badge inline-block px-4 py-2 rounded-full mb-4 text-sm font-medium">
@@ -29,7 +29,7 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
           <blockquote class="text-lg md:text-xl italic text-center mb-3">
             « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
           </blockquote>
-          <p class="text-sm md:text-base text-center opacity-70">— Blaise Pascal</p>
+          <p class="text-sm md:text-base text-center opacity-70 quote-attribution">— Blaise Pascal</p>
         </section>
 
         <!-- Next Meet-up Section -->
@@ -144,12 +144,12 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
         </section>
 
         <!-- Call to Action -->
-        <section class="cta-section text-center p-6 md:p-10 rounded-2xl mx-4 md:mx-8 lg:mx-12">
+        <section class="cta-section text-left p-6 md:p-10 rounded-2xl mx-4 md:mx-8 lg:mx-12">
           <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3">Rejoignez le Mouvement</h2>
           <p class="text-sm md:text-base mb-6 opacity-90">
             Suivez-nous sur les réseaux sociaux et participez à la construction d'une France prospère.
           </p>
-          <p class="text-sm font-semibold mb-4">
+          <p class="text-sm font-semibold mb-4 donation-label">
             Donation:
           </p>
           <div class="crypto-donations flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
@@ -198,8 +198,12 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   background: rgba(128, 128, 128, 0.06);
   backdrop-filter: blur(4px) saturate(1.2);
   border-radius: var(--radius-2xl);
-  margin: 0.5rem;
-  padding: 1rem 0.5rem;
+  margin: 4px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 6px 0.5rem;
+  padding-top: 6px;
+  padding-bottom: 6px;
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.06),
     0 1px 3px rgba(0, 51, 153, 0.04),
@@ -218,15 +222,15 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 @media (min-width: 640px) {
   .page-background {
-    margin: 1rem;
-    padding: 1.5rem 1rem;
+    margin: 4px;
+    padding: 6px 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .page-background {
-    margin: 1.5rem 2rem;
-    padding: 2rem 1.5rem;
+    margin: 4px;
+    padding: 6px 1.5rem;
   }
 }
 
@@ -257,13 +261,16 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 /* Hero Section */
 .hero-section {
-  padding-top: 2rem;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .hero-badge {
+  text-align: center;
+  vertical-align: middle;
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.12) 0%, rgba(200, 16, 46, 0.12) 100%);
   border: 1px solid rgba(0, 51, 153, 0.25);
-  padding: 0.75rem 1.5rem;
+  padding: 4px 1.5rem;
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-card);
 }
@@ -275,31 +282,45 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 .hero-title {
   font-family: 'Ethnocentric', 'Orbitron', sans-serif;
-  background: var(--gradient-tricolor-text-light);
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(135deg, rgba(19, 57, 134, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(143, 15, 38, 1) 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  vertical-align: middle;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+  filter: none;
 }
 
 .dark .hero-title {
-  background: var(--gradient-tricolor-text-dark);
+  background-image: linear-gradient(135deg, rgba(19, 57, 134, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(143, 15, 38, 1) 100%);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-subtitle {
   letter-spacing: 0.3em;
+  text-align: center;
 }
 
 /* Quote Section */
 .quote-section {
+  text-align: center;
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.06) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(200, 16, 46, 0.06) 100%);
   border-left: 4px solid #003399;
   border-right: 4px solid #c8102e;
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow-card);
+}
+
+.quote-attribution {
+  text-align: right;
 }
 
 .dark .quote-section {
@@ -491,6 +512,8 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   background-clip: padding-box;
   position: relative;
   box-shadow: var(--shadow-medium);
+  vertical-align: middle;
+  text-align: left;
 }
 
 .cta-section::before {
@@ -510,6 +533,11 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 .dark .cta-section::before {
   background: linear-gradient(135deg, #4d7fbf 0%, #333344 50%, #ff4d6d 100%);
+}
+
+.cta-section .donation-label {
+  font-weight: 500;
+  color: rgba(121, 121, 121, 1);
 }
 
 .cta-tag {
@@ -558,6 +586,10 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .crypto-card {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
   background: var(--bg-card-light);
   border: var(--border-card-light);
   border-radius: var(--radius-md);
@@ -611,11 +643,12 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .hero-section {
-    padding-top: 1rem;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
   
   .hero-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
   
   .hero-subtitle {
@@ -635,7 +668,7 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 2.25rem;
   }
 }
 </style>

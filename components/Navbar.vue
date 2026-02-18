@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import logoImg from '~/assets/images/RadicalProsperiteLogoOnly.png'
 
 const atTop = ref(true)
 
@@ -36,61 +37,65 @@ const navLinks = [
 </script>
 
 <template>
-  <!-- Main Navbar: .navbar__title | spacer | .navbar__actions (Design 0.7, 5.1) -->
+  <!-- Main Navbar: .navbar__title (logo + title + actions in one row) (Design 0.7, 5.1) -->
   <nav class="navbar fixed top-0 z-50 transition-all duration-300 mt-4 rounded-2xl" :class="{ 'opacity-0 pointer-events-none': !atTop }">
-    <div class="navbar-content flex items-center justify-center h-14 sm:h-16 md:h-20 gap-6 md:gap-8">
-      <!-- Title block: parent div for brand (aligned with actions) -->
-      <div class="navbar__title">
-        <NuxtLink to="/" class="title-link">
-          <h1 class="title">Radical Prospérité</h1>
+    <div class="navbar-content flex items-center h-14 sm:h-16 md:h-20">
+      <!-- Title block: logo hexagon + brand text (left), actions (right) -->
+      <div class="navbar__title flex flex-1 items-center justify-center gap-3">
+        <!-- Logo in hexagon + brand name -->
+        <NuxtLink to="/" class="navbar__home-link flex items-start gap-3 sm:gap-4 min-w-0 justify-center">
+          <div class="logo-hexagon">
+            <img :src="logoImg" alt="Radical Prospérité" class="logo-hexagon__img" />
+          </div>
+          <h1 class="title truncate">Radical Prospérité</h1>
         </NuxtLink>
-      </div>
 
-      <!-- Actions block: adhesion/settings (aligned with title, left/right margins) -->
-      <div class="navbar__actions">
-        <!-- Connected: User avatar with menu -->
-        <div v-if="connected" class="relative">
-          <button
-            @click="showUserMenu = !showUserMenu"
-            class="user-avatar-btn flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm font-semibold transition-all duration-300"
-          >
-            <div class="avatar-circle w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-xs font-bold">
-              {{ user?.firstName?.[0] || 'U' }}
-            </div>
-            <span class="hidden sm:inline text-white">{{ user?.firstName }}</span>
-          </button>
-          <Transition name="fade">
-            <div v-if="showUserMenu" class="user-menu absolute right-0 top-full mt-2 w-48 rounded-xl overflow-hidden z-50">
-              <NuxtLink to="/adhesion" class="menu-item block px-4 py-3 text-sm" @click="showUserMenu = false">
-                <FontAwesomeIcon icon="fa-solid fa-id-card" class="mr-2" />
-                Mon compte
-              </NuxtLink>
-              <button @click="handleLogout" class="menu-item block w-full text-left px-4 py-3 text-sm">
-                <FontAwesomeIcon icon="fa-solid fa-sign-out-alt" class="mr-2" />
-                Déconnexion
-              </button>
-            </div>
-          </Transition>
-        </div>
-        <!-- Not connected: Adhesion Button -->
-        <NuxtLink v-else to="/adhesion" class="adhesion-btn px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center">
-          <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-1.5 md:mr-2" />
-          <span class="hidden sm:inline">Adhésion</span>
-        </NuxtLink>
-        <div class="settings-wrapper">
-          <Settings />
+        <!-- Actions block: adhesion/settings (pushed right) -->
+        <div class="navbar__actions flex items-center gap-2 flex-shrink-0">
+          <!-- Connected: User avatar with menu -->
+          <div v-if="connected" class="relative">
+            <button
+              @click="showUserMenu = !showUserMenu"
+              class="user-avatar-btn flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm font-semibold transition-all duration-300"
+            >
+              <div class="avatar-circle w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                {{ user?.firstName?.[0] || 'U' }}
+              </div>
+              <span class="hidden sm:inline text-white">{{ user?.firstName }}</span>
+            </button>
+            <Transition name="fade">
+              <div v-if="showUserMenu" class="user-menu absolute right-0 top-full mt-2 w-48 rounded-xl overflow-hidden z-50">
+                <NuxtLink to="/adhesion" class="menu-item block px-4 py-3 text-sm" @click="showUserMenu = false">
+                  <FontAwesomeIcon icon="fa-solid fa-id-card" class="mr-2" />
+                  Mon compte
+                </NuxtLink>
+                <button @click="handleLogout" class="menu-item block w-full text-left px-4 py-3 text-sm">
+                  <FontAwesomeIcon icon="fa-solid fa-sign-out-alt" class="mr-2" />
+                  Déconnexion
+                </button>
+              </div>
+            </Transition>
+          </div>
+          <!-- Not connected: Adhesion Button -->
+          <NuxtLink v-else to="/adhesion" class="adhesion-btn px-4 py-2 md:px-6 md:py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 hover:scale-105 flex items-center">
+            <FontAwesomeIcon icon="fa-solid fa-user-plus" class="mr-1.5 md:mr-2" />
+            <span class="hidden sm:inline">Adhésion</span>
+          </NuxtLink>
+          <div class="settings-wrapper">
+            <Settings />
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Sub Navigation Bar -->
+    <!-- Sub Navigation Bar: centered links, restyled -->
     <div class="sub-navbar border-t border-white/20 sub-navbar-margins">
-      <div class="flex items-center justify-center gap-2 sm:gap-3 md:gap-5 py-2.5 px-4 overflow-x-auto">
+      <div class="sub-navbar-inner flex items-center justify-center gap-4 sm:gap-6 md:gap-8 py-3 px-6 md:px-8 overflow-x-auto">
         <NuxtLink 
           v-for="link in navLinks" 
           :key="link.path"
           :to="link.path"
-          class="nav-link flex items-center gap-1.5 md:gap-2 px-3 sm:px-4 md:px-5 py-2 md:py-2.5 rounded-xl text-xs sm:text-sm md:text-base font-medium transition-all duration-300 whitespace-nowrap"
+          class="nav-link flex items-center gap-1.5 md:gap-2 px-4 sm:px-5 md:px-6 py-2.5 md:py-3 rounded-xl text-xs sm:text-sm md:text-base font-medium transition-all duration-300 whitespace-nowrap"
         >
           <FontAwesomeIcon :icon="link.icon" class="text-sm md:text-base" />
           <span>{{ link.name }}</span>
@@ -169,49 +174,96 @@ const navLinks = [
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Title block: inner left/right margins so not sticking to edges */
+/* Logo hexagon: inner light top-left, outer dark bottom-right */
+.logo-hexagon {
+  position: relative;
+  width: 2.5rem;
+  height: 2.875rem;
+  flex-shrink: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  box-shadow:
+    inset 3px 3px 10px rgba(255, 255, 255, 0.35),
+    inset -1px -1px 4px rgba(255, 255, 255, 0.12),
+    6px 6px 16px rgba(0, 0, 0, 0.35),
+    2px 2px 6px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.dark .logo-hexagon {
+  box-shadow:
+    inset 3px 3px 10px rgba(255, 255, 255, 0.15),
+    inset -1px -1px 4px rgba(0, 0, 0, 0.3),
+    6px 6px 16px rgba(0, 0, 0, 0.5),
+    2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.logo-hexagon__img {
+  width: 100%;
+  height: 56px;
+  object-fit: cover;
+  display: block;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-left: 1px;
+  margin-right: 1px;
+  border: 0 none transparent;
+  border-image: none;
+}
+
+@media (min-width: 640px) {
+  .logo-hexagon {
+    width: 3rem;
+    height: 3.46rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .logo-hexagon {
+    width: 3.5rem;
+    height: 4.04rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo-hexagon {
+    width: 4rem;
+    height: 4.62rem;
+  }
+}
+
+/* Title block: flex container for logo + title + actions */
 .navbar__title {
-  margin-left: var(--space-sm);
-  margin-right: var(--space-sm);
-  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 1px var(--space-sm);
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding: 1px var(--space-md);
+  padding-top: 1px;
+  padding-bottom: 1px;
   border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.25),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.15);
+  background: unset;
+  color: rgba(61, 61, 61, 1);
+  box-shadow: none;
 }
 
 .dark .navbar__title {
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.08),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.35);
+  background: unset;
+  box-shadow: none;
 }
 
-/* Actions block: inner left/right margins, align-items center with title */
+.navbar__home-link {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+/* Actions block: inside title row, right-aligned */
 .navbar__actions {
-  margin-left: var(--space-sm);
-  margin-right: var(--space-sm);
   display: flex;
   align-items: center;
   gap: 0.5rem 1rem;
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.15);
-}
-
-.dark .navbar__actions {
-  background: rgba(0, 0, 0, 0.2);
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.06),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .navbar-content {
@@ -253,11 +305,6 @@ const navLinks = [
   }
 }
 
-
-.title-link {
-  text-decoration: none;
-  display: block;
-}
 
 .title {
   font-family: 'Ethnocentric', 'Orbitron', sans-serif;
@@ -366,19 +413,35 @@ const navLinks = [
 }
 
 .sub-navbar {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(6px);
 }
 
 .dark .sub-navbar {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.sub-navbar-inner {
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 18px;
+  margin-right: 18px;
+  padding-left: 1px;
+  padding-right: 1px;
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
+  border-color: transparent;
+  background: unset;
+  border-image: none;
 }
 
 .nav-link {
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.1);
+  margin-left: 4px;
+  margin-right: 4px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.18);
   box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .nav-link:hover {
@@ -486,16 +549,15 @@ const navLinks = [
     inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Mobile: compact title and actions */
+/* Mobile: compact title row */
 @media (max-width: 480px) {
   .navbar {
     margin-top: 0.5rem;
   }
-  .navbar__title,
-  .navbar__actions {
+  .navbar__title {
     margin-left: var(--space-sm);
     margin-right: var(--space-sm);
-    padding: var(--space-xs) var(--space-sm);
+    padding: 1px var(--space-sm);
   }
   .nav-link {
     padding: 0.375rem 0.625rem;
@@ -508,13 +570,10 @@ const navLinks = [
 }
 
 @media (max-width: 640px) {
-  .sub-navbar {
-    margin-left: 0.25rem;
-    margin-right: 0.25rem;
-  }
-  
-  .sub-navbar .flex {
-    gap: 0.375rem;
+  .sub-navbar-inner {
+    margin-left: var(--space-sm);
+    margin-right: var(--space-sm);
+    gap: 0.5rem;
   }
 }
 

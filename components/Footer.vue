@@ -48,22 +48,22 @@ onUnmounted(() => {
           
           <!-- Social Icons - Horizontally aligned and centered with margins -->
           <div class="social-icons flex flex-row justify-center items-center gap-3 sm:gap-4 md:gap-5 mx-4 sm:mx-6 md:mx-8">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Twitter/X">
+            <a href="https://x.com/RadProsperite" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Twitter/X">
               <FontAwesomeIcon icon="fa-brands fa-x-twitter" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Facebook">
-              <FontAwesomeIcon icon="fa-brands fa-facebook" class="text-lg sm:text-xl" />
+            <a href="https://www.tiktok.com/@radical.prosperite" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="TikTok">
+              <FontAwesomeIcon icon="fa-brands fa-tiktok" class="text-lg sm:text-xl" />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Instagram">
               <FontAwesomeIcon icon="fa-brands fa-instagram" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/prosp%C3%A8re-radical-79b0583b2/" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="LinkedIn">
               <FontAwesomeIcon icon="fa-brands fa-linkedin" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Discord">
+            <a href="https://discord.gg/53Jq3b8w" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Discord">
               <FontAwesomeIcon icon="fa-brands fa-discord" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="YouTube">
+            <a href="https://www.youtube.com/@RadicalProsp%C3%A9rit%C3%A9" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="YouTube">
               <FontAwesomeIcon icon="fa-brands fa-youtube" class="text-lg sm:text-xl" />
             </a>
           </div>
@@ -108,27 +108,34 @@ onUnmounted(() => {
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding-left: 18px;
+  padding-right: 18px;
   display: flex;
+  gap: 2px;
   justify-content: center;
   align-items: center;
 }
 
 @media (min-width: 640px) {
   .footer-container {
-    padding: 0 2.5rem;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
 
 @media (min-width: 1024px) {
   .footer-container {
-    padding: 0 3.5rem;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
 
 @media (min-width: 1280px) {
   .footer-container {
-    padding: 0 4.5rem;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
 
