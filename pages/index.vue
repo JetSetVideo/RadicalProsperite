@@ -16,20 +16,19 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
           <h1 class="hero-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
             Système politique décentralisé autonome
           </h1>
-          <div class="hero-badge inline-block px-4 py-2 rounded-full mb-4 text-sm font-medium">
-            🇫🇷 Parti Libertarien Parisien
-          </div>
+          <!-- Quote Section (inside hero for DOM order from preview) -->
+          <section class="quote-section mb-10 md:mb-14 p-5 md:p-7 rounded-2xl mx-4 md:mx-8 lg:mx-12">
+            <blockquote class="text-lg md:text-xl italic text-center mb-3">
+              « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
+            </blockquote>
+            <p class="text-sm md:text-base text-center opacity-70 quote-attribution">— Blaise Pascal</p>
+          </section>
           <p class="hero-subtitle text-base sm:text-lg md:text-xl max-w-3xl mx-auto opacity-90">
             Bonté • Fierté • Force
           </p>
-        </section>
-
-        <!-- Quote Section -->
-        <section class="quote-section mb-10 md:mb-14 p-5 md:p-7 rounded-2xl mx-4 md:mx-8 lg:mx-12">
-          <blockquote class="text-lg md:text-xl italic text-center mb-3">
-            « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
-          </blockquote>
-          <p class="text-sm md:text-base text-center opacity-70 quote-attribution">— Blaise Pascal</p>
+          <div class="hero-badge inline-block px-4 py-2 rounded-full mb-4 text-sm font-medium">
+            🇫🇷 Parti Libertarien Parisien
+          </div>
         </section>
 
         <!-- Next Meet-up Section -->
@@ -195,6 +194,7 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 <style scoped>
 /* Page Background - Grey transparent */
 .page-background {
+  text-align: left;
   background: rgba(128, 128, 128, 0.06);
   backdrop-filter: blur(4px) saturate(1.2);
   border-radius: var(--radius-2xl);
@@ -261,8 +261,16 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 
 /* Hero Section */
 .hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 4px 20px;
   padding-top: 4px;
   padding-bottom: 4px;
+  text-align: center;
+  vertical-align: top;
 }
 
 .hero-badge {
@@ -271,8 +279,10 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   background: linear-gradient(135deg, rgba(0, 51, 153, 0.12) 0%, rgba(200, 16, 46, 0.12) 100%);
   border: 1px solid rgba(0, 51, 153, 0.25);
   padding: 4px 1.5rem;
-  backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-card);
+  padding-bottom: 4px;
+  margin: 4px 16px;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .dark .hero-badge {

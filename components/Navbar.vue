@@ -181,7 +181,10 @@ const navLinks = [
   height: 2.875rem;
   flex-shrink: 0;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  overflow: hidden;
   box-shadow:
+    -6px 0 12px rgba(139, 0, 0, 0.5),
+    6px 0 12px rgba(0, 51, 153, 0.5),
     inset 3px 3px 10px rgba(255, 255, 255, 0.35),
     inset -1px -1px 4px rgba(255, 255, 255, 0.12),
     6px 6px 16px rgba(0, 0, 0, 0.35),
@@ -191,6 +194,8 @@ const navLinks = [
 
 .dark .logo-hexagon {
   box-shadow:
+    -6px 0 12px rgba(139, 0, 0, 0.5),
+    6px 0 12px rgba(0, 51, 153, 0.6),
     inset 3px 3px 10px rgba(255, 255, 255, 0.15),
     inset -1px -1px 4px rgba(0, 0, 0, 0.3),
     6px 6px 16px rgba(0, 0, 0, 0.5),
@@ -201,6 +206,7 @@ const navLinks = [
   width: 100%;
   height: 56px;
   object-fit: cover;
+  object-position: center 10%;
   display: block;
   padding-left: 3px;
   padding-right: 3px;
@@ -208,6 +214,8 @@ const navLinks = [
   margin-right: 1px;
   border: 0 none transparent;
   border-image: none;
+  transform: scale(2.5) translateY(-19%);
+  transform-origin: center top;
 }
 
 @media (min-width: 640px) {
@@ -236,7 +244,7 @@ const navLinks = [
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 150px;
   margin: 1px var(--space-sm);
   margin-top: 1px;
   margin-bottom: 1px;
@@ -255,6 +263,14 @@ const navLinks = [
 }
 
 .navbar__home-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding-left: 22px;
+  padding-right: 22px;
+  margin-left: 14px;
+  margin-right: 14px;
   margin-top: 1px;
   margin-bottom: 1px;
 }
@@ -413,17 +429,19 @@ const navLinks = [
 }
 
 .sub-navbar {
-  background: rgba(0, 0, 0, 0.12);
+  background: unset;
   backdrop-filter: blur(6px);
 }
 
 .dark .sub-navbar {
-  background: rgba(0, 0, 0, 0.28);
+  background: unset;
 }
 
 .sub-navbar-inner {
   text-align: center;
   vertical-align: middle;
+  margin-top: 2px;
+  margin-bottom: 2px;
   margin-left: 18px;
   margin-right: 18px;
   padding-left: 1px;
