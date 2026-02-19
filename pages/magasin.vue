@@ -257,6 +257,124 @@ const cartCount = computed(() => {
 </template>
 
 <style scoped>
+/* Hierarchical Depth Design Tokens */
+:root {
+  /* Level 0: Base (page-background) */
+  --shadow-level-0: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  
+  /* Level 1: Main Blocks (sections) */
+  --shadow-level-1: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --shadow-level-1-inner: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Level 2: Cards/Items inside sections */
+  --shadow-level-2: 
+    0 8px 25px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-level-2-inner: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+
+  /* Level 3: Buttons/Clickables (Highest) */
+  --shadow-level-3: 
+    0 12px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-level-3-hover: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.dark {
+  --shadow-level-0: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-level-1: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-level-1-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-level-2: 
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-level-2-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-level-3: 
+    0 12px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-level-3-hover: 
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-shadow: var(--shadow-level-0);
+  border-radius: var(--radius-2xl);
+  background: rgba(128, 128, 128, 0.03);
+}
+
+@media (min-width: 640px) {
+  .content-container {
+    padding: 2rem;
+  }
+}
+
+/* Cart Bar - Level 1 */
+.cart-bar {
+  box-shadow: var(--shadow-level-1);
+}
+
+/* Filter Button - Level 2/3 */
+.filter-btn {
+  box-shadow: var(--shadow-level-2);
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  box-shadow: var(--shadow-level-3);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  box-shadow: var(--shadow-level-3);
+}
+
+/* Product Card - Level 2 */
+.product-card {
+  box-shadow: var(--shadow-level-2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-level-3);
+}
+
+/* Info Card - Level 2 */
+.info-card {
+  box-shadow: var(--shadow-level-2);
+}
+
+/* Support Section - Level 1 */
+.support-section {
+  box-shadow: var(--shadow-level-1);
+}
+
+/* Checkout Button - Level 3 */
+.checkout-btn {
+  box-shadow: var(--shadow-level-3);
+}
+
+.checkout-btn:hover:not(:disabled) {
+  box-shadow: var(--shadow-level-3-hover);
+}
+
+/* Add Button - Level 3 */
+.add-btn {
+  box-shadow: var(--shadow-level-3);
+}
+
+.add-btn:hover:not(:disabled) {
+  box-shadow: var(--shadow-level-3-hover);
+}
+
 /* Cart icon wrapper (page-specific) */
 .cart-icon-wrapper {
   background: linear-gradient(135deg, #003399 0%, #c8102e 100%);

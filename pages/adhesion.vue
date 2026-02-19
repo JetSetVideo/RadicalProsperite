@@ -531,17 +531,63 @@ const regions = [
 </template>
 
 <style scoped>
+/* Hierarchical Depth Design Tokens */
+:root {
+  /* Level 0: Base (page-background) */
+  --shadow-level-0: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  
+  /* Level 1: Main Blocks (sections) */
+  --shadow-level-1: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --shadow-level-1-inner: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Level 2: Cards/Items inside sections */
+  --shadow-level-2: 
+    0 8px 25px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-level-2-inner: inset 0 2px 4px rgba(0, 0, 0, 0.08);
+
+  /* Level 3: Buttons/Clickables (Highest) */
+  --shadow-level-3: 
+    0 12px 30px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-level-3-hover: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.dark {
+  --shadow-level-0: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-level-1: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --shadow-level-1-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-level-2: 
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --shadow-level-2-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-level-3: 
+    0 12px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-level-3-hover: 
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
 /* Error & Success banners */
 .error-banner {
   background: var(--error-bg, rgba(127, 29, 29, 0.25));
   border: 1px solid var(--error-border, rgba(251, 113, 133, 0.35));
   color: var(--error, #fb7185);
+  box-shadow: var(--shadow-level-1);
 }
 
 .success-banner {
   background: var(--success-bg, rgba(6, 58, 39, 0.35));
   border: 1px solid var(--success-border, rgba(74, 222, 128, 0.35));
   color: var(--success, #10b981);
+  box-shadow: var(--shadow-level-1);
 }
 
 .animate-spin {
@@ -557,11 +603,16 @@ const regions = [
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  box-shadow: var(--shadow-level-0);
+  border-radius: var(--radius-2xl);
+  background: rgba(128, 128, 128, 0.03);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 @media (min-width: 640px) {
   .content-container {
-    padding: 0 2rem;
+    padding: 2rem;
   }
 }
 
@@ -570,7 +621,8 @@ const regions = [
   background: rgba(0, 51, 153, 0.08);
   border: 1px solid rgba(0, 51, 153, 0.18);
   backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-level-1-inner);
+  padding: 4px;
 }
 
 .dark .toggle-wrapper {
@@ -585,7 +637,7 @@ const regions = [
 .toggle-btn.active {
   background: var(--gradient-tricolor-light);
   color: white;
-  box-shadow: var(--shadow-btn-outer-bottom), var(--shadow-btn-inner-top);
+  box-shadow: var(--shadow-level-3);
 }
 
 .dark .toggle-btn.active {
@@ -599,7 +651,7 @@ const regions = [
   transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
   position: relative;
   backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-level-2);
 }
 
 .dark .membership-card {
@@ -609,18 +661,18 @@ const regions = [
 
 .membership-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--shadow-level-3);
 }
 
 
 .membership-card.selected {
   border-color: #003399;
-  box-shadow: 0 0 20px rgba(0, 51, 153, 0.3);
+  box-shadow: 0 0 20px rgba(0, 51, 153, 0.3), var(--shadow-level-3);
 }
 
 .dark .membership-card.selected {
   border-color: #4d7fbf;
-  box-shadow: 0 0 20px rgba(77, 127, 191, 0.3);
+  box-shadow: 0 0 20px rgba(77, 127, 191, 0.3), var(--shadow-level-3);
 }
 
 .membership-card.recommended {
@@ -667,7 +719,7 @@ const regions = [
   background: var(--bg-card-light);
   border: var(--border-card-light);
   backdrop-filter: blur(10px);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-level-1);
 }
 
 .dark .form-container {
@@ -679,24 +731,24 @@ const regions = [
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 51, 153, 0.15);
   transition: all var(--transition-normal);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-level-1-inner);
 }
 
 .dark .form-input {
   background: rgba(25, 25, 40, 0.8);
   border-color: rgba(77, 127, 191, 0.18);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-level-1-inner);
 }
 
 .form-input:focus {
   outline: none;
   border-color: #003399;
-  box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.12), var(--shadow-level-2-inner);
 }
 
 .dark .form-input:focus {
   border-color: #4d7fbf;
-  box-shadow: 0 0 0 3px rgba(77, 127, 191, 0.12), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 3px rgba(77, 127, 191, 0.12), var(--shadow-level-2-inner);
 }
 
 .form-checkbox {
@@ -713,7 +765,7 @@ const regions = [
   background: var(--gradient-tricolor-light);
   color: white;
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-  box-shadow: var(--shadow-btn-outer-bottom), var(--shadow-btn-inner-top);
+  box-shadow: var(--shadow-level-3);
 }
 
 .dark .submit-btn {
@@ -722,12 +774,13 @@ const regions = [
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-btn-outer-bottom), 0 10px 30px rgba(0, 51, 153, 0.3), var(--shadow-btn-inner-top);
+  box-shadow: var(--shadow-level-3-hover);
 }
 
 .submit-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .forgot-link {
@@ -769,7 +822,7 @@ const regions = [
   border: var(--border-card-light);
   transition: all var(--transition-normal);
   backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-level-2);
 }
 
 .dark .social-btn {
@@ -780,7 +833,7 @@ const regions = [
 .social-btn:hover {
   background: rgba(0, 51, 153, 0.08);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--shadow-level-3);
 }
 
 .dark .social-btn:hover {
@@ -792,7 +845,7 @@ const regions = [
   background: var(--bg-section-light);
   border: var(--border-card-light);
   backdrop-filter: blur(8px);
-  box-shadow: var(--shadow-section);
+  box-shadow: var(--shadow-level-1);
 }
 
 .dark .benefits-section {

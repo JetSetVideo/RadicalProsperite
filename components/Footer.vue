@@ -42,7 +42,7 @@ onUnmounted(() => {
     <div class="footer-content py-4 md:py-5">
       <!-- Centered content container matching page content -->
       <div class="footer-container">
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-8 footer-inner">
           <!-- Brand -->
           <span class="brand-text text-sm font-medium hidden sm:block">Radical Prospérité</span>
           
@@ -104,38 +104,58 @@ onUnmounted(() => {
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+.footer-content {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.footer-inner {
+  padding-left: 13px;
+  padding-right: 13px;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
 /* Footer container - centered content */
 .footer-container {
   max-width: 1200px;
   margin: 0 auto;
-  margin-left: 12px;
-  margin-right: 12px;
-  padding-left: 18px;
-  padding-right: 18px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
   display: flex;
-  gap: 2px;
+  flex-direction: column;
+  gap: 0;
   justify-content: center;
   align-items: center;
+  vertical-align: middle;
+  text-align: center;
+  box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.5), inset 6px 6px 14px 0px rgba(255, 255, 255, 0.2);
 }
 
 @media (min-width: 640px) {
   .footer-container {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 @media (min-width: 1024px) {
   .footer-container {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 @media (min-width: 1280px) {
   .footer-container {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -167,6 +187,15 @@ onUnmounted(() => {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 3px;
+  color: rgba(80, 100, 251, 0);
+  vertical-align: middle;
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.5),
+    inset -4px 2px 14px 0 rgba(0, 0, 0, 0.2);
 }
 
 .social-link {
@@ -222,7 +251,7 @@ onUnmounted(() => {
   }
   
   .social-icons {
-    gap: 0.75rem;
+    gap: 8px;
   }
   
   .social-link {

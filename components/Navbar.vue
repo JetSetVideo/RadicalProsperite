@@ -106,72 +106,23 @@ const navLinks = [
 </template>
 
 <style scoped>
-/* Tier margins (Design 0.5, 5.1) */
 .navbar {
   left: 0;
   right: 0;
-  margin-left: var(--margin-page-mobile);
-  margin-right: var(--margin-page-mobile);
-}
-
-@media (min-width: 768px) {
-  .navbar {
-    margin-left: var(--margin-page-tablet);
-    margin-right: var(--margin-page-tablet);
-  }
-}
-
-@media (min-width: 1024px) {
-  .navbar {
-    margin-left: var(--margin-page-web);
-    margin-right: var(--margin-page-web);
-  }
-}
-
-@media (min-width: 1280px) {
-  .navbar {
-    margin-left: var(--margin-page-web-xl);
-    margin-right: var(--margin-page-web-xl);
-  }
-}
-
-.navbar {
-  background: linear-gradient(135deg, 
-    rgba(0, 51, 153, 0.95) 0%, 
-    rgba(0, 51, 153, 0.85) 25%,
-    rgba(255, 255, 255, 0.95) 50%, 
-    rgba(200, 16, 46, 0.85) 75%,
-    rgba(200, 16, 46, 0.95) 100%
-  );
-  background-size: 300% 300%;
-  animation: tricolorFlow 20s ease-in-out infinite;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.25),
-    0 4px 16px rgba(0, 51, 153, 0.2),
-    0 2px 8px rgba(200, 16, 46, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.08);
+  margin-left: 0;
+  margin-right: 0;
+  background: linear-gradient(90deg, rgba(0, 30, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 0, 0, 0.2) 100%);
+  box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.5), inset 0px -1px 2px 0px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 0 none transparent;
+  border-image: none;
 }
 
 .dark .navbar {
-  background: linear-gradient(135deg, 
-    rgba(0, 30, 100, 0.95) 0%, 
-    rgba(0, 30, 100, 0.85) 25%,
-    rgba(30, 30, 40, 0.95) 50%, 
-    rgba(140, 10, 30, 0.85) 75%,
-    rgba(140, 10, 30, 0.95) 100%
-  );
-  background-size: 300% 300%;
-  animation: tricolorFlow 20s ease-in-out infinite;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.5),
-    0 4px 16px rgba(0, 30, 100, 0.3),
-    0 2px 8px rgba(140, 10, 30, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    inset 0 -1px 2px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(90deg, rgba(0, 30, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 0, 0, 0.2) 100%);
+  box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.5), inset 0px -1px 2px 0px rgba(0, 0, 0, 0.2);
+  border: 0 none transparent;
+  border-image: none;
 }
 
 /* Logo hexagon: inner light top-left, outer dark bottom-right */
@@ -310,15 +261,8 @@ const navLinks = [
 }
 
 .sub-navbar-margins {
-  margin-left: var(--space-sm);
-  margin-right: var(--space-sm);
-}
-
-@media (min-width: 768px) {
-  .sub-navbar-margins {
-    margin-left: var(--space-md);
-    margin-right: var(--space-md);
-  }
+  margin-left: 0;
+  margin-right: 0;
 }
 
 
@@ -431,6 +375,18 @@ const navLinks = [
 .sub-navbar {
   background: unset;
   backdrop-filter: blur(6px);
+  box-sizing: content-box;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(90deg, rgba(0, 51, 117, 0.5) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 0, 0, 0.5) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .dark .sub-navbar {
@@ -440,8 +396,8 @@ const navLinks = [
 .sub-navbar-inner {
   text-align: center;
   vertical-align: middle;
-  margin-top: 2px;
-  margin-bottom: 2px;
+  margin-top: 0;
+  margin-bottom: 0;
   margin-left: 18px;
   margin-right: 18px;
   padding-left: 1px;
@@ -477,15 +433,6 @@ const navLinks = [
     0 2px 10px rgba(0, 0, 0, 0.3),
     inset 0 1px 2px rgba(255, 255, 255, 0.3),
     inset 0 -1px 2px rgba(0, 0, 0, 0.2);
-}
-
-@keyframes tricolorFlow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 /* User avatar button (connected state): same inner top light + outer bottom dark */
@@ -595,10 +542,4 @@ const navLinks = [
   }
 }
 
-@media (min-width: 1536px) {
-  .navbar {
-    margin-left: 6rem;
-    margin-right: 6rem;
-  }
-}
 </style>
