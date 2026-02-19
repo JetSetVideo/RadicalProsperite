@@ -5,6 +5,5 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default defineNuxtPlugin((nuxtApp) => {
   library.add(fab, fas)
-
   nuxtApp.vueApp.component('FontAwesomeIcon', FontAwesomeIcon)
 })

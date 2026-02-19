@@ -35,7 +35,7 @@ onMounted(() => {
 
 @font-face {
   font-family: 'Ethnocentric';
-  src: url('~assets/fonts/Ethnocentric Rg It.otf') format('opentype');
+  src: url('/fonts/Ethnocentric Rg It.otf') format('opentype');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -43,7 +43,7 @@ onMounted(() => {
 
 @font-face {
   font-family: 'Ethnocentric';
-  src: url('~assets/fonts/Ethnocentric Rg.otf') format('opentype');
+  src: url('/fonts/Ethnocentric Rg.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

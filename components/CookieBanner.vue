@@ -23,9 +23,11 @@ const decline = () => {
 </script>
 
 <template>
-  <Transition name="slide-up">
-    <div v-if="visible" class="cookie-banner fixed bottom-0 left-0 right-0 z-[100] px-4 py-0">
-      <div class="cookie-container max-w-4xl mx-auto p-5 rounded-t-2xl flex flex-col sm:flex-row items-start sm:items-center gap-4">
+  <ClientOnly>
+    <Teleport to="body">
+      <Transition name="slide-up">
+        <div v-if="visible" class="cookie-banner">
+          <div class="cookie-container max-w-4xl mx-auto p-5 rounded-t-2xl flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div class="flex-1">
           <div class="flex items-center gap-2 mb-2">
             <FontAwesomeIcon icon="fa-solid fa-cookie-bite" class="text-lg" />
@@ -47,11 +49,23 @@ const decline = () => {
           </button>
         </div>
       </div>
-    </div>
-  </Transition>
+        </div>
+      </Transition>
+    </Teleport>
+  </ClientOnly>
 </template>
 
 <style scoped>
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 0 1rem;
+  pointer-events: auto;
+}
+
 .cookie-container {
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(0, 51, 153, 0.15);

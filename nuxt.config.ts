@@ -1,12 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  compatibilityDate: '2026-02-18',
   routeRules: {
     // prerender index route by default
     '/': { prerender: true },
   },
   modules: ['@nuxt/fonts', '@nuxt/ui', '@vueuse/nuxt'],
-  plugins: ['~/plugins/fontawesome.client.js'],
   css: ['~/assets/css/main.css'],
   ui: {
     colorMode: {
