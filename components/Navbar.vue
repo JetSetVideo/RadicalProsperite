@@ -193,9 +193,9 @@ const navLinks = [
 /* Title block: flex container for logo + title + actions */
 .navbar__title {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 150px;
+  gap: 1rem;
   margin: 1px var(--space-sm);
   margin-top: 1px;
   margin-bottom: 1px;
@@ -206,6 +206,25 @@ const navLinks = [
   background: unset;
   color: rgba(61, 61, 61, 1);
   box-shadow: none;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .navbar__title {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar__title {
+    gap: 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .navbar__title {
+    gap: 6rem;
+  }
 }
 
 .dark .navbar__title {
@@ -215,15 +234,29 @@ const navLinks = [
 
 .navbar__home-link {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 20px;
-  padding-left: 22px;
-  padding-right: 22px;
-  margin-left: 14px;
-  margin-right: 14px;
+  gap: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
   margin-top: 1px;
   margin-bottom: 1px;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .navbar__home-link {
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar__home-link {
+    gap: 1rem;
+  }
 }
 
 /* Actions block: inside title row, right-aligned */
@@ -398,24 +431,55 @@ const navLinks = [
   vertical-align: middle;
   margin-top: 0;
   margin-bottom: 0;
-  margin-left: 18px;
-  margin-right: 18px;
-  padding-left: 1px;
-  padding-right: 1px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.15);
   border-color: transparent;
   background: unset;
   border-image: none;
+  flex-wrap: nowrap;
+}
+
+@media (min-width: 640px) {
+  .sub-navbar-inner {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .sub-navbar-inner {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
 }
 
 .nav-link {
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
   color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.18);
   box-shadow: 
     inset 0 1px 2px rgba(255, 255, 255, 0.25),
     inset 0 -1px 2px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 640px) {
+  .nav-link {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-link {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
 }
 
 .nav-link:hover {
@@ -497,13 +561,7 @@ const navLinks = [
   transform: translateY(-8px);
 }
 
-/* Settings wrapper styling */
-.settings-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+/* Settings wrapper styling - base */
 .settings-wrapper :deep(button),
 .settings-wrapper :deep(.settings-btn) {
   border-radius: 50%;
@@ -520,26 +578,59 @@ const navLinks = [
     margin-top: 0.5rem;
   }
   .navbar__title {
-    margin-left: var(--space-sm);
-    margin-right: var(--space-sm);
-    padding: 1px var(--space-sm);
+    margin-left: var(--space-xs);
+    margin-right: var(--space-xs);
+    padding: 1px var(--space-xs);
+    gap: 0.5rem;
+  }
+  .navbar__home-link {
+    gap: 0.35rem;
+  }
+  .title {
+    font-size: 0.75rem;
   }
   .nav-link {
-    padding: 0.375rem 0.625rem;
-    font-size: 0.7rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.65rem;
+    margin-left: 1px;
+    margin-right: 1px;
   }
   .adhesion-btn {
-    padding: 0.375rem 0.75rem;
-    font-size: 0.75rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.7rem;
+  }
+  .navbar__actions {
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+  .settings-wrapper :deep(button),
+  .settings-wrapper :deep(.settings-btn) {
+    padding: 0.35rem;
+  }
+  .gear-btn {
+    font-size: 0.875rem;
   }
 }
 
 @media (max-width: 640px) {
   .sub-navbar-inner {
-    margin-left: var(--space-sm);
-    margin-right: var(--space-sm);
+    margin-left: var(--space-xs);
+    margin-right: var(--space-xs);
+    gap: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  .navbar__actions {
     gap: 0.5rem;
   }
+}
+
+/* Ensure settings always visible */
+.settings-wrapper {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 </style>
