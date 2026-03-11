@@ -29,9 +29,7 @@ onMounted(() => {
 </script>
 
 <style>
-/* Fonts: Google + local Ethnocentric (Design 3.1). Global base/typography in assets/css/main.css */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+/* Fonts: Local Ethnocentric (Design 3.1). Google fonts handled by @nuxt/fonts module */
 
 @font-face {
   font-family: 'Ethnocentric';

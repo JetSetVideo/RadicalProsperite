@@ -54,7 +54,7 @@ onUnmounted(() => {
             <a href="https://www.tiktok.com/@radical.prosperite" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="TikTok">
               <FontAwesomeIcon icon="fa-brands fa-tiktok" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Instagram">
+            <a href="https://instagram.com/radicalprosperite" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Instagram">
               <FontAwesomeIcon icon="fa-brands fa-instagram" class="text-lg sm:text-xl" />
             </a>
             <a href="https://www.linkedin.com/in/prosp%C3%A8re-radical-79b0583b2/" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="LinkedIn">

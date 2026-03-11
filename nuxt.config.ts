@@ -8,6 +8,31 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxt/fonts', '@nuxt/ui', '@vueuse/nuxt'],
   css: ['~/assets/css/main.css'],
+  
+  // Font configuration
+  fonts: {
+    families: [
+      { name: 'Orbitron', provider: 'google', weights: [400, 500, 600, 700, 800, 900] },
+      { name: 'Montserrat', provider: 'google', weights: [300, 400, 500, 600, 700] },
+    ],
+  },
+  
+  // App metadata
+  app: {
+    head: {
+      htmlAttrs: { lang: 'fr' },
+      title: 'Radical Prospérité',
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'theme-color', content: '#003399' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
+    },
+  },
+
   ui: {
     colorMode: {
       preference: 'dark'
