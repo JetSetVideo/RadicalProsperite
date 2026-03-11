@@ -572,58 +572,9 @@ const navLinks = [
     inset 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* Mobile: compact title row */
-@media (max-width: 480px) {
-  .navbar {
-    margin-top: 0.5rem;
-  }
-  .navbar__title {
-    margin-left: var(--space-xs);
-    margin-right: var(--space-xs);
-    padding: 1px var(--space-xs);
-    gap: 0.5rem;
-  }
-  .navbar__home-link {
-    gap: 0.35rem;
-  }
-  .title {
-    font-size: 0.75rem;
-  }
-  .nav-link {
-    padding: 0.35rem 0.5rem;
-    font-size: 0.65rem;
-    margin-left: 1px;
-    margin-right: 1px;
-  }
-  .adhesion-btn {
-    padding: 0.35rem 0.5rem;
-    font-size: 0.7rem;
-  }
-  .navbar__actions {
-    gap: 0.35rem;
-    flex-shrink: 0;
-  }
-  .settings-wrapper :deep(button),
-  .settings-wrapper :deep(.settings-btn) {
-    padding: 0.35rem;
-  }
-  .gear-btn {
-    font-size: 0.875rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .sub-navbar-inner {
-    margin-left: var(--space-xs);
-    margin-right: var(--space-xs);
-    gap: 0.25rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-  }
-  .navbar__actions {
-    gap: 0.5rem;
-  }
-}
+/* ═══════════════════════════════════════════════════════════════
+   NAVBAR RESPONSIVE STYLES - All breakpoints
+   ═══════════════════════════════════════════════════════════════ */
 
 /* Ensure settings always visible */
 .settings-wrapper {
@@ -631,6 +582,366 @@ const navLinks = [
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+/* ─── Extra Small (<480px) - Small phones ─── */
+@media (max-width: 479px) {
+  .navbar {
+    margin-top: 0.25rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .navbar-content {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 3rem;
+  }
+
+  .navbar__title {
+    gap: 0.25rem;
+  }
+
+  .navbar__home-link {
+    gap: 0.25rem;
+  }
+
+  .logo-hexagon {
+    width: 2rem;
+    height: 2.3rem;
+  }
+
+  .title {
+    font-size: 0.65rem;
+  }
+
+  .navbar__actions {
+    gap: 0.25rem;
+  }
+
+  .adhesion-btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.65rem;
+    border-width: 1px;
+  }
+
+  .adhesion-btn .fa-user-plus {
+    display: none;
+  }
+
+  .settings-wrapper :deep(button) {
+    padding: 0.3rem;
+    font-size: 0.875rem;
+  }
+
+  .sub-navbar {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  .sub-navbar-inner {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+    gap: 0.125rem;
+    padding: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.6rem;
+    margin: 0 1px;
+    border-radius: 0.5rem;
+  }
+
+  .nav-link span {
+    display: none;
+  }
+
+  .nav-link .fa-solid,
+  .nav-link svg {
+    font-size: 0.75rem;
+  }
+}
+
+/* ─── Small (480px-639px) - Large phones ─── */
+@media (min-width: 480px) and (max-width: 639px) {
+  .navbar {
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .navbar-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    height: 3.25rem;
+  }
+
+  .navbar__title {
+    gap: 0.5rem;
+  }
+
+  .logo-hexagon {
+    width: 2.25rem;
+    height: 2.6rem;
+  }
+
+  .title {
+    font-size: 0.8rem;
+  }
+
+  .navbar__actions {
+    gap: 0.35rem;
+  }
+
+  .adhesion-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .sub-navbar-inner {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.7rem;
+    margin: 0 2px;
+  }
+}
+
+/* ─── Medium (640px-767px) - Small tablets ─── */
+@media (min-width: 640px) and (max-width: 767px) {
+  .navbar {
+    margin-top: 0.75rem;
+  }
+
+  .navbar-content {
+    height: 3.5rem;
+  }
+
+  .navbar__title {
+    gap: 1rem;
+  }
+
+  .logo-hexagon {
+    width: 2.5rem;
+    height: 2.9rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .nav-link {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* ─── Large (768px-1023px) - Tablets ─── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar {
+    margin-top: 1rem;
+  }
+
+  .navbar-content {
+    height: 4rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .navbar__title {
+    gap: 1.5rem;
+  }
+
+  .logo-hexagon {
+    width: 3rem;
+    height: 3.46rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .navbar__actions {
+    gap: 0.75rem;
+  }
+
+  .adhesion-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .sub-navbar-inner {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    margin: 0 4px;
+  }
+}
+
+/* ─── XL (1024px-1279px) - Laptops ─── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .navbar-content {
+    height: 4.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .navbar__title {
+    gap: 2.5rem;
+  }
+
+  .logo-hexagon {
+    width: 3.25rem;
+    height: 3.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .navbar__actions {
+    gap: 1rem;
+  }
+
+  .adhesion-btn {
+    padding: 0.5rem 1.25rem;
+  }
+
+  .sub-navbar-inner {
+    gap: 0.75rem;
+  }
+
+  .nav-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.9375rem;
+    margin: 0 5px;
+  }
+}
+
+/* ─── 2XL (1280px-1535px) - Desktops ─── */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .navbar-content {
+    height: 5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .navbar__title {
+    gap: 4rem;
+  }
+
+  .logo-hexagon {
+    width: 3.5rem;
+    height: 4.04rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .navbar__actions {
+    gap: 1.25rem;
+  }
+
+  .adhesion-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .sub-navbar-inner {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    padding: 0.65rem 1.25rem;
+    font-size: 1rem;
+    margin: 0 6px;
+  }
+}
+
+/* ─── 3XL (1536px+) - Wide screens ─── */
+@media (min-width: 1536px) {
+  .navbar {
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .navbar-content {
+    height: 5.5rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .navbar__title {
+    gap: 6rem;
+  }
+
+  .logo-hexagon {
+    width: 4rem;
+    height: 4.62rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .navbar__actions {
+    gap: 1.5rem;
+  }
+
+  .adhesion-btn {
+    padding: 0.75rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  .sub-navbar-inner {
+    gap: 1.25rem;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.0625rem;
+    margin: 0 8px;
+  }
+}
+
+/* ─── Touch-friendly adjustments ─── */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link:hover,
+  .adhesion-btn:hover {
+    transform: none;
+  }
+
+  .nav-link:active,
+  .adhesion-btn:active {
+    transform: scale(0.97);
+  }
+}
+
+/* ─── Landscape mobile ─── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .navbar {
+    margin-top: 0.25rem;
+  }
+
+  .navbar-content {
+    height: 2.75rem;
+  }
+
+  .sub-navbar {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
 }
 
 </style>

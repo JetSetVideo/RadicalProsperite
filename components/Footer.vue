@@ -54,7 +54,7 @@ onUnmounted(() => {
             <a href="https://www.tiktok.com/@radical.prosperite" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="TikTok">
               <FontAwesomeIcon icon="fa-brands fa-tiktok" class="text-lg sm:text-xl" />
             </a>
-            <a href="https://instagram.com/radicalprosperite" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Instagram">
+            <a href="https://www.instagram.com/radical.prosperite?igsh=MWRobzlsajluN2hqbw==" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="Instagram">
               <FontAwesomeIcon icon="fa-brands fa-instagram" class="text-lg sm:text-xl" />
             </a>
             <a href="https://www.linkedin.com/in/prosp%C3%A8re-radical-79b0583b2/" target="_blank" rel="noopener noreferrer" class="social-link mx-1 sm:mx-1.5" aria-label="LinkedIn">
@@ -244,18 +244,228 @@ onUnmounted(() => {
     inset 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER RESPONSIVE STYLES - All breakpoints
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Extra Small (<480px) - Small phones ─── */
+@media (max-width: 479px) {
+  .footer {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .footer-content {
+    padding: 0.5rem 0;
+  }
+
+  .footer-inner {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    gap: 4px;
+  }
+
+  .brand-text {
+    display: none !important;
+  }
+
+  .copyright-text {
+    display: none !important;
+  }
+
+  .social-icons {
+    gap: 4px;
+  }
+
+  .social-link {
+    padding: 0.4rem;
+    font-size: 0.875rem;
+  }
+
+  .social-link svg {
+    font-size: 0.9rem;
+  }
+}
+
+/* ─── Small (480px-639px) - Large phones ─── */
+@media (min-width: 480px) and (max-width: 639px) {
+  .footer-content {
+    padding: 0.625rem 0;
+  }
+
+  .footer-inner {
+    gap: 6px;
+  }
+
+  .brand-text {
+    font-size: 0.75rem;
+  }
+
+  .social-icons {
+    gap: 6px;
+  }
+
+  .social-link {
+    padding: 0.45rem;
+  }
+
+  .social-link svg {
+    font-size: 1rem;
+  }
+
+  .copyright-text {
+    font-size: 0.625rem;
+  }
+}
+
+/* ─── Medium (640px-767px) - Small tablets ─── */
+@media (min-width: 640px) and (max-width: 767px) {
   .footer-content {
     padding: 0.75rem 0;
   }
-  
+
   .social-icons {
     gap: 8px;
   }
-  
+
   .social-link {
-    padding: 0.375rem;
+    padding: 0.5rem;
+  }
+}
+
+/* ─── Large (768px-1023px) - Tablets ─── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer-content {
+    padding: 0.875rem 0;
+  }
+
+  .footer-inner {
+    gap: 1.5rem;
+  }
+
+  .social-icons {
+    gap: 10px;
+  }
+
+  .social-link {
+    padding: 0.55rem;
+  }
+
+  .social-link svg {
+    font-size: 1.125rem;
+  }
+}
+
+/* ─── XL (1024px-1279px) - Laptops ─── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .footer-content {
+    padding: 1rem 0;
+  }
+
+  .footer-inner {
+    gap: 2rem;
+  }
+
+  .social-icons {
+    gap: 12px;
+  }
+
+  .social-link {
+    padding: 0.6rem;
+  }
+
+  .social-link svg {
+    font-size: 1.25rem;
+  }
+
+  .brand-text {
+    font-size: 0.9375rem;
+  }
+}
+
+/* ─── 2XL (1280px-1535px) - Desktops ─── */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .footer-content {
+    padding: 1.125rem 0;
+  }
+
+  .footer-inner {
+    gap: 2.5rem;
+  }
+
+  .social-icons {
+    gap: 14px;
+  }
+
+  .social-link {
+    padding: 0.65rem;
+  }
+
+  .social-link svg {
+    font-size: 1.375rem;
+  }
+
+  .brand-text {
+    font-size: 1rem;
+  }
+}
+
+/* ─── 3XL (1536px+) - Wide screens ─── */
+@media (min-width: 1536px) {
+  .footer {
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+  .footer-content {
+    padding: 1.25rem 0;
+  }
+
+  .footer-inner {
+    gap: 3rem;
+  }
+
+  .social-icons {
+    gap: 16px;
+  }
+
+  .social-link {
+    padding: 0.75rem;
+  }
+
+  .social-link svg {
+    font-size: 1.5rem;
+  }
+
+  .brand-text {
+    font-size: 1.125rem;
+  }
+
+  .copyright-text {
+    font-size: 0.875rem;
+  }
+}
+
+/* ─── Touch-friendly adjustments ─── */
+@media (hover: none) and (pointer: coarse) {
+  .social-link:hover {
+    transform: none;
+  }
+
+  .social-link:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ─── Landscape mobile ─── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .footer-content {
+    padding: 0.5rem 0;
+  }
+
+  .social-link {
+    padding: 0.35rem;
   }
 }
 </style>

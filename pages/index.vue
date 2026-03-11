@@ -620,23 +620,437 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
   background-clip: text;
 }
 
-/* ─── Responsive Adjustments ─── */
-@media (max-width: 640px) {
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE STYLES - All breakpoints
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Extra Small (<480px) - Small phones ─── */
+@media (max-width: 479px) {
+  .page-background {
+    margin: 2px;
+    padding: 4px 0.5rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .content-container {
+    padding: 0 0.25rem;
+  }
+
   .hero-section,
   .meetup-section,
   .mission-section,
   .values-section,
-  .cta-section {
-    padding: 1.25rem 1rem;
+  .cta-section,
+  .quote-section {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem 0.75rem;
+    border-radius: var(--radius-lg);
   }
-  
-  .hero-title { font-size: 1.5rem; }
-  .hero-subtitle { letter-spacing: 0.15em; font-size: 1rem; }
-  .quote-section blockquote { font-size: 1.1rem; }
-  .card-icon-wrapper { width: 36px; height: 36px; }
+
+  .hero-title {
+    font-size: 1.125rem;
+    line-height: 1.3;
+  }
+
+  .hero-subtitle {
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+  }
+
+  .section-title::after {
+    bottom: -8px;
+    height: 2px;
+  }
+
+  .quote-section blockquote {
+    font-size: 0.95rem;
+  }
+
+  .value-card {
+    padding: 0.75rem;
+  }
+
+  .card-header {
+    padding: 0.35rem 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .card-icon-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  .card-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .value-card p {
+    font-size: 0.8rem;
+  }
+
+  .cta-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .crypto-card {
+    min-width: 150px;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .crypto-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .crypto-name {
+    font-size: 0.75rem;
+  }
+
+  .crypto-address {
+    font-size: 0.65rem;
+  }
+
+  .meetup-empty {
+    padding: 1.5rem 1rem;
+  }
 }
 
-@media (min-width: 641px) and (max-width: 1024px) {
-  .hero-title { font-size: 2.25rem; }
+/* ─── Small (480px-639px) - Large phones ─── */
+@media (min-width: 480px) and (max-width: 639px) {
+  .hero-section,
+  .meetup-section,
+  .mission-section,
+  .values-section,
+  .cta-section,
+  .quote-section {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.375rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+  }
+
+  .card-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ─── Medium (640px-767px) - Small tablets ─── */
+@media (min-width: 640px) and (max-width: 767px) {
+  .hero-section,
+  .meetup-section,
+  .mission-section,
+  .values-section,
+  .cta-section,
+  .quote-section {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 1.625rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .values-section .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─── Large (768px-1023px) - Tablets ─── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-background {
+    padding: 8px 1.5rem;
+  }
+
+  .hero-section,
+  .meetup-section,
+  .mission-section,
+  .values-section,
+  .cta-section,
+  .quote-section {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    padding: 2rem 1.75rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    letter-spacing: 0.2em;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .values-section .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .card-icon-wrapper {
+    width: 44px;
+    height: 44px;
+  }
+
+  .cta-buttons {
+    gap: 1rem;
+  }
+
+  .crypto-donations {
+    gap: 1rem;
+  }
+}
+
+/* ─── XL (1024px-1279px) - Laptops ─── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .page-background {
+    padding: 10px 2rem;
+  }
+
+  .content-container {
+    max-width: 960px;
+  }
+
+  .hero-section,
+  .meetup-section,
+  .mission-section,
+  .values-section,
+  .cta-section,
+  .quote-section {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding: 2.25rem 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .section-title {
+    font-size: 1.625rem;
+  }
+
+  .values-section .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .card-icon-wrapper {
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/* ─── 2XL (1280px-1535px) - Desktops ─── */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .page-background {
+    padding: 12px 2.5rem;
+  }
+
+  .content-container {
+    max-width: 1200px;
+  }
+
+  .hero-section,
+  .meetup-section,
+  .mission-section,
+  .values-section,
+  .cta-section,
+  .quote-section {
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    padding: 2.5rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    letter-spacing: 0.3em;
+  }
+
+  .section-title {
+    font-size: 1.875rem;
+  }
+
+  .values-section .grid {
+    gap: 1.75rem;
+  }
+
+  .value-card {
+    padding: 1.5rem;
+  }
+
+  .card-icon-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .cta-section {
+    padding: 3rem;
+  }
+}
+
+/* ─── 3XL (1536px+) - Wide screens ─── */
+@media (min-width: 1536px) {
+  .page-background {
+    padding: 16px 3rem;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content-container {
+    max-width: 1400px;
+  }
+
+  .hero-section,
+  .meetup-section,
+  .mission-section,
+  .values-section,
+  .cta-section,
+  .quote-section {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    padding: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.375rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .quote-section blockquote {
+    font-size: 1.375rem;
+  }
+
+  .values-section .grid {
+    gap: 2rem;
+  }
+
+  .value-card {
+    padding: 1.75rem;
+  }
+
+  .card-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .value-card p {
+    font-size: 1rem;
+  }
+
+  .card-icon-wrapper {
+    width: 52px;
+    height: 52px;
+  }
+
+  .cta-section {
+    padding: 3.5rem;
+  }
+
+  .crypto-card {
+    min-width: 200px;
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* ─── Ultra-wide (1920px+) ─── */
+@media (min-width: 1920px) {
+  .page-background {
+    max-width: 2000px;
+  }
+
+  .content-container {
+    max-width: 1600px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+  }
+
+  .values-section .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ─── Touch-friendly adjustments ─── */
+@media (hover: none) and (pointer: coarse) {
+  .value-card:hover,
+  .crypto-card:hover,
+  .cta-btn:hover {
+    transform: none;
+  }
+
+  .value-card:active,
+  .crypto-card:active,
+  .cta-btn:active {
+    transform: scale(0.98);
+  }
+}
+
+/* ─── Landscape mobile ─── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-section {
+    padding: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-badge {
+    margin-bottom: 0.5rem;
+  }
 }
 </style>

@@ -162,5 +162,105 @@
   --shadow-section: 0 2px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* ─── Breakpoints (reference; use Tailwind in markup) ─── */
-/* xs: <480px | sm: 480–639px | md: 640–767px | lg: 768–1023px | xl: 1024–1279px | 2xl: 1280–1535px | 3xl: ≥1536px */
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS & VARIABLES
+   xs: <480px | sm: 480–639px | md: 640–767px | lg: 768–1023px 
+   xl: 1024–1279px | 2xl: 1280–1535px | 3xl: ≥1536px
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Mobile-first base (< 480px) */
+:root {
+  --content-max-width: 100%;
+  --section-padding-x: 1rem;
+  --section-padding-y: 1.25rem;
+  --card-padding: 1rem;
+  --grid-gap: 1rem;
+  --font-size-hero: 1.25rem;
+  --font-size-section-title: 1.125rem;
+  --font-size-body: 0.875rem;
+  --navbar-height: 3.5rem;
+}
+
+/* Small phones (480px+) */
+@media (min-width: 480px) {
+  :root {
+    --section-padding-x: 1.25rem;
+    --font-size-hero: 1.5rem;
+    --font-size-section-title: 1.25rem;
+  }
+}
+
+/* Large phones / Small tablets (640px+) */
+@media (min-width: 640px) {
+  :root {
+    --content-max-width: 600px;
+    --section-padding-x: 1.5rem;
+    --section-padding-y: 1.5rem;
+    --card-padding: 1.25rem;
+    --grid-gap: 1.25rem;
+    --font-size-hero: 1.75rem;
+    --font-size-section-title: 1.375rem;
+    --font-size-body: 0.9375rem;
+    --navbar-height: 4rem;
+  }
+}
+
+/* Tablets (768px+) */
+@media (min-width: 768px) {
+  :root {
+    --content-max-width: 720px;
+    --section-padding-x: 2rem;
+    --section-padding-y: 2rem;
+    --card-padding: 1.5rem;
+    --grid-gap: 1.5rem;
+    --font-size-hero: 2rem;
+    --font-size-section-title: 1.5rem;
+    --font-size-body: 1rem;
+    --navbar-height: 4.5rem;
+  }
+}
+
+/* Laptops / Small desktops (1024px+) */
+@media (min-width: 1024px) {
+  :root {
+    --content-max-width: 960px;
+    --section-padding-x: 2.5rem;
+    --section-padding-y: 2.5rem;
+    --card-padding: 1.75rem;
+    --grid-gap: 1.75rem;
+    --font-size-hero: 2.25rem;
+    --font-size-section-title: 1.75rem;
+    --navbar-height: 5rem;
+  }
+}
+
+/* Desktops (1280px+) */
+@media (min-width: 1280px) {
+  :root {
+    --content-max-width: 1200px;
+    --section-padding-x: 3rem;
+    --section-padding-y: 3rem;
+    --card-padding: 2rem;
+    --grid-gap: 2rem;
+    --font-size-hero: 2.5rem;
+    --font-size-section-title: 2rem;
+  }
+}
+
+/* Wide screens (1536px+) */
+@media (min-width: 1536px) {
+  :root {
+    --content-max-width: 1400px;
+    --section-padding-x: 4rem;
+    --font-size-hero: 2.75rem;
+    --font-size-section-title: 2.25rem;
+  }
+}
+
+/* Ultra-wide (1920px+) */
+@media (min-width: 1920px) {
+  :root {
+    --content-max-width: 1600px;
+    --section-padding-x: 5rem;
+  }
+}
