@@ -1,101 +1,110 @@
 <script setup>
 import { ref } from 'vue'
 
-// Forum categories
+// Forum categories - Aligned with AI/Crypto/Law vision
 const categories = ref([
   {
     id: 1,
-    name: 'Discussions Générales',
-    description: 'Échangez sur tous les sujets liés au parti et à la politique.',
-    icon: 'fa-solid fa-comments',
-    topics: 45,
-    posts: 234,
-    lastActivity: '2026-01-18'
+    name: 'Agents IA Citoyens',
+    description: 'Discussions sur votre représentant numérique, configuration et retours d\'expérience.',
+    icon: 'fa-solid fa-robot',
+    topics: 67,
+    posts: 423,
+    lastActivity: '2026-03-11'
   },
   {
     id: 2,
-    name: 'Économie & Fiscalité',
-    description: 'Débats sur les politiques économiques et fiscales.',
-    icon: 'fa-solid fa-chart-line',
-    topics: 28,
-    posts: 156,
-    lastActivity: '2026-01-17'
+    name: 'Suivi des Lois',
+    description: 'Analysez et discutez des lois locales, nationales et européennes qui vous affectent.',
+    icon: 'fa-solid fa-scale-balanced',
+    topics: 89,
+    posts: 567,
+    lastActivity: '2026-03-11'
   },
   {
     id: 3,
-    name: 'Libertés Individuelles',
-    description: 'Discussions sur les droits et libertés fondamentaux.',
-    icon: 'fa-solid fa-dove',
-    topics: 32,
-    posts: 189,
-    lastActivity: '2026-01-18'
+    name: 'Blockchain & Gouvernance',
+    description: 'Vote décentralisé, transparence, et gouvernance on-chain.',
+    icon: 'fa-solid fa-link',
+    topics: 45,
+    posts: 298,
+    lastActivity: '2026-03-10'
   },
   {
     id: 4,
-    name: 'Technologies & Innovation',
-    description: 'Blockchain, IA, et leur application dans la gouvernance.',
-    icon: 'fa-solid fa-microchip',
-    topics: 19,
-    posts: 98,
-    lastActivity: '2026-01-16'
+    name: 'Cryptomonnaies & Liberté Financière',
+    description: 'Bitcoin, Ethereum, Solana et l\'économie décentralisée.',
+    icon: 'fa-brands fa-bitcoin',
+    topics: 78,
+    posts: 456,
+    lastActivity: '2026-03-11'
   },
   {
     id: 5,
-    name: 'Actions Locales',
-    description: 'Coordonnez vos actions et événements locaux.',
-    icon: 'fa-solid fa-map-location-dot',
-    topics: 56,
-    posts: 312,
-    lastActivity: '2026-01-18'
+    name: 'Propositions Citoyennes',
+    description: 'Soumettez vos idées. Les meilleures seront votées sur blockchain.',
+    icon: 'fa-solid fa-lightbulb',
+    topics: 34,
+    posts: 234,
+    lastActivity: '2026-03-09'
   },
   {
     id: 6,
-    name: 'Propositions & Idées',
-    description: 'Soumettez vos idées et propositions au parti.',
-    icon: 'fa-solid fa-lightbulb',
-    topics: 23,
-    posts: 145,
-    lastActivity: '2026-01-17'
+    name: 'Actions Locales',
+    description: 'Coordonnez vos événements et rencontres régionales.',
+    icon: 'fa-solid fa-map-location-dot',
+    topics: 56,
+    posts: 312,
+    lastActivity: '2026-03-11'
   }
 ])
 
-// Recent topics
+// Recent topics - Aligned with vision
 const recentTopics = ref([
   {
     id: 1,
-    title: 'Proposition: Réforme fiscale progressive',
-    category: 'Économie & Fiscalité',
-    author: 'Jean-Marc D.',
-    replies: 24,
-    views: 156,
-    lastReply: '2026-01-18 14:30'
+    title: '[Vote On-Chain] Priorité 2026 : IA ou Blockchain d\'abord ?',
+    category: 'Propositions Citoyennes',
+    author: 'Système',
+    replies: 89,
+    views: 1234,
+    lastReply: '2026-03-11 14:30'
   },
   {
     id: 2,
-    title: 'Organisation du meeting de février à Paris',
-    category: 'Actions Locales',
-    author: 'Sophie L.',
-    replies: 18,
-    views: 98,
-    lastReply: '2026-01-18 12:15'
+    title: 'Mon agent IA a détecté une nouvelle taxe locale - Comment réagir ?',
+    category: 'Suivi des Lois',
+    author: 'CitoyenParis75',
+    replies: 45,
+    views: 567,
+    lastReply: '2026-03-11 13:15'
   },
   {
     id: 3,
-    title: 'Utilisation de la blockchain pour les votes internes',
-    category: 'Technologies & Innovation',
-    author: 'Pierre M.',
-    replies: 31,
-    views: 234,
-    lastReply: '2026-01-18 10:45'
+    title: 'Guide : Configurer les alertes de votre Agent IA Citoyen',
+    category: 'Agents IA Citoyens',
+    author: 'TechAdmin',
+    replies: 67,
+    views: 890,
+    lastReply: '2026-03-11 11:45'
   },
   {
     id: 4,
-    title: 'Bienvenue aux nouveaux membres !',
-    category: 'Discussions Générales',
-    author: 'Admin',
-    replies: 156,
-    views: 892,
-    lastReply: '2026-01-18 09:00'
+    title: 'Discussion : Accepter les dons en SOL ?',
+    category: 'Cryptomonnaies & Liberté Financière',
+    author: 'CryptoMax',
+    replies: 34,
+    views: 456,
+    lastReply: '2026-03-11 10:00'
+  },
+  {
+    id: 5,
+    title: 'Hackathon Démocratie 3.0 - Équipes et inscriptions',
+    category: 'Actions Locales',
+    author: 'EventOrga',
+    replies: 23,
+    views: 345,
+    lastReply: '2026-03-11 09:30'
   }
 ])
 

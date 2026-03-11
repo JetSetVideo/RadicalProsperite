@@ -152,10 +152,10 @@ const closeEventPopup = () => {
         </div>
       </div>
       
-      <!-- Calendar Days - Only 5 rows -->
+      <!-- Calendar Days - Full 6 rows -->
       <div class="days-grid grid grid-cols-7 gap-0.5">
         <div 
-          v-for="(dayInfo, index) in calendarDays.slice(0, 35)" 
+          v-for="(dayInfo, index) in calendarDays" 
           :key="index"
           class="day-cell p-0.5 md:p-1 rounded cursor-pointer transition-all duration-200"
           :class="{

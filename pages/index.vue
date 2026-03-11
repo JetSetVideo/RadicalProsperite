@@ -95,6 +95,118 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
           </p>
         </section>
 
+        <!-- AI Agent Section - NEW -->
+        <section class="ai-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
+          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
+            <FontAwesomeIcon icon="fa-solid fa-robot" class="mr-2" />
+            Agents IA Citoyens
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="ai-card p-6 rounded-2xl">
+              <div class="ai-icon mb-4">
+                <FontAwesomeIcon icon="fa-solid fa-user-shield" class="text-4xl" />
+              </div>
+              <h3 class="text-lg font-bold mb-3">Votre Représentant Numérique</h3>
+              <p class="text-sm opacity-80 mb-4">
+                Chaque citoyen dispose d'un agent IA personnel qui représente ses intérêts, 
+                surveille les lois qui l'affectent, et participe aux votes selon ses valeurs.
+              </p>
+              <ul class="text-sm space-y-2">
+                <li class="flex items-center gap-2">
+                  <FontAwesomeIcon icon="fa-solid fa-check" class="text-green-500" />
+                  Surveillance des lois 24/7
+                </li>
+                <li class="flex items-center gap-2">
+                  <FontAwesomeIcon icon="fa-solid fa-check" class="text-green-500" />
+                  Alertes personnalisées
+                </li>
+                <li class="flex items-center gap-2">
+                  <FontAwesomeIcon icon="fa-solid fa-check" class="text-green-500" />
+                  Vote délégué intelligent
+                </li>
+              </ul>
+            </div>
+            
+            <div class="ai-card p-6 rounded-2xl">
+              <div class="ai-icon mb-4">
+                <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="text-4xl" />
+              </div>
+              <h3 class="text-lg font-bold mb-3">Comprendre les Lois</h3>
+              <p class="text-sm opacity-80 mb-4">
+                Notre IA traduit le jargon juridique en langage simple. 
+                Suivez les lois locales, nationales et européennes qui vous concernent.
+              </p>
+              <div class="law-levels flex flex-wrap gap-2 mt-4">
+                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
+                  <FontAwesomeIcon icon="fa-solid fa-building" class="mr-1" />
+                  Mairie
+                </span>
+                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
+                  <FontAwesomeIcon icon="fa-solid fa-landmark" class="mr-1" />
+                  Région
+                </span>
+                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
+                  <FontAwesomeIcon icon="fa-solid fa-flag" class="mr-1" />
+                  France
+                </span>
+                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
+                  <FontAwesomeIcon icon="fa-solid fa-earth-europe" class="mr-1" />
+                  Europe
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Blockchain Transparency Section - NEW -->
+        <section class="blockchain-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
+          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
+            <FontAwesomeIcon icon="fa-solid fa-link" class="mr-2" />
+            Gouvernance Transparente
+          </h2>
+          <div class="blockchain-card p-6 rounded-2xl text-center">
+            <div class="chain-visual flex justify-center items-center gap-2 mb-6 flex-wrap">
+              <div class="chain-block">
+                <FontAwesomeIcon icon="fa-solid fa-cube" class="text-2xl" />
+                <span class="text-xs">Vote</span>
+              </div>
+              <FontAwesomeIcon icon="fa-solid fa-arrow-right" class="text-gray-400" />
+              <div class="chain-block">
+                <FontAwesomeIcon icon="fa-solid fa-cube" class="text-2xl" />
+                <span class="text-xs">Validation</span>
+              </div>
+              <FontAwesomeIcon icon="fa-solid fa-arrow-right" class="text-gray-400" />
+              <div class="chain-block">
+                <FontAwesomeIcon icon="fa-solid fa-cube" class="text-2xl" />
+                <span class="text-xs">Exécution</span>
+              </div>
+              <FontAwesomeIcon icon="fa-solid fa-arrow-right" class="text-gray-400" />
+              <div class="chain-block">
+                <FontAwesomeIcon icon="fa-solid fa-cube" class="text-2xl" />
+                <span class="text-xs">Audit</span>
+              </div>
+            </div>
+            <p class="text-sm md:text-base opacity-80 max-w-2xl mx-auto">
+              Chaque décision, chaque vote, chaque dépense est enregistré sur la blockchain. 
+              Aucune manipulation possible. Transparence totale et vérifiable par tous.
+            </p>
+            <div class="blockchain-stats flex flex-wrap justify-center gap-6 mt-6">
+              <div class="stat">
+                <span class="stat-number text-2xl font-bold">100%</span>
+                <span class="stat-label text-xs opacity-60 block">Transparent</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number text-2xl font-bold">0</span>
+                <span class="stat-label text-xs opacity-60 block">Manipulation</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number text-2xl font-bold">∞</span>
+                <span class="stat-label text-xs opacity-60 block">Vérifiable</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Values Grid -->
         <section class="values-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
           <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">Nos Valeurs</h2>
@@ -614,6 +726,137 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 }
 
 .dark .crypto-icon svg {
+  background: var(--gradient-tricolor-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── AI Section ─── */
+.ai-section {
+  background: var(--bg-section-light);
+  padding: 2rem;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .ai-section {
+  background: var(--bg-section-dark);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.ai-card {
+  background: var(--bg-card-light);
+  border: var(--border-card-light);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.dark .ai-card {
+  background: var(--bg-card-dark);
+  border: var(--border-card-dark);
+}
+
+.ai-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.ai-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(74, 222, 128, 0.2) 100%);
+  border-radius: var(--radius-lg);
+  margin-bottom: 1rem;
+}
+
+.ai-icon svg {
+  background: linear-gradient(135deg, #38bdf8 0%, #4ade80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.law-badge {
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
+  border: 1px solid rgba(0, 51, 153, 0.25);
+  color: var(--text-light);
+}
+
+.dark .law-badge {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
+  border-color: rgba(77, 127, 191, 0.35);
+  color: var(--text-dark);
+}
+
+/* ─── Blockchain Section ─── */
+.blockchain-section {
+  background: var(--bg-section-light);
+  padding: 2rem;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .blockchain-section {
+  background: var(--bg-section-dark);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.blockchain-card {
+  background: var(--bg-card-light);
+  border: var(--border-card-light);
+  box-shadow: var(--shadow-card);
+}
+
+.dark .blockchain-card {
+  background: var(--bg-card-dark);
+  border: var(--border-card-dark);
+}
+
+.chain-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(200, 16, 46, 0.1) 100%);
+  border: 2px solid rgba(0, 51, 153, 0.2);
+  border-radius: var(--radius-md);
+  min-width: 70px;
+}
+
+.dark .chain-block {
+  background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(255, 77, 109, 0.15) 100%);
+  border-color: rgba(77, 127, 191, 0.3);
+}
+
+.chain-block svg {
+  background: var(--gradient-tricolor-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .chain-block svg {
+  background: var(--gradient-tricolor-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blockchain-stats .stat-number {
+  background: var(--gradient-tricolor-light);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .blockchain-stats .stat-number {
   background: var(--gradient-tricolor-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

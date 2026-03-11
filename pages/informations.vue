@@ -1,68 +1,84 @@
 <script setup>
 import { ref } from 'vue'
 
-// Sample events data - can be updated with real data
+// Events data - Future events
 const events = ref([
   {
     id: 1,
     title: 'Assemblée Générale Parisienne',
-    date: '2026-02-15',
+    date: '2026-03-22',
     time: '19:00',
     location: 'Paris - 8ème arrondissement',
-    description: 'Réunion mensuelle des adhérents parisiens pour discuter des prochaines actions.',
+    description: 'Réunion mensuelle des adhérents parisiens pour discuter des prochaines actions et présentation des agents IA citoyens.',
     coordinates: { x: 200, y: 150 }
   },
   {
     id: 2,
-    title: 'Conférence sur la Blockchain',
-    date: '2026-03-01',
+    title: 'Conférence Blockchain & Gouvernance',
+    date: '2026-04-05',
     time: '14:00',
     location: 'Lyon - Centre des Congrès',
-    description: 'Conférence sur l\'utilisation de la blockchain pour la transparence gouvernementale.',
+    description: 'Conférence sur l\'utilisation de la blockchain pour la transparence gouvernementale et le vote décentralisé.',
     coordinates: { x: 280, y: 200 }
   },
   {
     id: 3,
-    title: 'Forum Économique',
-    date: '2026-03-20',
+    title: 'Atelier IA & Citoyenneté',
+    date: '2026-04-12',
     time: '10:00',
-    location: 'Bordeaux - Palais de la Bourse',
-    description: 'Discussion sur les politiques économiques libertariennes et leur application en France.',
+    location: 'Bordeaux - Station F',
+    description: 'Atelier pratique : Comment configurer votre agent IA citoyen pour suivre les lois qui vous concernent.',
     coordinates: { x: 130, y: 280 }
   },
   {
     id: 4,
-    title: 'Rencontre Méridionale',
-    date: '2026-04-05',
+    title: 'Rencontre Crypto-Libertarienne',
+    date: '2026-04-26',
     time: '18:00',
     location: 'Marseille - Vieux Port',
-    description: 'Rassemblement des sympathisants du Sud de la France.',
+    description: 'Rassemblement des sympathisants du Sud. Discussion sur la monnaie décentralisée et la liberté financière.',
     coordinates: { x: 320, y: 280 }
+  },
+  {
+    id: 5,
+    title: 'Hackathon Démocratie 3.0',
+    date: '2026-05-10',
+    time: '09:00',
+    location: 'Paris - Station F',
+    description: '48h pour créer des outils de gouvernance décentralisée. Prix : 10 000€ en crypto.',
+    coordinates: { x: 200, y: 150 }
   }
 ])
 
-// News articles
+// News articles - Aligned with AI/Crypto/Law vision
 const newsArticles = ref([
   {
     id: 1,
-    title: 'Nouveau programme économique dévoilé',
-    excerpt: 'Découvrez notre vision pour une économie française libérée et prospère.',
-    date: '2026-01-15',
-    category: 'Programme'
+    title: 'Lancement des Agents IA Citoyens en beta',
+    excerpt: 'Nos premiers 100 adhérents testent leur représentant numérique personnel. Résultats prometteurs.',
+    date: '2026-03-10',
+    category: 'Technologie'
   },
   {
     id: 2,
-    title: 'Interview exclusive du fondateur',
-    excerpt: 'Les ambitions et la vision de Radical Prospérité expliquées en détail.',
-    date: '2026-01-10',
-    category: 'Médias'
+    title: 'Première proposition votée sur blockchain',
+    excerpt: 'La communauté a voté de manière transparente et vérifiable sur notre orientation stratégique.',
+    date: '2026-03-05',
+    category: 'Gouvernance'
   },
   {
     id: 3,
-    title: 'Succès du premier meeting national',
-    excerpt: 'Plus de 500 sympathisants réunis pour notre premier grand rassemblement.',
-    date: '2026-01-05',
-    category: 'Événements'
+    title: 'Partenariat avec une université pour le suivi des lois',
+    excerpt: 'Notre IA analysera automatiquement les textes de loi locaux, nationaux et européens.',
+    date: '2026-02-28',
+    category: 'Partenariat'
+  },
+  {
+    id: 4,
+    title: 'Guide : Comprendre les cryptomonnaies',
+    excerpt: 'Nouveau guide complet pour les citoyens souhaitant participer à l\'économie décentralisée.',
+    date: '2026-02-20',
+    category: 'Éducation'
   }
 ])
 </script>

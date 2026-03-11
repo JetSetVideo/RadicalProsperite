@@ -43,15 +43,14 @@ const regionalGroups = ref([
   { name: 'Grand Est', members: 45, leader: 'François Weber' }
 ])
 
-// Social links
+// Social links - Real URLs
 const socialLinks = [
-  { name: 'Twitter / X', icon: 'fa-brands fa-x-twitter', url: '#' },
-  { name: 'Facebook', icon: 'fa-brands fa-facebook', url: '#' },
-  { name: 'Instagram', icon: 'fa-brands fa-instagram', url: '#' },
-  { name: 'LinkedIn', icon: 'fa-brands fa-linkedin', url: '#' },
-  { name: 'YouTube', icon: 'fa-brands fa-youtube', url: '#' },
-  { name: 'Telegram', icon: 'fa-brands fa-telegram', url: '#' },
-  { name: 'Discord', icon: 'fa-brands fa-discord', url: '#' }
+  { name: 'Twitter / X', icon: 'fa-brands fa-x-twitter', url: 'https://x.com/RadProsperite' },
+  { name: 'Instagram', icon: 'fa-brands fa-instagram', url: 'https://www.instagram.com/radical.prosperite' },
+  { name: 'LinkedIn', icon: 'fa-brands fa-linkedin', url: 'https://www.linkedin.com/in/prosp%C3%A8re-radical-79b0583b2/' },
+  { name: 'YouTube', icon: 'fa-brands fa-youtube', url: 'https://www.youtube.com/@RadicalProsp%C3%A9rit%C3%A9' },
+  { name: 'TikTok', icon: 'fa-brands fa-tiktok', url: 'https://www.tiktok.com/@radical.prosperite' },
+  { name: 'Discord', icon: 'fa-brands fa-discord', url: 'https://discord.gg/53Jq3b8w' }
 ]
 </script>
 
