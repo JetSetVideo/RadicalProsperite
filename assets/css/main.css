@@ -2,9 +2,11 @@
  * Radical Prosperité — Base styles
  * Typography, layout utilities, reduced motion.
  * Design tokens: see variables.css
+ * Component system: see design-system.css
  */
 
 @import './variables.css';
+@import './design-system.css';
 
 /* ─── Base ─── */
 * {

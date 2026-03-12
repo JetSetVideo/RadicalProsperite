@@ -18,64 +18,72 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
 </script>
 
 <template>
-  <main class="main-content min-h-screen pb-24">
+  <main class="main-content min-h-screen pb-24" role="main">
     <!-- Grey transparent background container -->
     <div class="page-background">
       <!-- Content Container with centered margins -->
       <div class="content-container">
         <!-- Hero Section -->
-        <section class="hero-section mb-8 md:mb-10 text-center mx-4 md:mx-8 lg:mx-12">
-          <div class="hero-badge inline-block px-4 py-2 rounded-full mb-4 text-sm font-medium">
+        <header class="hero-section rp-section text-center" data-component="section" aria-labelledby="hero-title">
+          <span class="rp-badge rp-badge--outline" role="text">
             🇫🇷 Parti Libertarien Parisien
-          </div>
-          <h1 class="hero-title text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+          </span>
+          <h1 id="hero-title" class="hero-title rp-heading rp-heading--gradient">
             Système politique décentralisé autonome
           </h1>
-          <p class="hero-subtitle text-base sm:text-lg md:text-xl max-w-3xl mx-auto opacity-90 mb-2">
+          <p class="hero-subtitle">
             Bonté • Fierté • Force
           </p>
-        </section>
+        </header>
 
         <!-- Quote Section -->
-        <section class="quote-section mb-10 md:mb-14 p-5 md:p-7 rounded-2xl mx-4 md:mx-8 lg:mx-12">
-          <blockquote class="text-lg md:text-xl italic text-center mb-3">
-            « La justice sans la force est impuissante ; la force sans la justice est tyrannique. »
+        <figure class="quote-section rp-section" data-component="section" role="figure" aria-labelledby="quote-author">
+          <blockquote class="quote-text" cite="https://fr.wikipedia.org/wiki/Blaise_Pascal">
+            <p>« La justice sans la force est impuissante ; la force sans la justice est tyrannique. »</p>
           </blockquote>
-          <p class="text-sm md:text-base text-center opacity-70 quote-attribution">— Blaise Pascal</p>
-        </section>
+          <figcaption id="quote-author" class="quote-attribution">— Blaise Pascal</figcaption>
+        </figure>
 
         <!-- Next Meet-up Section -->
-        <section class="meetup-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
-          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">Prochain Meet-up</h2>
+        <section class="meetup-section rp-section" data-component="section" aria-labelledby="meetup-title">
+          <h2 id="meetup-title" class="rp-heading rp-heading--gradient rp-section-title text-center">
+            Prochain Meet-up
+          </h2>
         
-          <div v-if="nextMeetup" class="meetup-card p-5 md:p-7 rounded-2xl">
-            <div class="flex flex-col md:flex-row items-center md:items-start gap-5">
-              <div class="meetup-date-badge flex flex-col items-center justify-center p-3 rounded-xl min-w-20">
-                <span class="text-2xl font-bold">{{ new Date(nextMeetup.date).getDate() }}</span>
-                <span class="text-xs uppercase">{{ new Date(nextMeetup.date).toLocaleDateString('fr-FR', { month: 'short' }) }}</span>
-              </div>
-              <div class="flex-1 text-center md:text-left">
-                <h3 class="text-lg md:text-xl font-bold mb-1.5">{{ nextMeetup.title }}</h3>
-                <div class="meetup-details flex flex-col sm:flex-row flex-wrap justify-center md:justify-start gap-3 text-sm opacity-80">
-                  <span class="flex items-center justify-center md:justify-start gap-2">
-                    <FontAwesomeIcon icon="fa-solid fa-clock" />
-                    {{ nextMeetup.time }}
-                  </span>
-                  <span class="flex items-center justify-center md:justify-start gap-2">
-                    <FontAwesomeIcon icon="fa-solid fa-location-dot" />
-                    {{ nextMeetup.location }}
-                  </span>
-                </div>
+          <article v-if="nextMeetup" class="meetup-card rp-card" data-component="card">
+            <div class="meetup-layout">
+              <time class="meetup-date-badge rp-badge rp-badge--primary" :datetime="nextMeetup.date">
+                <span class="meetup-day">{{ new Date(nextMeetup.date).getDate() }}</span>
+                <span class="meetup-month">{{ new Date(nextMeetup.date).toLocaleDateString('fr-FR', { month: 'short' }) }}</span>
+              </time>
+              <div class="meetup-info">
+                <h3 class="meetup-title">{{ nextMeetup.title }}</h3>
+                <dl class="meetup-details">
+                  <div class="meetup-detail">
+                    <dt class="sr-only">Heure</dt>
+                    <dd>
+                      <FontAwesomeIcon icon="fa-solid fa-clock" class="rp-icon rp-icon--sm" aria-hidden="true" />
+                      {{ nextMeetup.time }}
+                    </dd>
+                  </div>
+                  <div class="meetup-detail">
+                    <dt class="sr-only">Lieu</dt>
+                    <dd>
+                      <FontAwesomeIcon icon="fa-solid fa-location-dot" class="rp-icon rp-icon--sm" aria-hidden="true" />
+                      {{ nextMeetup.location }}
+                    </dd>
+                  </div>
+                </dl>
               </div>
             </div>
-          </div>
+          </article>
           
-          <div v-else class="meetup-empty p-6 md:p-10 rounded-2xl text-center">
-            <div class="meetup-empty-icon mb-3">
-              <FontAwesomeIcon icon="fa-solid fa-calendar-xmark" class="text-3xl md:text-4xl" />
+          <div v-else class="meetup-empty rp-card rp-card--flat" data-component="card" role="status">
+            <div class="rp-icon-box rp-icon-box--xl meetup-empty-icon" aria-hidden="true">
+              <FontAwesomeIcon icon="fa-solid fa-calendar-xmark" class="rp-icon rp-icon--2xl rp-icon--gradient" />
             </div>
-            <p class="text-base md:text-lg font-medium opacity-80">Aucun meet-up prévu</p>
-            <p class="text-xs md:text-sm opacity-60 mt-1.5">Suivez-nous pour être informé des prochains événements</p>
+            <p class="meetup-empty-title">Aucun meet-up prévu</p>
+            <p class="meetup-empty-subtitle">Suivez-nous pour être informé des prochains événements</p>
           </div>
         </section>
 
@@ -95,66 +103,66 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
           </p>
         </section>
 
-        <!-- AI Agent Section - NEW -->
-        <section class="ai-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
-          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">
-            <FontAwesomeIcon icon="fa-solid fa-robot" class="mr-2" />
+        <!-- AI Agent Section -->
+        <section class="ai-section rp-section" data-component="section" aria-labelledby="ai-title">
+          <h2 id="ai-title" class="rp-heading rp-heading--gradient rp-section-title text-center">
+            <FontAwesomeIcon icon="fa-solid fa-robot" class="rp-icon rp-icon--lg" aria-hidden="true" />
             Agents IA Citoyens
           </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="ai-card p-6 rounded-2xl">
-              <div class="ai-icon mb-4">
-                <FontAwesomeIcon icon="fa-solid fa-user-shield" class="text-4xl" />
+          <div class="rp-grid rp-grid--2">
+            <article class="ai-card rp-card" data-component="card">
+              <div class="rp-icon-box rp-icon-box--xl ai-icon" aria-hidden="true">
+                <FontAwesomeIcon icon="fa-solid fa-user-shield" class="rp-icon rp-icon--2xl" />
               </div>
-              <h3 class="text-lg font-bold mb-3">Votre Représentant Numérique</h3>
-              <p class="text-sm opacity-80 mb-4">
+              <h3 class="ai-card__title">Votre Représentant Numérique</h3>
+              <p class="ai-card__text">
                 Chaque citoyen dispose d'un agent IA personnel qui représente ses intérêts, 
                 surveille les lois qui l'affectent, et participe aux votes selon ses valeurs.
               </p>
-              <ul class="text-sm space-y-2">
-                <li class="flex items-center gap-2">
-                  <FontAwesomeIcon icon="fa-solid fa-check" class="text-green-500" />
-                  Surveillance des lois 24/7
+              <ul class="rp-list ai-features" role="list">
+                <li class="rp-list-item">
+                  <FontAwesomeIcon icon="fa-solid fa-check" class="rp-list-item__icon text-green-500" aria-hidden="true" />
+                  <span>Surveillance des lois 24/7</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <FontAwesomeIcon icon="fa-solid fa-check" class="text-green-500" />
-                  Alertes personnalisées
+                <li class="rp-list-item">
+                  <FontAwesomeIcon icon="fa-solid fa-check" class="rp-list-item__icon text-green-500" aria-hidden="true" />
+                  <span>Alertes personnalisées</span>
                 </li>
-                <li class="flex items-center gap-2">
-                  <FontAwesomeIcon icon="fa-solid fa-check" class="text-green-500" />
-                  Vote délégué intelligent
+                <li class="rp-list-item">
+                  <FontAwesomeIcon icon="fa-solid fa-check" class="rp-list-item__icon text-green-500" aria-hidden="true" />
+                  <span>Vote délégué intelligent</span>
                 </li>
               </ul>
-            </div>
+            </article>
             
-            <div class="ai-card p-6 rounded-2xl">
-              <div class="ai-icon mb-4">
-                <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="text-4xl" />
+            <article class="ai-card rp-card" data-component="card">
+              <div class="rp-icon-box rp-icon-box--xl ai-icon" aria-hidden="true">
+                <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="rp-icon rp-icon--2xl" />
               </div>
-              <h3 class="text-lg font-bold mb-3">Comprendre les Lois</h3>
-              <p class="text-sm opacity-80 mb-4">
+              <h3 class="ai-card__title">Comprendre les Lois</h3>
+              <p class="ai-card__text">
                 Notre IA traduit le jargon juridique en langage simple. 
                 Suivez les lois locales, nationales et européennes qui vous concernent.
               </p>
-              <div class="law-levels flex flex-wrap gap-2 mt-4">
-                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
-                  <FontAwesomeIcon icon="fa-solid fa-building" class="mr-1" />
+              <div class="law-levels" role="list" aria-label="Niveaux de gouvernance">
+                <span class="rp-badge rp-badge--outline" role="listitem">
+                  <FontAwesomeIcon icon="fa-solid fa-building" aria-hidden="true" />
                   Mairie
                 </span>
-                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
-                  <FontAwesomeIcon icon="fa-solid fa-landmark" class="mr-1" />
+                <span class="rp-badge rp-badge--outline" role="listitem">
+                  <FontAwesomeIcon icon="fa-solid fa-landmark" aria-hidden="true" />
                   Région
                 </span>
-                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
-                  <FontAwesomeIcon icon="fa-solid fa-flag" class="mr-1" />
+                <span class="rp-badge rp-badge--outline" role="listitem">
+                  <FontAwesomeIcon icon="fa-solid fa-flag" aria-hidden="true" />
                   France
                 </span>
-                <span class="law-badge px-3 py-1 rounded-full text-xs font-medium">
-                  <FontAwesomeIcon icon="fa-solid fa-earth-europe" class="mr-1" />
+                <span class="rp-badge rp-badge--outline" role="listitem">
+                  <FontAwesomeIcon icon="fa-solid fa-earth-europe" aria-hidden="true" />
                   Europe
                 </span>
               </div>
-            </div>
+            </article>
           </div>
         </section>
 
@@ -208,127 +216,131 @@ const nextMeetup = ref(null) // Set to { date: '2026-02-15', time: '19:00', loca
         </section>
 
         <!-- Values Grid -->
-        <section class="values-section mb-10 md:mb-14 mx-4 md:mx-8 lg:mx-12">
-          <h2 class="section-title text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center">Nos Valeurs</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <section class="values-section rp-section" data-component="section" aria-labelledby="values-title">
+          <h2 id="values-title" class="rp-heading rp-heading--gradient rp-section-title text-center">
+            Nos Valeurs
+          </h2>
+          <div class="rp-grid rp-grid--4" role="list">
             <!-- Justice Card -->
-            <div class="value-card p-5 rounded-2xl">
-              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
-                <div class="card-icon-wrapper">
-                  <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="text-xl md:text-2xl" />
+            <article class="value-card rp-card" data-component="card" role="listitem">
+              <header class="value-card__header">
+                <div class="rp-icon-box rp-icon-box--lg" aria-hidden="true">
+                  <FontAwesomeIcon icon="fa-solid fa-scale-balanced" class="rp-icon rp-icon--xl rp-icon--gradient" />
                 </div>
-                <h3 class="text-lg md:text-xl font-bold">Justice</h3>
-              </div>
-              <p class="text-sm opacity-80 px-2">
+                <h3 class="value-card__title">Justice</h3>
+              </header>
+              <p class="value-card__text">
                 Instaurer un contrôle judiciaire strict des juges et des procureurs. 
                 Un suivi rigoureux de leurs jugements et des conséquences sur la société.
               </p>
-            </div>
+            </article>
 
             <!-- Liberté Card -->
-            <div class="value-card p-5 rounded-2xl">
-              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
-                <div class="card-icon-wrapper">
-                  <FontAwesomeIcon icon="fa-solid fa-dove" class="text-xl md:text-2xl" />
+            <article class="value-card rp-card" data-component="card" role="listitem">
+              <header class="value-card__header">
+                <div class="rp-icon-box rp-icon-box--lg" aria-hidden="true">
+                  <FontAwesomeIcon icon="fa-solid fa-dove" class="rp-icon rp-icon--xl rp-icon--gradient" />
                 </div>
-                <h3 class="text-lg md:text-xl font-bold">Liberté</h3>
-              </div>
-              <p class="text-sm opacity-80 px-2">
+                <h3 class="value-card__title">Liberté</h3>
+              </header>
+              <p class="value-card__text">
                 Défendre les libertés individuelles fondamentales. 
                 Réduire l'emprise de l'État sur la vie des citoyens.
               </p>
-            </div>
+            </article>
 
             <!-- Technologie Card -->
-            <div class="value-card p-5 rounded-2xl">
-              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
-                <div class="card-icon-wrapper">
-                  <FontAwesomeIcon icon="fa-solid fa-microchip" class="text-xl md:text-2xl" />
+            <article class="value-card rp-card" data-component="card" role="listitem">
+              <header class="value-card__header">
+                <div class="rp-icon-box rp-icon-box--lg" aria-hidden="true">
+                  <FontAwesomeIcon icon="fa-solid fa-microchip" class="rp-icon rp-icon--xl rp-icon--gradient" />
                 </div>
-                <h3 class="text-lg md:text-xl font-bold">Technologie</h3>
-              </div>
-              <p class="text-sm opacity-80 px-2">
+                <h3 class="value-card__title">Technologie</h3>
+              </header>
+              <p class="value-card__text">
                 IA pour la gestion de l'État. Blockchain pour la transparence. 
                 Génétique pour l'agriculture et la médecine.
               </p>
-            </div>
+            </article>
 
             <!-- Prospérité Card -->
-            <div class="value-card p-5 rounded-2xl">
-              <div class="card-header flex items-center gap-3 mb-2 px-3 py-2">
-                <div class="card-icon-wrapper">
-                  <FontAwesomeIcon icon="fa-solid fa-chart-line" class="text-xl md:text-2xl" />
+            <article class="value-card rp-card" data-component="card" role="listitem">
+              <header class="value-card__header">
+                <div class="rp-icon-box rp-icon-box--lg" aria-hidden="true">
+                  <FontAwesomeIcon icon="fa-solid fa-chart-line" class="rp-icon rp-icon--xl rp-icon--gradient" />
                 </div>
-                <h3 class="text-lg md:text-xl font-bold">Prospérité</h3>
-              </div>
-              <p class="text-sm opacity-80 px-2">
+                <h3 class="value-card__title">Prospérité</h3>
+              </header>
+              <p class="value-card__text">
                 Favoriser l'entrepreneuriat et l'innovation. 
                 Alléger la fiscalité pour libérer le potentiel économique.
               </p>
-            </div>
+            </article>
           </div>
         </section>
 
         <!-- Call to Action -->
-        <section class="cta-section text-center p-6 md:p-10 rounded-2xl mx-4 md:mx-8 lg:mx-12">
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-3">Rejoignez le Mouvement</h2>
-          <p class="text-sm md:text-base mb-6 opacity-90">
+        <section class="cta-section rp-section" data-component="section" aria-labelledby="cta-title">
+          <h2 id="cta-title" class="rp-heading rp-heading--gradient rp-section-title text-center">
+            Rejoignez le Mouvement
+          </h2>
+          <p class="cta-subtitle">
             Suivez-nous sur les réseaux sociaux et participez à la construction d'une France prospère.
           </p>
           
           <!-- Social Links CTA -->
-          <div class="cta-buttons flex flex-wrap justify-center gap-3 mb-8">
-            <a href="https://x.com/RadProsperite" target="_blank" rel="noopener" class="cta-btn px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2">
-              <FontAwesomeIcon icon="fa-brands fa-x-twitter" />
+          <nav class="cta-buttons" aria-label="Réseaux sociaux">
+            <a href="https://x.com/RadProsperite" target="_blank" rel="noopener noreferrer" class="rp-btn rp-btn--primary rp-btn--lg">
+              <FontAwesomeIcon icon="fa-brands fa-x-twitter" class="rp-icon rp-icon--sm" aria-hidden="true" />
               <span>Suivre sur X</span>
             </a>
-            <a href="https://discord.gg/53Jq3b8w" target="_blank" rel="noopener" class="cta-btn px-5 py-2.5 rounded-full text-sm font-medium flex items-center gap-2">
-              <FontAwesomeIcon icon="fa-brands fa-discord" />
+            <a href="https://discord.gg/53Jq3b8w" target="_blank" rel="noopener noreferrer" class="rp-btn rp-btn--outline rp-btn--lg">
+              <FontAwesomeIcon icon="fa-brands fa-discord" class="rp-icon rp-icon--sm" aria-hidden="true" />
               <span>Rejoindre Discord</span>
             </a>
-          </div>
+          </nav>
 
           <!-- Donation Section -->
-          <div class="donation-section pt-6 border-t border-white/20">
-            <p class="text-sm font-semibold mb-4 donation-label">
-              <FontAwesomeIcon icon="fa-solid fa-heart" class="mr-2 text-red-400" />
+          <aside class="donation-section" aria-labelledby="donation-title">
+            <h3 id="donation-title" class="donation-label">
+              <FontAwesomeIcon icon="fa-solid fa-heart" class="text-red-400" aria-hidden="true" />
               Soutenir le mouvement
-            </p>
-            <div class="crypto-donations flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+            </h3>
+            <div class="crypto-donations" role="list">
               <!-- Bitcoin -->
-              <div class="crypto-card flex items-center gap-3 px-4 py-3 rounded-xl">
-                <div class="crypto-icon">
-                  <FontAwesomeIcon icon="fa-brands fa-bitcoin" class="text-xl" />
+              <article class="crypto-card rp-card rp-card--interactive" data-component="card" role="listitem">
+                <div class="rp-icon-box rp-icon-box--md crypto-icon" aria-hidden="true">
+                  <FontAwesomeIcon icon="fa-brands fa-bitcoin" class="rp-icon rp-icon--lg" />
                 </div>
-                <div class="crypto-info text-left">
-                  <span class="crypto-name text-sm font-semibold block">Bitcoin</span>
-                  <span class="crypto-address text-xs opacity-60">Bientôt disponible</span>
+                <div class="crypto-info">
+                  <strong class="crypto-name">Bitcoin</strong>
+                  <span class="crypto-address">Bientôt disponible</span>
                 </div>
-              </div>
+              </article>
               
               <!-- Ethereum -->
-              <div class="crypto-card flex items-center gap-3 px-4 py-3 rounded-xl">
-                <div class="crypto-icon">
-                  <FontAwesomeIcon icon="fa-brands fa-ethereum" class="text-xl" />
+              <article class="crypto-card rp-card rp-card--interactive" data-component="card" role="listitem">
+                <div class="rp-icon-box rp-icon-box--md crypto-icon" aria-hidden="true">
+                  <FontAwesomeIcon icon="fa-brands fa-ethereum" class="rp-icon rp-icon--lg" />
                 </div>
-                <div class="crypto-info text-left">
-                  <span class="crypto-name text-sm font-semibold block">Ethereum</span>
-                  <span class="crypto-address text-xs opacity-60">Bientôt disponible</span>
+                <div class="crypto-info">
+                  <strong class="crypto-name">Ethereum</strong>
+                  <span class="crypto-address">Bientôt disponible</span>
                 </div>
-              </div>
+              </article>
               
               <!-- Solana -->
-              <div class="crypto-card flex items-center gap-3 px-4 py-3 rounded-xl">
-                <div class="crypto-icon">
-                  <FontAwesomeIcon icon="fa-solid fa-coins" class="text-xl" />
+              <article class="crypto-card rp-card rp-card--interactive" data-component="card" role="listitem">
+                <div class="rp-icon-box rp-icon-box--md crypto-icon" aria-hidden="true">
+                  <FontAwesomeIcon icon="fa-solid fa-coins" class="rp-icon rp-icon--lg" />
                 </div>
-                <div class="crypto-info text-left">
-                  <span class="crypto-name text-sm font-semibold block">Solana</span>
-                  <span class="crypto-address text-xs opacity-60">Bientôt disponible</span>
+                <div class="crypto-info">
+                  <strong class="crypto-name">Solana</strong>
+                  <span class="crypto-address">Bientôt disponible</span>
                 </div>
-              </div>
+              </article>
             </div>
-          </div>
+          </aside>
         </section>
       </div>
     </div>

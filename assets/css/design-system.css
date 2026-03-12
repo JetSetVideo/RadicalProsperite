@@ -1,0 +1,526 @@
+/**
+ * Radical Prospérité — Design System v2.0
+ * Unified component styles with consistent rules
+ * Uses modern CSS: layers, logical properties, container queries
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   CSS LAYERS - Control cascade order
+   ═══════════════════════════════════════════════════════════════ */
+@layer reset, tokens, base, components, utilities;
+
+/* ═══════════════════════════════════════════════════════════════
+   DESIGN TOKENS - Single source of truth
+   ═══════════════════════════════════════════════════════════════ */
+@layer tokens {
+  :root {
+    /* ─── Spacing Scale (4px base) ─── */
+    --space-1: 0.25rem;   /* 4px */
+    --space-2: 0.5rem;    /* 8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.25rem;   /* 20px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+
+    /* ─── Icon Sizes (consistent scale) ─── */
+    --icon-xs: 0.75rem;   /* 12px - inline icons */
+    --icon-sm: 1rem;      /* 16px - button icons */
+    --icon-md: 1.25rem;   /* 20px - list icons */
+    --icon-lg: 1.5rem;    /* 24px - card icons */
+    --icon-xl: 2rem;      /* 32px - feature icons */
+    --icon-2xl: 2.5rem;   /* 40px - hero icons */
+    --icon-3xl: 3rem;     /* 48px - section icons */
+
+    /* ─── Border Radius Scale ─── */
+    --radius-xs: 0.25rem;   /* 4px - tags, small badges */
+    --radius-sm: 0.5rem;    /* 8px - buttons, inputs */
+    --radius-md: 0.75rem;   /* 12px - small cards */
+    --radius-lg: 1rem;      /* 16px - cards */
+    --radius-xl: 1.25rem;   /* 20px - sections */
+    --radius-2xl: 1.5rem;   /* 24px - large sections */
+    --radius-full: 9999px;  /* pills, avatars */
+
+    /* ─── Consistent Hover Transform ─── */
+    --hover-lift: translateY(-4px);
+    --hover-scale: scale(1.02);
+    --hover-glow: 0 8px 24px rgba(0, 51, 153, 0.2);
+
+    /* ─── Animation Durations ─── */
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+
+    /* ─── Z-Index Scale ─── */
+    --z-base: 0;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-fixed: 30;
+    --z-modal-backdrop: 40;
+    --z-modal: 50;
+    --z-popover: 60;
+    --z-tooltip: 70;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT CATEGORIES - Same rules for same types
+   ═══════════════════════════════════════════════════════════════ */
+@layer components {
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 1: SECTIONS (page-level containers)
+     All sections share: rounded-2xl, section shadow, padding scale
+     ───────────────────────────────────────────────────────────── */
+  .rp-section,
+  [data-component="section"] {
+    --section-padding: var(--space-6);
+    --section-radius: var(--radius-2xl);
+    
+    padding: var(--section-padding);
+    border-radius: var(--section-radius);
+    background: var(--bg-section-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--shadow-section);
+    margin-block-end: var(--space-10);
+    margin-inline: var(--space-4);
+  }
+
+  .dark .rp-section,
+  .dark [data-component="section"] {
+    background: var(--bg-section-dark);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  @media (min-width: 768px) {
+    .rp-section,
+    [data-component="section"] {
+      --section-padding: var(--space-8);
+      margin-inline: var(--space-6);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .rp-section,
+    [data-component="section"] {
+      --section-padding: var(--space-10);
+      margin-inline: var(--space-8);
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 2: CARDS (content containers)
+     All cards share: rounded-xl, card shadow, hover lift
+     ───────────────────────────────────────────────────────────── */
+  .rp-card,
+  [data-component="card"] {
+    --card-padding: var(--space-5);
+    --card-radius: var(--radius-xl);
+    
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+    background: var(--bg-card-light);
+    border: var(--border-card-light);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+    transition: 
+      transform var(--duration-normal) ease,
+      box-shadow var(--duration-normal) ease,
+      border-color var(--duration-normal) ease;
+  }
+
+  .dark .rp-card,
+  .dark [data-component="card"] {
+    background: var(--bg-card-dark);
+    border: var(--border-card-dark);
+  }
+
+  /* ALL cards use same hover: lift + enhanced shadow */
+  .rp-card:hover,
+  [data-component="card"]:hover {
+    transform: var(--hover-lift);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(200, 16, 46, 0.3);
+  }
+
+  .dark .rp-card:hover,
+  .dark [data-component="card"]:hover {
+    border-color: rgba(255, 77, 109, 0.35);
+  }
+
+  /* Card variants */
+  .rp-card--interactive {
+    cursor: pointer;
+  }
+
+  .rp-card--flat {
+    box-shadow: none;
+    border: 1px solid rgba(0, 51, 153, 0.1);
+  }
+
+  .rp-card--flat:hover {
+    transform: none;
+    background: rgba(0, 51, 153, 0.05);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 3: BADGES (small labels)
+     All badges share: rounded-full, gradient bg, xs text
+     ───────────────────────────────────────────────────────────── */
+  .rp-badge,
+  [data-component="badge"] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding-block: var(--space-1);
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .rp-badge--primary {
+    background: var(--gradient-tricolor-light);
+    color: white;
+  }
+
+  .dark .rp-badge--primary {
+    background: var(--gradient-tricolor-dark);
+  }
+
+  .rp-badge--outline {
+    background: linear-gradient(135deg, rgba(0, 51, 153, 0.1) 0%, rgba(200, 16, 46, 0.1) 100%);
+    border: 1px solid rgba(0, 51, 153, 0.25);
+    color: inherit;
+  }
+
+  .dark .rp-badge--outline {
+    background: linear-gradient(135deg, rgba(77, 127, 191, 0.15) 0%, rgba(255, 77, 109, 0.15) 100%);
+    border-color: rgba(77, 127, 191, 0.35);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 4: BUTTONS (interactive controls)
+     All buttons share: rounded-sm, consistent padding, transitions
+     ───────────────────────────────────────────────────────────── */
+  .rp-btn,
+  [data-component="button"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    padding-inline: var(--space-4);
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 
+      transform var(--duration-fast) ease,
+      box-shadow var(--duration-fast) ease,
+      background var(--duration-fast) ease,
+      border-color var(--duration-fast) ease;
+  }
+
+  .rp-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Primary button */
+  .rp-btn--primary {
+    background: var(--gradient-tricolor-light);
+    color: white;
+    box-shadow: var(--shadow-btn-outer-bottom);
+  }
+
+  .dark .rp-btn--primary {
+    background: var(--gradient-tricolor-dark);
+  }
+
+  .rp-btn--primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-btn-outer-bottom), var(--hover-glow);
+  }
+
+  /* Outline button */
+  .rp-btn--outline {
+    background: transparent;
+    border-color: var(--tricolor-blue);
+    color: var(--tricolor-blue);
+  }
+
+  .dark .rp-btn--outline {
+    border-color: var(--tricolor-blue-dark);
+    color: var(--tricolor-blue-dark);
+  }
+
+  .rp-btn--outline:hover:not(:disabled) {
+    background: var(--gradient-tricolor-light);
+    color: white;
+    border-color: transparent;
+  }
+
+  .dark .rp-btn--outline:hover:not(:disabled) {
+    background: var(--gradient-tricolor-dark);
+  }
+
+  /* Ghost button */
+  .rp-btn--ghost {
+    background: transparent;
+    color: inherit;
+  }
+
+  .rp-btn--ghost:hover:not(:disabled) {
+    background: rgba(0, 51, 153, 0.1);
+  }
+
+  .dark .rp-btn--ghost:hover:not(:disabled) {
+    background: rgba(77, 127, 191, 0.1);
+  }
+
+  /* Button sizes */
+  .rp-btn--sm {
+    padding-block: var(--space-1);
+    padding-inline: var(--space-3);
+    font-size: 0.75rem;
+  }
+
+  .rp-btn--lg {
+    padding-block: var(--space-3);
+    padding-inline: var(--space-6);
+    font-size: 1rem;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 5: ICONS (consistent sizing & containers)
+     ───────────────────────────────────────────────────────────── */
+  .rp-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Icon sizes */
+  .rp-icon--xs { font-size: var(--icon-xs); }
+  .rp-icon--sm { font-size: var(--icon-sm); }
+  .rp-icon--md { font-size: var(--icon-md); }
+  .rp-icon--lg { font-size: var(--icon-lg); }
+  .rp-icon--xl { font-size: var(--icon-xl); }
+  .rp-icon--2xl { font-size: var(--icon-2xl); }
+  .rp-icon--3xl { font-size: var(--icon-3xl); }
+
+  /* Icon container (box around icon) */
+  .rp-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(0, 51, 153, 0.15) 0%, rgba(200, 16, 46, 0.15) 100%);
+  }
+
+  .dark .rp-icon-box {
+    background: linear-gradient(135deg, rgba(77, 127, 191, 0.2) 0%, rgba(255, 77, 109, 0.2) 100%);
+  }
+
+  /* Icon box sizes (width = height) */
+  .rp-icon-box--sm { width: 2rem; height: 2rem; }
+  .rp-icon-box--md { width: 2.5rem; height: 2.5rem; }
+  .rp-icon-box--lg { width: 3rem; height: 3rem; }
+  .rp-icon-box--xl { width: 3.5rem; height: 3.5rem; }
+  .rp-icon-box--2xl { width: 4rem; height: 4rem; }
+
+  /* Gradient icon text */
+  .rp-icon--gradient {
+    background: var(--gradient-tricolor-light);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark .rp-icon--gradient {
+    background: var(--gradient-tricolor-dark);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 6: TYPOGRAPHY (headings, text)
+     ───────────────────────────────────────────────────────────── */
+  .rp-heading {
+    font-family: 'Orbitron', 'Ethnocentric', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .rp-heading--gradient {
+    background: var(--gradient-tricolor-light);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark .rp-heading--gradient {
+    background: var(--gradient-tricolor-dark);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section title with underline */
+  .rp-section-title {
+    position: relative;
+    display: inline-block;
+    margin-block-end: var(--space-6);
+  }
+
+  .rp-section-title::after {
+    content: '';
+    position: absolute;
+    inset-block-end: calc(var(--space-3) * -1);
+    inset-inline-start: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--tricolor-blue) 20%,
+      var(--tricolor-red) 80%,
+      transparent 100%
+    );
+    border-radius: var(--radius-full);
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 7: LISTS (consistent item spacing)
+     ───────────────────────────────────────────────────────────── */
+  .rp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .rp-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .rp-list-item__icon {
+    flex-shrink: 0;
+    margin-block-start: 0.125em;
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 8: GRIDS (consistent gap patterns)
+     ───────────────────────────────────────────────────────────── */
+  .rp-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .rp-grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .rp-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .rp-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 1023px) {
+    .rp-grid--3,
+    .rp-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 639px) {
+    .rp-grid--2,
+    .rp-grid--3,
+    .rp-grid--4 { grid-template-columns: 1fr; }
+  }
+
+  /* ─────────────────────────────────────────────────────────────
+     CATEGORY 9: FORM ELEMENTS
+     ───────────────────────────────────────────────────────────── */
+  .rp-input {
+    width: 100%;
+    padding-block: var(--space-2);
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 2px solid rgba(0, 51, 153, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  }
+
+  .dark .rp-input {
+    background: rgba(30, 30, 45, 0.9);
+    border-color: rgba(77, 127, 191, 0.2);
+    color: white;
+  }
+
+  .rp-input:focus {
+    outline: none;
+    border-color: var(--tricolor-blue);
+    box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.1);
+  }
+
+  .dark .rp-input:focus {
+    border-color: var(--tricolor-blue-dark);
+    box-shadow: 0 0 0 3px rgba(77, 127, 191, 0.15);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILITIES - Helpers that can override components
+   ═══════════════════════════════════════════════════════════════ */
+@layer utilities {
+  /* Spacing utilities using logical properties */
+  .m-block-start-auto { margin-block-start: auto; }
+  .m-block-end-auto { margin-block-end: auto; }
+  .m-inline-auto { margin-inline: auto; }
+  
+  .p-inline-4 { padding-inline: var(--space-4); }
+  .p-inline-6 { padding-inline: var(--space-6); }
+  .p-block-4 { padding-block: var(--space-4); }
+  .p-block-6 { padding-block: var(--space-6); }
+
+  /* Gap utilities */
+  .gap-2 { gap: var(--space-2); }
+  .gap-3 { gap: var(--space-3); }
+  .gap-4 { gap: var(--space-4); }
+  .gap-6 { gap: var(--space-6); }
+  .gap-8 { gap: var(--space-8); }
+
+  /* Text utilities */
+  .text-center { text-align: center; }
+  .text-balance { text-wrap: balance; }
+  
+  /* Flex utilities */
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Visually hidden (accessibility) */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
